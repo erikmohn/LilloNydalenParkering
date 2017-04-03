@@ -4,13 +4,102 @@ var myApp = new Framework7();
 
 // If we need to use custom DOM library, let's save it to $$ variable:
 var $$ = Dom7;
- 
+
 // Add view
 var mainView = myApp.addView('.view-main', {
     // Because we want to use dynamic navbar, we need to enable it for this view:
     dynamicNavbar: true
 });
 
+var SERVER_URL = "http://192.168.1.121:3001"
+
+// Handle Cordova Device Ready Event
+$$(document).on('deviceready', function() {
+    console.log("Device is ready!");
+
+    refreshUser();
+
+	$("#user-save").click(function() {
+
+		$.post(SERVER_URL + "/user/save",
+			{
+				userId: localStorage.getItem("userId"),
+				userName: $("#user-nameInput").val(),
+				phoneNumber: $("#user-phoneInput").val(),
+				parkingSpace: $("#user-parkingLotInput").val(),
+				regnr: $("#user-regnrInput").val(),
+				epost: $("#user-emailInput").val(),
+			}).done(function(user) {
+				console.log("User has been saved! userId: " + user.user._id );
+				console.log[user];
+				localStorage.setItem("userId", user.user._id);
+				refreshUser();
+				
+				$("#user-save").hide();
+				$("#user-saved").show();
+				//$("#request-form").show();
+			});	
+	});
+
+	$("#send-request").click(function() {
+		$.post(SERVER_URL + "/parking/request",
+			{
+				userId: localStorage.getItem("userId"),
+				regNr: $("#request-regnr").val(),
+				phoneNumber: $("#request-telefon").val(),
+				starTime: $("#request-fom").val(),
+				endTime: $("#request-tom").val()
+			}).done(function(data) {
+				console.log("Parking request has been sent!");
+				regNr: $("#request-regnr").prop('disabled', true);
+				phoneNumber: $("#request-telefon").prop('disabled', true);
+				starTime: $("#request-fom").prop('disabled', true);
+				endTime: $("#request-tom").prop('disabled', true);
+				localStorage.setItem("currentRequest", data.request._id);
+				
+				$("#send-request").hide();
+				$("#cancel-request").show();
+				$("#request-tildeltParkering").show();
+				refreshParkingRequests();
+			});	
+	});
+
+	$("#cancel-request").click(function() {
+		console.log("Will cancle: " + localStorage.getItem("currentRequest"));
+
+		 $.post(SERVER_URL + "/parking/cancle", {
+		 		parkingId: localStorage.getItem("currentRequest")
+		 }).done(function(parking) {
+		 		localStorage.removeItem("currentRequest");
+				$("#send-request").show();	
+				$("#cancel-request").hide();
+
+				$("#request-regnr").val("").prop('disabled', false);
+				$("#request-telefon").val("").prop('disabled', false);
+				$("#request-fom").val("").prop('disabled', false);
+				$("#request-tom").val("").prop('disabled', false);
+
+				$("#request-tildeltParkering").hide();
+				refreshCurrentRequest();
+				console.log("Canceled parking: " + parking);
+		 });
+
+	});
+
+	$("#send-offer").click(function() {
+		var parkingId = $("#offer-currentRequest").val();
+		console.log("Will offer parking for: " + parkingId);
+
+		 $.post(SERVER_URL + "/parking/offer", {
+		 		offerUserId: localStorage.getItem("userId"),
+		 		parkingId: parkingId,
+		 		parkingLot: $("#offer-parkingLotInput").val()
+		 }).done(function(parking) {
+		 		myApp.showTab('#requestsView');
+				console.log("Offered parking space for: " + parking);
+		 });
+	});
+});
 
 //Open tab register request!
 $("#registerRequest").on('show', function(){
@@ -34,7 +123,7 @@ function refreshCurrentRequest() {
 	$("#request-eier-telefon").val("");
 
 	//Check if user has pending parking requests
-	$.get("http://localhost:3001/parking/user/" + userId, function(parkingRequest) {
+	$.get(SERVER_URL + "/parking/user/" + userId, function(parkingRequest) {
 			if(typeof parkingRequest != "undefined" && parkingRequest != null && parkingRequest.length > 0) {
 				console.log("Found pending parking request");
 				$("#request-regnr").val(parkingRequest[0].regNr).prop('disabled', true);
@@ -86,7 +175,7 @@ $("#requestsView").on('show', function(){
 $("#offerForParkingRequestPage").on('show', function(){
 	console.log("Open tab to respond to requests! For: " + localStorage.getItem("offer-currentRequest"));
 
-	$.post("http://localhost:3001/parking", {
+	$.post(SERVER_URL + "/parking", {
 		parkingId: $("#offer-currentRequest").val()
 	}).done(function(parking) {
 		$("#offer-navn").val(parking.requestUser[0].userName);
@@ -102,92 +191,7 @@ $("#userDataView").on('show', function(){
 	refreshUser();
 });
 
-// Handle Cordova Device Ready Event
-$$(document).on('deviceready', function() {
-    console.log("Device is ready!");
 
-    refreshUser();
-
-	$("#user-save").click(function() {
-		$.post("http://localhost:3001/user/save",
-			{
-				userId: localStorage.getItem("userId"),
-				userName: $("#user-nameInput").val(),
-				phoneNumber: $("#user-phoneInput").val(),
-				parkingSpace: $("#user-parkingLotInput").val(),
-				regnr: $("#user-regnrInput").val(),
-				epost: $("#user-emailInput").val(),
-			}).done(function(user) {
-				console.log("User has been saved! userId: " + user.user._id );
-				console.log[user];
-				localStorage.setItem("userId", user.user._id);
-				refreshUser();
-				
-				$("#user-save").hide();
-				$("#user-saved").show();
-				//$("#request-form").show();
-			});	
-	});
-
-	$("#send-request").click(function() {
-		$.post("http://localhost:3001/parking/request",
-			{
-				userId: localStorage.getItem("userId"),
-				regNr: $("#request-regnr").val(),
-				phoneNumber: $("#request-telefon").val(),
-				starTime: $("#request-fom").val(),
-				endTime: $("#request-tom").val()
-			}).done(function(data) {
-				console.log("Parking request has been sent!");
-				regNr: $("#request-regnr").prop('disabled', true);
-				phoneNumber: $("#request-telefon").prop('disabled', true);
-				starTime: $("#request-fom").prop('disabled', true);
-				endTime: $("#request-tom").prop('disabled', true);
-				localStorage.setItem("currentRequest", data.request._id);
-				
-				$("#send-request").hide();
-				$("#cancel-request").show();
-				$("#request-tildeltParkering").show();
-				refreshParkingRequests();
-			});	
-	});
-
-	$("#cancel-request").click(function() {
-		console.log("Will cancle: " + localStorage.getItem("currentRequest"));
-
-		 $.post("http://localhost:3001/parking/cancle", {
-		 		parkingId: localStorage.getItem("currentRequest")
-		 }).done(function(parking) {
-		 		localStorage.removeItem("currentRequest");
-				$("#send-request").show();	
-				$("#cancel-request").hide();
-
-				$("#request-regnr").val("").prop('disabled', false);
-				$("#request-telefon").val("").prop('disabled', false);
-				$("#request-fom").val("").prop('disabled', false);
-				$("#request-tom").val("").prop('disabled', false);
-
-				$("#request-tildeltParkering").hide();
-				refreshCurrentRequest();
-				console.log("Canceled parking: " + parking);
-		 });
-
-	});
-
-	$("#send-offer").click(function() {
-		var parkingId = $("#offer-currentRequest").val();
-		console.log("Will offer parking for: " + parkingId);
-
-		 $.post("http://localhost:3001/parking/offer", {
-		 		offerUserId: localStorage.getItem("userId"),
-		 		parkingId: parkingId,
-		 		parkingLot: $("#offer-parkingLotInput").val()
-		 }).done(function(parking) {
-		 		myApp.showTab('#requestsView');
-				console.log("Offered parking space for: " + parking);
-		 });
-	});
-});
 
 function refreshUser() {
 		var userId = localStorage.getItem("userId");
@@ -196,7 +200,7 @@ function refreshUser() {
 
 		if (userId != null) {
 			//Get user data
-			$.get("http://localhost:3001/user/" + userId, function(user) {
+			$.get(SERVER_URL + "/user/" + userId, function(user) {
 					localStorage.setItem("regnr", user.regnr);
 					localStorage.setItem("phoneNumber", user.phoneNumber);
 					localStorage.setItem("parkingSpace", user.parkingSpace);
@@ -215,7 +219,7 @@ function refreshUser() {
 
 function refreshParkingRequests() {
 		//Fetch list av current requests
-		$.get("http://localhost:3001/parking/requests", function(parkingRequests) {
+		$.get(SERVER_URL + "/parking/requests", function(parkingRequests) {
 			console.log("Fetching valid current requests");
 			$("#request-cards").empty();
 
