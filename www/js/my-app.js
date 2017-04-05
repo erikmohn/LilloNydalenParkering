@@ -16,16 +16,19 @@ var SERVER_URL = "https://lillo-nydalen-parkering.herokuapp.com"
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
-    /*
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
     var pusher = new Pusher('b3268785e53213585357', {
-  			cluster: 'eu'
-	});
+      cluster: 'eu',
+      encrypted: true
+    });
 
-	var channel = pusher.subscribe('my-channel');
-
-	channel.bind('my-event', function(data) {
-  		alert('An event was triggered with message: ' + data.message);
-	});*/
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(data.message);
+    });
 
     refreshUser();
 
