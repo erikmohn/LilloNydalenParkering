@@ -11,11 +11,21 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
-var SERVER_URL = "http://192.168.1.121:3001"
+var SERVER_URL = "https://lillo-nydalen-parkering.herokuapp.com"
 
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
+
+    var pusher = new Pusher('b3268785e53213585357', {
+  			cluster: 'eu'
+	});
+
+	var channel = pusher.subscribe('my-channel');
+
+	channel.bind('my-event', function(data) {
+  		alert('An event was triggered with message: ' + data.message);
+	});
 
     refreshUser();
 
@@ -259,3 +269,5 @@ function refreshParkingRequests() {
 			}	
 		});
 };
+
+
