@@ -15,6 +15,12 @@
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "no.fernanda.nissen.parkering"
+        },
+        "pushwoosh-cordova-plugin": {
+            "LOG_LEVEL": "DEBUG",
+            "IOS_FOREGROUND_ALERT_TYPE": "NONE",
+            "ANDROID_FOREGROUND_PUSH": "false",
+            "PACKAGE_NAME": "no.fernanda.nissen.parkering"
         }
     },
     "dependent_plugins": {}

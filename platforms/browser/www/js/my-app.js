@@ -13,10 +13,36 @@ var mainView = myApp.addView('.view-main', {
 
 var SERVER_URL = "https://lillo-nydalen-parkering.herokuapp.com"
 
+function initPushwoosh() {
+  var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
+
+  // Should be called before pushwoosh.onDeviceReady
+  document.addEventListener('push-notification', function(event) {
+    var notification = event.notification;
+    // handle push open here
+  });
+
+  pushwoosh.registerDevice(
+  function(status) {
+    var pushToken = status.pushToken;
+      alert("PushWoosh Registered successfully");
+  },
+  function(status) {
+    alert("PushWoosh Failed!");
+  }
+);
+  
+  // Initialize Pushwoosh. This will trigger all pending push notifications on start.
+  pushwoosh.onDeviceReady({
+    appid: "2D52E-A279A"
+  });
+}
+
 // Handle Cordova Device Ready Event
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 
+    initPushwoosh();
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
