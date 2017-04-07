@@ -4,7 +4,7 @@
     <description>
         A basic Framework7 template for PhoneGap.
     </description>
-    <author email="mohn.erik@gmail.com" >
+    <author email="mohn.erik@gmail.com">
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -56,14 +56,14 @@
         <splash height="2048" src="www/res/screens/ios/screen-ipad-portrait-2x.png" width="1536" />
     </platform>
     <preference name="DisallowOverscroll" value="true" />
-    <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
-    <plugin name="cordova-plugin-console" spec="~1.0.1" />
-    <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
-    <plugin name="pushwoosh-cordova-plugin" spec="~6.5.0">
+    <plugin name="pushwoosh-cordova-plugin" spec="~6.5.1">
         <variable name="LOG_LEVEL" value="DEBUG" />
         <variable name="IOS_FOREGROUND_ALERT_TYPE" value="NONE" />
         <variable name="ANDROID_FOREGROUND_PUSH" value="false" />
     </plugin>
+    <plugin name="cordova-plugin-console" spec="~1.0.6" />
     <plugin name="cordova-plugin-device" spec="~1.1.5" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.2" />
+    <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
+    <plugin name="cordova-plugin-whitelist" spec="~1.2.2" />
 </widget>
