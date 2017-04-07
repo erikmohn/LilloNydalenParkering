@@ -42,7 +42,11 @@ function initPushwoosh() {
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 
-    initPushwoosh();
+	var devicePlatform = device.platform;
+	if (devicePlatform === "Android" || devicePlatform === "iOS") {
+    initPushwoosh();		
+	}
+
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 

@@ -21,6 +21,9 @@
             "IOS_FOREGROUND_ALERT_TYPE": "NONE",
             "ANDROID_FOREGROUND_PUSH": "false",
             "PACKAGE_NAME": "no.fernanda.nissen.parkering"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "no.fernanda.nissen.parkering"
         }
     },
     "dependent_plugins": {}

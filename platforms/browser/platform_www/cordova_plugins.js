@@ -15,6 +15,20 @@ module.exports = [
         "clobbers": [
             "plugins.pushNotification"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "id": "cordova-plugin-device.device",
+        "pluginId": "cordova-plugin-device",
+        "clobbers": [
+            "device"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-device/src/browser/DeviceProxy.js",
+        "id": "cordova-plugin-device.DeviceProxy",
+        "pluginId": "cordova-plugin-device",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -23,7 +37,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.2.2",
     "cordova-plugin-console": "1.0.6",
     "cordova-plugin-statusbar": "1.0.1",
-    "pushwoosh-cordova-plugin": "6.5.0"
+    "pushwoosh-cordova-plugin": "6.5.0",
+    "cordova-plugin-device": "1.1.5"
 }
 // BOTTOM OF METADATA
 });

@@ -21,22 +21,13 @@
 </head>
 
 <body>
-    <!-- Status bar overlay for full screen mode (PhoneGap) -->
     <div class="statusbar-overlay"></div>
-
-    <!-- Panels overlay-->
     <div class="panel-overlay"></div>
- 
- <!-- Views, and they are tabs-->
-    <!-- We need to set "toolbar-through" class on it to keep space for our tab bar-->
     <div class="views tabs toolbar-through">
-      <!-- Your first view, it is also a .tab and should have "active" class to make it visible by default-->
+      <!-- First view -->
       <div id="view-1" class="view view-main tab active">
-        <!-- Pages-->
         <div class="pages">
-          <!-- Page, data-page contains page name-->
           <div data-page="index-page" class="page bgimg">
-            <!-- Scrollable page content-->
             <div class="page-content">
 
               <div class="content-block"> 
@@ -45,14 +36,20 @@
           </div>
         </div>
       </div>
-      <!-- Second view (for second wrap)-->
+      <!-- Second view -->
       <div id="registerRequest" class="view tab">
+
+       <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center">Parkeringsforespørsel</div>
+          </div>
+        </div>
+
         <div class="pages navbar-through">
           <div data-page="index-2" class="page">
             <div class="page-content">
             <div id="request-form">
               <div  class="content-block">
-                <p>Send en forespørsel om ledig parkering i borettslaget</p>
               </div>
             <div class="list-block">
                 <ul>
@@ -140,7 +137,7 @@
                 <div class="item-content">
                   <div class="item-inner">
                       <span class="center-align">
-                      <a href="#view-1" id="send-request" class="button button-big">Send forespørsel</a>
+                      <a href="#view-1" id="send-request" class="button button-big button-fill color-orange">Send forespørsel</a>
                       <a href="#view-1" ><i id="cancel-request" class="icon cancel-icon"></i></a>
                       </span>
                   </div>
@@ -153,11 +150,15 @@
       </div>
       <!-- Gjeldende forespørsler -->
       <div id="requestsView" class="view tab">
+       <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center">Forespørsler</div>
+          </div>
+        </div>
         <div class="pages">
           <div data-page="index-3" class="page">
             <div class="page-content">
-              <div class="content-block">
-                <p>Liste over parkeringsforespørsler</p>
+              <div class="content-block"><br>
                 <div id="request-cards" class=""> 
                 </div>
               </div>
@@ -168,11 +169,15 @@
       <!-- END Gjeldende forespørsler -->
       <!-- Brukerdata -->
    <div id="userDataView" class="view tab">
+    <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center">Brukerinformasjon</div>
+          </div>
+        </div>
         <div class="pages navbar-through">
           <div data-page="index-2" class="page">
             <div class="page-content">
               <div class="content-block">
-                <p>Registrer informasjon om deg selv</p>
               </div>
                 <div class="list-block">
                 <ul>
@@ -235,7 +240,7 @@
                 <div class="item-content">
                   <div class="item-inner">
                       <span class="center-align">
-                        <a href="#view-1" id="user-save" class="button button-big" >Lagre brukerdata</a>
+                        <a href="#view-1" id="user-save" class="button button-big button-fill color-orange" >Lagre brukerdata</a>
                         <i id="user-saved" class="icon saved-icon"></i>
                       </span>
                   </div>
@@ -249,12 +254,16 @@
       <!-- END Brukerdata -->
       <!-- START Offer Parking -->
       <div id="offerForParkingRequestPage" class="view tab">
+       <div class="navbar">
+          <div class="navbar-inner">
+            <div class="center">Tilby parkering</div>
+          </div>
+        </div>
         <div class="pages navbar-through">
           <div data-page="offerForParkingRequestPage" class="page">
             <div class="page-content">
             <div id="request-form">
               <div  class="content-block">
-                <p>Svar på forespørsel om ledig parkering i borettslaget</p>
               </div>
             <div class="list-block">
                 <ul>
@@ -330,7 +339,7 @@
                 <div class="item-content">
                   <div class="item-inner">
                       <span class="center-align">
-                      <a href="#requestsView" id="send-offer" class="button button-big">Tilby parkering</a>
+                      <a href="#requestsView" id="send-offer" class="button button-big button-fill color-orange">Tilby parkering</a>
                       </span>
                   </div>
                 </div>
