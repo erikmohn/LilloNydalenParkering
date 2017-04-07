@@ -47,16 +47,6 @@ $$(document).on('deviceready', function() {
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
 
-    var pusher = new Pusher('b3268785e53213585357', {
-      cluster: 'eu',
-      encrypted: true
-    });
-
-    var channel = pusher.subscribe('my-channel');
-    channel.bind('my-event', function(data) {
-      alert(data.message);
-    });
-
     refreshUser();
 
 	$("#user-save").click(function() {
@@ -239,6 +229,18 @@ function refreshUser() {
 		$("#user-saved").hide();
 
 		if (userId != null) {
+
+			    var pusher = new Pusher('b3268785e53213585357', {
+			      cluster: 'eu',
+			      encrypted: true
+			    });
+			    console.log("Will pusher-subscribe to: " + localStorage.getItem("userId"));
+			    var channel = pusher.subscribe("USER-" + localStorage.getItem("userId"));
+			    channel.bind('parking-offer', function(data) {
+			    	refreshCurrentRequest();
+			      	console.log("Recieved Pusher update!");
+			    });
+
 			//Get user data
 			$.get(SERVER_URL + "/user/" + userId, function(user) {
 					localStorage.setItem("regnr", user.regnr);
