@@ -266,8 +266,9 @@ function refreshParkingRequests() {
 			$("#request-cards").empty();
 
 			console.log(parkingRequests);
+			$("#no-requests").hide();
 			if(parkingRequests.length == 0) {
-				$("#request-cards").append("Det er ingen parkeringsforespørseler for øyeblikket");
+				$("#no-requests").show();
 			}
 
 			for (i in parkingRequests) {
