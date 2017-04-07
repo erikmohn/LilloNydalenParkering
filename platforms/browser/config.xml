@@ -1,8 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="no.fernanda.nissen.parkering" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <description>
-        A basic Framework7 template for PhoneGap.
-    </description>
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
@@ -10,7 +7,7 @@
     <description>
         A basic Framework7 template for PhoneGap.
     </description>
-    <author email="mohn.erik@gmail.com" href="http://cordova.io">
+    <author email="mohn.erik@gmail.com">
     </author>
     <content src="index.html" />
     <access origin="*" />
