@@ -24,6 +24,9 @@
         },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "no.fernanda.nissen.parkering"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "no.fernanda.nissen.parkering"
         }
     },
     "dependent_plugins": {}

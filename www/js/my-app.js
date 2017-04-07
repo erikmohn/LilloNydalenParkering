@@ -22,13 +22,10 @@ function initPushwoosh() {
     // handle push open here
   });
 
-  pushwoosh.registerDevice(
-  function(status) {
+  pushwoosh.registerDevice(function(status) {
     var pushToken = status.pushToken;
-      alert("PushWoosh Registered successfully");
   },
   function(status) {
-    alert("PushWoosh Failed!");
   }
 );
   
