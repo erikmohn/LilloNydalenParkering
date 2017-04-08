@@ -12,6 +12,12 @@ var mainView = myApp.addView('.view-main', {
 });
 
 var SERVER_URL = "https://lillo-nydalen-parkering.herokuapp.com"
+moment().locale("nb");
+
+var pusher = new Pusher('b3268785e53213585357', {
+  cluster: 'eu',
+  encrypted: true
+});
 
 function initPushwoosh() {
   var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
@@ -43,6 +49,11 @@ $$(document).on('deviceready', function() {
 	if (devicePlatform === "Android" || devicePlatform === "iOS") {
     initPushwoosh();		
 	}
+
+	var channel = pusher.subscribe("global-request-channel");
+			    channel.bind('request-update', function(data) {
+			 		refreshParkingRequests();
+			    });
 
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
@@ -211,8 +222,8 @@ $("#offerForParkingRequestPage").on('show', function(){
 		$("#offer-navn").val(parking.requestUser[0].userName);
 		$("#offer-regnr").val(parking.regNr);
 		$("#offer-telefon").val(parking.phoneNumber);
-		$("#offer-fom").val(parking.startTime);
-		$("#offer-tom").val(parking.endTime);
+		$("#offer-fom").append(moment(parking.startTime).locale("nb").format(" dddd hh:mm"));
+		$("#offer-tom").val(moment(parking.endTime).locale("nb").format(" dddd hh:mm"));
 	});
 });
 
@@ -229,11 +240,6 @@ function refreshUser() {
 		$("#user-saved").hide();
 
 		if (userId != null) {
-
-			    var pusher = new Pusher('b3268785e53213585357', {
-			      cluster: 'eu',
-			      encrypted: true
-			    });
 			    console.log("Will pusher-subscribe to: " + localStorage.getItem("userId"));
 			    var channel = pusher.subscribe("USER-" + localStorage.getItem("userId"));
 			    channel.bind('parking-offer', function(data) {
@@ -278,8 +284,8 @@ function refreshParkingRequests() {
 	                    '<div class="card-header">'+parkingRequest.requestUser[0].userName + ' <i class="icon parking-icon right-align"></i></div>' +
 	                    '<div class="card-content">' +
 	                        '<div class="card-content-inner">' +
-	  							'<b>Fra:</b> ' + parkingRequest.startTime + 
-	  							'<br><b>Til:</b> ' + parkingRequest.endTime +
+	  							'<b>Fra:</b> ' + moment(parkingRequest.startTime).locale("nb").format(" dddd hh:mm") + 
+	  							'<br><b>Til:</b> ' + moment(parkingRequest.endTime).locale("nb").format(" dddd hh:mm") +
 	  							'<br><b>Registrerningsnummer:</b> ' + parkingRequest.regNr + 
 	  							'<br><b>Telfonnummer:</b> ' + parkingRequest.phoneNumber +
 	                        '</div>' +
