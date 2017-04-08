@@ -146,6 +146,8 @@ $$(document).on('deviceready', function() {
 $("#registerRequest").on('show', function(){
 	console.log("Open tab to register request!");
 	var userId = localStorage.getItem("userId");
+	$('#request-fom').setNow();
+	$('#request-tom').setThreeHoursFromNow();
 	
 	if (userId == null) {		
 		$("#request-form").hide();
@@ -206,9 +208,8 @@ function refreshCurrentRequest() {
 	});
 };
 
-//Open tab register request!
+//Open tab view requests
 $("#requestsView").on('show', function(){
-	console.log("Open tab view open requests!");
 	refreshParkingRequests();
 });
 
@@ -222,8 +223,8 @@ $("#offerForParkingRequestPage").on('show', function(){
 		$("#offer-navn").val(parking.requestUser[0].userName);
 		$("#offer-regnr").val(parking.regNr);
 		$("#offer-telefon").val(parking.phoneNumber);
-		$("#offer-fom").append(moment(parking.startTime).locale("nb").format(" dddd hh:mm"));
-		$("#offer-tom").val(moment(parking.endTime).locale("nb").format(" dddd hh:mm"));
+		$("#offer-fom").html(moment(parking.startTime).locale("nb").format(" dddd HH:mm"));
+		$("#offer-tom").val(moment(parking.endTime).locale("nb").format(" dddd HH:mm"));
 	});
 });
 
@@ -266,47 +267,80 @@ function refreshUser() {
 
 
 function refreshParkingRequests() {
+		$("#requests-view-loading").show();
+		$("#requests-view-done").hide();
+		$("#requests-view-cards").hide();
+
 		//Fetch list av current requests
 		$.get(SERVER_URL + "/parking/requests", function(parkingRequests) {
-			console.log("Fetching valid current requests");
 			$("#request-cards").empty();
-
-			console.log(parkingRequests);
-			$("#no-requests").hide();
 			if(parkingRequests.length == 0) {
-				$("#no-requests").show();
+				$("#requests-view-loading").hide();
+				$("#requests-view-done").show();
+			} else {
+				for (i in parkingRequests) {
+					var parkingRequest = parkingRequests[i];
+					$("#request-cards").append(
+						'<div class="card">' +
+		                    '<div class="card-header">'+parkingRequest.requestUser[0].userName + ' <i class="icon parking-icon right-align"></i></div>' +
+		                    '<div class="card-content">' +
+		                        '<div class="card-content-inner">' +
+		  							'<b>Fra:</b> ' + moment(parkingRequest.startTime).locale("nb").format(" dddd HH:mm") + 
+		  							'<br><b>Til:</b> ' + moment(parkingRequest.endTime).locale("nb").format(" dddd HH:mm") +
+		  							'<br><b>Registrerningsnummer:</b> ' + parkingRequest.regNr + 
+		  							'<br><b>Telfonnummer:</b> ' + parkingRequest.phoneNumber +
+		                        '</div>' +
+		                    '</div>' +
+		                    '<div class="card-footer">' +
+		                    '<i id="click-'+ parkingRequest._id + '" class="icon accept-icon center-align"></i>' +
+		                    '</div></div>' +
+						'</div>'
+						);
+
+					//Make offer for parkingId
+					$("#click-" + parkingRequest._id).click(function() {
+				    		$("#offer-currentRequest").val(parkingRequest._id);
+							$("#offer-parkingLotInput").val(localStorage.getItem("parkingSpace"));
+							localStorage.setItem("offer-currentRequest", parkingRequest._id)
+				    		myApp.showTab('#offerForParkingRequestPage');
+
+					});
+
+				}	
+				$("#requests-view-loading").hide();
+				$("#requests-view-cards").show();
 			}
 
-			for (i in parkingRequests) {
-				var parkingRequest = parkingRequests[i];
-				$("#request-cards").append(
-					'<div class="card">' +
-	                    '<div class="card-header">'+parkingRequest.requestUser[0].userName + ' <i class="icon parking-icon right-align"></i></div>' +
-	                    '<div class="card-content">' +
-	                        '<div class="card-content-inner">' +
-	  							'<b>Fra:</b> ' + moment(parkingRequest.startTime).locale("nb").format(" dddd hh:mm") + 
-	  							'<br><b>Til:</b> ' + moment(parkingRequest.endTime).locale("nb").format(" dddd hh:mm") +
-	  							'<br><b>Registrerningsnummer:</b> ' + parkingRequest.regNr + 
-	  							'<br><b>Telfonnummer:</b> ' + parkingRequest.phoneNumber +
-	                        '</div>' +
-	                    '</div>' +
-	                    '<div class="card-footer">' +
-	                    '<i id="click-'+ parkingRequest._id + '" class="icon accept-icon center-align"></i>' +
-	                    '</div></div>' +
-					'</div>'
-					);
 
-				//Make offer for parkingId
-				$("#click-" + parkingRequest._id).click(function() {
-			    		$("#offer-currentRequest").val(parkingRequest._id);
-						$("#offer-parkingLotInput").val(localStorage.getItem("parkingSpace"));
-						localStorage.setItem("offer-currentRequest", parkingRequest._id)
-			    		myApp.showTab('#offerForParkingRequestPage');
-
-				});
-
-			}	
 		});
 };
 
+$.fn.setThreeHoursFromNow = function(onlyBlank) {
+  var now = new Date(moment().add(5, 'hours'));
+  var formattedDateTime = defaultValueDateTime(now)
+  if ( onlyBlank === true && $(this).val() ) {
+    return this;
+  }
+  $(this).val(formattedDateTime);
+  return this;
+};
 
+$.fn.setNow = function (onlyBlank) {
+  var now = new Date(moment().add(1, 'hours'));
+  var formattedDateTime = defaultValueDateTime(now)
+  if ( onlyBlank === true && $(this).val() ) {
+    return this;
+  }
+  $(this).val(formattedDateTime);
+  return this;
+}
+
+
+function defaultValueDateTime(now) {
+  var year = now.getFullYear();
+  var month = now.getMonth().toString().length === 1 ? '0' + (now.getMonth() + 1).toString() : now.getMonth() + 1;
+  var date = now.getDate().toString().length === 1 ? '0' + (now.getDate()).toString() : now.getDate();
+  var hours = now.getHours().toString().length === 1 ? '0' + now.getHours().toString() : now.getHours();
+  return year + '-' + month + '-' + date + 'T' + hours + ':' + '00' + ':' + '00';
+  
+}
