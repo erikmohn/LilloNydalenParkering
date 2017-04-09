@@ -14,10 +14,10 @@ input {
 user-select: auto !important;
 }
 
-.statusbar-overlay {
-    /*background: #000000;*/
+/*.statusbar-overlay {
+    background: #000000;
     color:#000000;
-}
+}*/
 
 .bgimg {
     background-image: url('../img/logo.png');
