@@ -8,11 +8,15 @@ $("#offerForParkingRequestPage").on('show', function(){
 	$.post(SERVER_URL + "/parking", {
 		parkingId: $("#offer-currentRequest").val()
 	}).done(function(parking) {
+		String.prototype.capitalizeFirstLetter = function() {
+				    return this.charAt(0).toUpperCase() + this.slice(1);
+		};
+
 		$("#offer-navn").val(parking.requestUser[0].userName);
 		$("#offer-regnr").val(parking.regNr);
 		$("#offer-telefon").val(parking.phoneNumber);
-		$("#offer-fom").val(moment(parking.startTime).locale("nb").format(" dddd HH:mm"));
-		$("#offer-tom").val(moment(parking.endTime).locale("nb").format(" dddd HH:mm"));
+		$("#offer-fom").val(moment(parking.startTime).locale("nb").format("dddd HH:mm").capitalizeFirstLetter());
+		$("#offer-tom").val(moment(parking.endTime).locale("nb").format("dddd HH:mm").capitalizeFirstLetter());
 		$("#parking-offer-loading").hide();
 		$("#parking-offer-input").show();
 	});
