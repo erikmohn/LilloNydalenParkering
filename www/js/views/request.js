@@ -18,18 +18,33 @@ $("#registerRequest").on('show', function(){
 
 function initializeCurrentRequest() {
 	$("#send-request").click(function() {
-	$.post(SERVER_URL + "/parking/request",
+
+	var regNr = $("#request-regnr").val();
+	var phoneNumber = $("#request-telefon").val();
+	var startTime = $("#request-fom").val();
+	var endTime = $("#request-tom").val();
+	
+	if (new Date(endTime).getTime() <= new Date(startTime).getTime()) {
+		$("#request-tom").css({ 'color': 'red'});	
+	} else if (!/^\d{8}$/.test(phoneNumber)) {
+		$("#request-telefon").css({ 'color': 'red'});
+	} else if (!/^[A-Z]{2}\d{5}$/.test(regNr)) {
+		$("#request-regnr").css({ 'color': 'red'});
+	} else {
+		$("#request-tom").css({ 'color': 'black'});
+		$.post(SERVER_URL + "/parking/request",
 		{
 			userId: localStorage.getItem("userId"),
-			regNr: $("#request-regnr").val(),
-			phoneNumber: $("#request-telefon").val(),
-			starTime: $("#request-fom").val(),
-			endTime: $("#request-tom").val()
+			regNr: regNr,
+			phoneNumber: phoneNumber,
+			starTime: startTime,
+			endTime: endTime
 		}).done(function(data) {
 			console.log("Parking request has been sent!");
 			localStorage.setItem("currentRequest", data.request._id);
 			refreshCurrentRequest();
 		});	
+	}
 	});
 
 	$("#cancel-request").click(function() {
@@ -69,7 +84,6 @@ function refreshCurrentRequest() {
 	
 	$.get(SERVER_URL + "/parking/user/" + userId, function(parkingRequest) {
 			if(typeof parkingRequest != "undefined" && parkingRequest != null && parkingRequest.length > 0) {
-				console.log("Found pending parking request!!!");
 				$("#request-regnr").val(parkingRequest[0].regNr).prop('disabled', true);
 				$("#request-telefon").val(parkingRequest[0].phoneNumber).prop('disabled', true);
 				$("#request-fom").val(new Date(parkingRequest[0].startTime).toISOString().slice(0,16)).prop('disabled', true);
@@ -80,9 +94,21 @@ function refreshCurrentRequest() {
 					$("#request-eier").val(parkingRequest[0].offerParkingUser[0].userName);
 					$("#request-eier-telefon").val(parkingRequest[0].offerParkingUser[0].phoneNumber);
 					
-					$("#request-loading").hide();
-					$("#done-request").show();
+					var now = moment().toDate();
+					var parkingTime = moment(parkingRequest[0].startTime).subtract(2, 'hours').toDate();
+					var diff =  parkingTime.getTime() - now.getTime();
 
+					if (diff < 0 ) {
+						$("#request-loading").hide();
+						$("#done-request").show();						
+					} else {
+						$("#request-loading").hide();
+						$("#cancel-request").show();
+						setTimeout( function() {
+							$("#cancel-request").hide();
+							$("#done-request").show();
+						}, diff);
+					}
 					$("#request-tildeltParkering").show();
 				} else {
 					$("#request-loading").hide();

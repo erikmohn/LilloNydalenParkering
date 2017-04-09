@@ -11,7 +11,7 @@ $("#offerForParkingRequestPage").on('show', function(){
 		$("#offer-navn").val(parking.requestUser[0].userName);
 		$("#offer-regnr").val(parking.regNr);
 		$("#offer-telefon").val(parking.phoneNumber);
-		$("#offer-fom").html(moment(parking.startTime).locale("nb").format(" dddd HH:mm"));
+		$("#offer-fom").val(moment(parking.startTime).locale("nb").format(" dddd HH:mm"));
 		$("#offer-tom").val(moment(parking.endTime).locale("nb").format(" dddd HH:mm"));
 		$("#parking-offer-loading").hide();
 		$("#parking-offer-input").show();
