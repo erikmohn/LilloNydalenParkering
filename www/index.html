@@ -97,8 +97,13 @@
                       </div>
                     </div>
                   </li>
-                  <div id="request-tildeltParkering">
-                      <li id="request-tildeltParkering">
+                </ul>
+                <div id="request-tildeltParkering">
+                <div class="center-align">
+                  <h5>Parkeringstilbud</h5>
+                </div>
+                <ul>
+                      <li>
                         <div class="item-content">
                           <div class="item-media"><i class="icon icon-form-name"></i></div>
                           <div class="item-inner"> 
@@ -131,14 +136,20 @@
                           </div>
                         </div>
                       </li>
+                  <ul>
                   </div>
-                </ul>
+                  <div id="request-venter-svar" class="center-align">
+                  <h4>Parkeringstilbud</h4>
+                    <p>Venter på parkering</p>
+                  </div>
 
                 <div class="item-content">
                   <div class="item-inner">
                       <span class="center-align">
-                      <a href="#view-1" id="send-request" class="button button-big button-fill color-orange">Send forespørsel</a>
-                      <a href="#view-1" ><i id="cancel-request" class="icon cancel-icon"></i></a>
+                      <img id="request-loading" src="./img/loading_small.gif" />
+                      <i id="send-request" class="button button-big button-fill color-orange">Send</i>
+                      <i id="cancel-request" class="button button-big button-fill color-red">Avbryt</i>
+                      <i id="done-request" class="button button-big button-fill color-green">Ferdig</i>
                       </span>
                   </div>
                 </div>
@@ -247,18 +258,20 @@
                 <div class="item-content">
                   <div class="item-inner">
                       <span class="center-align">
-                        <a href="#view-1" id="user-save" class="button button-big button-fill color-orange" >Lagre</a>
+                        <i id="user-save" class="button button-big button-fill color-orange" >Lagre</i>
                         <i id="user-saved" class="icon saved-icon"></i>
+                        <img id="user-save-loading" src="./img/loading_small.gif" />
                       </span>
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
       <!-- END Brukerdata -->
+
+
       <!-- START Offer Parking -->
       <div id="offerForParkingRequestPage" class="view tab">
        <div class="navbar">
@@ -266,92 +279,106 @@
             <div class="center">Tilby parkering</div>
           </div>
         </div>
-        <div class="pages navbar-through">
+        <div class="pages">
           <div data-page="offerForParkingRequestPage" class="page">
-            <div class="page-content">
-            <div id="request-form">
-              <div  class="content-block">
+            <div class="page-content ">
+              
+              <div id="parking-offer-loading" class="content-block center-align vertical-center">
+                  <img src="img/loading.gif"/>
+                </div>
+              <div id="parking-offer-success" class="content-block center-align vertical-center">
+                  <i class="icon success-icon "></i>
+                  <h2>Takk for at du deler din parkeringsplass!</h2>
               </div>
-            <div class="list-block">
-                <ul>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-name"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">Navn</div>
-                        <div class="item-input">
-                          <input id="offer-navn" type="text" disabled>
+              <div id="parking-offer-fail" class="content-block center-align vertical-center">
+                  <i class="icon warning-icon"></i>
+                  <h2>Noen andre har svart på denne forespørselen før deg!</h2>
+              </div>
+           <div id="parking-offer-input" class="vertical-center">
+           <div class="center-align">
+              <i class="icon parking-large-icon"></i>
+              </div>
+              <div class="list-block">
+                  <ul>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+                        <div class="item-inner"> 
+                          <div class="item-title label">Navn</div>
+                          <div class="item-input">
+                            <input id="offer-navn" type="text" disabled>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-name"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">Regnr</div>
-                        <div class="item-input">
-                          <input id="offer-regnr" type="text" disabled>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+                        <div class="item-inner"> 
+                          <div class="item-title label">Regnr</div>
+                          <div class="item-input">
+                            <input id="offer-regnr" type="text" disabled>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-tel"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">Telefon</div>
-                        <div class="item-input">
-                          <input id="offer-telefon" type="text" disabled>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-tel"></i></div>
+                        <div class="item-inner"> 
+                          <div class="item-title label">Telefon</div>
+                          <div class="item-input">
+                            <input id="offer-telefon" type="text" disabled>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-calendar"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">Fra</div>
-                        <div class="item-input">
-                          <div id="offer-fom" > </div>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                        <div class="item-inner"> 
+                          <div class="item-title label">Fra</div>
+                          <div class="item-input">
+                            <div id="offer-fom" > </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-calendar"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">Til</div>
-                        <div class="item-input">
-                          <input id="offer-tom" type="text" disabled>
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                        <div class="item-inner"> 
+                          <div class="item-title label">Til</div>
+                          <div class="item-input">
+                            <input id="offer-tom" type="text" disabled>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-name"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">Din parkeringsplass</div>
-                        <div class="item-input">
-                          <input id="offer-parkingLotInput" type="text" placeholder="parkeringsplass">
-                          <input id="offer-currentRequest" type="hidden" >
+                    </li>
+                    <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+                        <div class="item-inner"> 
+                          <div class="item-title label">Din parkeringsplass</div>
+                          <div class="item-input">
+                            <input id="offer-parkingLotInput" type="text" placeholder="parkeringsplass">
+                            <input id="offer-currentRequest" type="hidden" >
+                          </div>
                         </div>
                       </div>
+                    </li>
+                  </ul>
+                  <div class="item-content">
+                    <div class="item-inner">
+                        <span class="center-align">
+                        <a href="#requestsView" id="send-offer" class="button button-big button-fill color-orange">Tilby parkering</a>
+                        </span>
                     </div>
-                  </li>
-                </ul>
-
-                <div class="item-content">
-                  <div class="item-inner">
-                      <span class="center-align">
-                      <a href="#requestsView" id="send-offer" class="button button-big button-fill color-orange">Tilby parkering</a>
-                      </span>
                   </div>
                 </div>
               </div>
-              </div>
+
+
             </div>
           </div>
         </div>
@@ -372,12 +399,16 @@
       </div>
 
     </div>
-    <script src="js/pusher.min.js"></script>
-    <script src="js/moment-with-locales.js"></script>
-    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="lib/pusher.min.js"></script>
+    <script type="text/javascript" src="lib/moment-with-locales.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.2.0.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
-    <script type="text/javascript" src="js/my-app.js"></script>
+    <script type="text/javascript" src="js/views/request.js"></script>
+    <script type="text/javascript" src="js/views/user.js"></script>
+    <script type="text/javascript" src="js/views/offer.js"></script>
+    <script type="text/javascript" src="js/views/requests.js"></script>
+    <script type="text/javascript" src="js/lillo-nydalen-parkering.js"></script>
 </body>
 
 </html>
