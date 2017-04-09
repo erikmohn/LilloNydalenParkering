@@ -56,6 +56,7 @@
         <splash height="2048" src="www/res/screens/ios/screen-ipad-portrait-2x.png" width="1536" />
     </platform>
     <preference name="DisallowOverscroll" value="true" />
+    <preference name="StatusBarStyle" value="blacktranslucent" />
     <plugin name="pushwoosh-cordova-plugin" spec="~6.5.1">
         <variable name="LOG_LEVEL" value="DEBUG" />
         <variable name="IOS_FOREGROUND_ALERT_TYPE" value="NONE" />
