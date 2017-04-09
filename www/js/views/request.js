@@ -1,16 +1,17 @@
 
 //Open tab register request!
 $("#registerRequest").on('show', function(){
-	console.log("Open tab to register request!");
 	var userId = localStorage.getItem("userId");
+	$("#parking-request").hide();
+	$("#parking-request-fail").hide();
 	
 	$('#request-fom').setNow();
 	$('#request-tom').setThreeHoursFromNow();
 	
-	if (userId == null) {		
-		$("#request-form").hide();
+	if (userId === null) {		
+		$("#parking-request-fail").show();
 	} else {
-		$("#request-form").show();
+		$("#parking-request").show();
 		refreshCurrentRequest();	
 	}  
 });
@@ -32,23 +33,25 @@ function initializeCurrentRequest() {
 	});
 
 	$("#cancel-request").click(function() {
-		 $.post(SERVER_URL + "/parking/cancle", {
-		 		parkingId: localStorage.getItem("currentRequest")
-		 }).done(function(parking) {
-		 		localStorage.removeItem("currentRequest");
-				refreshCurrentRequest();
-		 });
-
+	    myApp.confirm('Ønsker du å avbryte din parkeringsforespørsel?', 'Avbryt', function () {
+			 $.post(SERVER_URL + "/parking/cancle", {
+			 		parkingId: localStorage.getItem("currentRequest")
+			 }).done(function(parking) {
+			 		localStorage.removeItem("currentRequest");
+					refreshCurrentRequest();
+			 });     
+	    });
 	});
 
 	$("#done-request").click(function() {
-	 $.post(SERVER_URL + "/parking/done", {
-	 		parkingId: localStorage.getItem("currentRequest")
-	 }).done(function(parking) {
-	 		localStorage.removeItem("currentRequest");
-			refreshCurrentRequest();
-	 });
-
+	    myApp.confirm('Er du ferdig med din bruk av parkeringsplassen? <br><br> Eier får beskjed om at plassen nå er tilgjengelig for bruk', 'Ferdigstill parkering', function () {
+			 $.post(SERVER_URL + "/parking/done", {
+			 		parkingId: localStorage.getItem("currentRequest")
+			 }).done(function(parking) {
+			 		localStorage.removeItem("currentRequest");
+					refreshCurrentRequest();
+			 });
+	    });
 	});
 };
 
