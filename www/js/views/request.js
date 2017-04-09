@@ -5,8 +5,8 @@ $("#registerRequest").on('show', function(){
 	$("#parking-request").hide();
 	$("#parking-request-fail").hide();
 	
-	$('#request-fom').setNow();
-	$('#request-tom').setThreeHoursFromNow();
+	$('#request-fom').val(moment().add(1, 'hours').format("YYYY-MM-DDTHH:00"));
+	$('#request-tom').val(moment().add(4, 'hours').format("YYYY-MM-DDTHH:00"));
 	
 	if (userId === null) {		
 		$("#parking-request-fail").show();
@@ -18,33 +18,31 @@ $("#registerRequest").on('show', function(){
 
 function initializeCurrentRequest() {
 	$("#send-request").click(function() {
-
-	var regNr = $("#request-regnr").val();
-	var phoneNumber = $("#request-telefon").val();
-	var startTime = $("#request-fom").val();
-	var endTime = $("#request-tom").val();
-	
-	if (new Date(endTime).getTime() <= new Date(startTime).getTime()) {
-		$("#request-tom").css({ 'color': 'red'});	
-	} else if (!/^\d{8}$/.test(phoneNumber)) {
-		$("#request-telefon").css({ 'color': 'red'});
-	} else if (!/^[A-Z]{2}\d{5}$/.test(regNr)) {
-		$("#request-regnr").css({ 'color': 'red'});
-	} else {
-		$("#request-tom").css({ 'color': 'black'});
-		$.post(SERVER_URL + "/parking/request",
-		{
-			userId: localStorage.getItem("userId"),
-			regNr: regNr,
-			phoneNumber: phoneNumber,
-			starTime: startTime,
-			endTime: endTime
-		}).done(function(data) {
-			console.log("Parking request has been sent!");
-			localStorage.setItem("currentRequest", data.request._id);
-			refreshCurrentRequest();
-		});	
-	}
+		var regNr = $("#request-regnr").val();
+		var phoneNumber = $("#request-telefon").val();
+		var startTime = $("#request-fom").val();
+		var endTime = $("#request-tom").val();
+		
+		if (new Date(endTime).getTime() <= new Date(startTime).getTime()) {
+			$("#request-tom").css({ 'color': 'red'});	
+		} else if (!/^\d{8}$/.test(phoneNumber)) {
+			$("#request-telefon").css({ 'color': 'red'});
+		} else if (!/^[A-Z]{2}\d{5}$/.test(regNr)) {
+			$("#request-regnr").css({ 'color': 'red'});
+		} else {
+			$("#request-tom").css({ 'color': 'black'});
+			$.post(SERVER_URL + "/parking/request",
+			{
+				userId: localStorage.getItem("userId"),
+				regNr: regNr,
+				phoneNumber: phoneNumber,
+				starTime: moment(startTime).toDate(),
+				endTime: moment(endTime).toDate()
+			}).done(function(data) {
+				localStorage.setItem("currentRequest", data.request._id);
+				refreshCurrentRequest();
+			});	
+		}
 	});
 
 	$("#cancel-request").click(function() {
@@ -86,9 +84,9 @@ function refreshCurrentRequest() {
 			if(typeof parkingRequest != "undefined" && parkingRequest != null && parkingRequest.length > 0) {
 				$("#request-regnr").val(parkingRequest[0].regNr).prop('disabled', true);
 				$("#request-telefon").val(parkingRequest[0].phoneNumber).prop('disabled', true);
-				$("#request-fom").val(new Date(parkingRequest[0].startTime).toISOString().slice(0,16)).prop('disabled', true);
-				$("#request-tom").val(new Date(parkingRequest[0].endTime).toISOString().slice(0,16)).prop('disabled', true);
-					
+				$("#request-fom").val(moment(parkingRequest[0].startTime).format("YYYY-MM-DDTHH:mm")).prop('disabled', true);
+				$("#request-tom").val(moment(parkingRequest[0].endTime).format("YYYY-MM-DDTHH:mm")).prop('disabled', true);
+				
 				if (parkingRequest[0].answered) {
 					$("#request-parkering").val(parkingRequest[0].parkingLot);
 					$("#request-eier").val(parkingRequest[0].offerParkingUser[0].userName);
@@ -119,8 +117,6 @@ function refreshCurrentRequest() {
 
 				localStorage.setItem("currentRequest", parkingRequest[0]._id);
 			} else {
-					console.log("No pending parking request found");
-					
 					//Populate default values for parking requests
 					$("#request-regnr").val(localStorage.getItem("regnr")).prop('disabled', false);
 					$("#request-telefon").val(localStorage.getItem("phoneNumber")).prop('disabled', false);
@@ -134,32 +130,5 @@ function refreshCurrentRequest() {
 	});
 };
 
-$.fn.setThreeHoursFromNow = function(onlyBlank) {
-  var now = new Date(moment().add(5, 'hours'));
-  var formattedDateTime = defaultValueDateTime(now)
-  if ( onlyBlank === true && $(this).val() ) {
-    return this;
-  }
-  $(this).val(formattedDateTime);
-  return this;
-};
-
-$.fn.setNow = function (onlyBlank) {
-  var now = new Date(moment().add(1, 'hours'));
-  var formattedDateTime = defaultValueDateTime(now)
-  if ( onlyBlank === true && $(this).val() ) {
-    return this;
-  }
-  $(this).val(formattedDateTime);
-  return this;
-}
 
 
-function defaultValueDateTime(now) {
-  var year = now.getFullYear();
-  var month = now.getMonth().toString().length === 1 ? '0' + (now.getMonth() + 1).toString() : now.getMonth() + 1;
-  var date = now.getDate().toString().length === 1 ? '0' + (now.getDate()).toString() : now.getDate();
-  var hours = now.getHours().toString().length === 1 ? '0' + now.getHours().toString() : now.getHours();
-  return year + '-' + month + '-' + date + 'T' + hours + ':' + '00' + ':' + '00';
-  
-}

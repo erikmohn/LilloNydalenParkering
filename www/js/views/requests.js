@@ -20,19 +20,22 @@ function refreshParkingRequests() {
 				now: new Date() 
 			}).done(function(parkingRequests) {
 				$("#request-cards").empty();
-				if(parkingRequests.length == 0) {
-					$("#requests-view-loading").hide();
-					$("#requests-view-done").show();
-				} else {
+
+				String.prototype.capitalizeFirstLetter = function() {
+				    return this.charAt(0).toUpperCase() + this.slice(1);
+				}
+				 
+					var numberOfRequests = 0;
 					for (i in parkingRequests) {
 						var parkingRequest = parkingRequests[i];
 						if (parkingRequest.requestUser[0]._id.toString() != userId.toString()) {
+							numberOfRequests++;
 							$("#request-cards").append('<div class="card">' +
 				                    '<div class="card-header">'+parkingRequest.requestUser[0].userName + ' <i class="icon parking-icon right-align"></i></div>' +
 				                    '<div class="card-content">' +
 				                        '<div class="card-content-inner">' +
-				  							'<b>Fra:</b> ' + moment(parkingRequest.startTime).locale("nb").format(" dddd HH:mm") + 
-				  							'<br><b>Til:</b> ' + moment(parkingRequest.endTime).locale("nb").format(" dddd HH:mm") +
+				  							'<b>Fra:</b> ' + moment(parkingRequest.startTime).locale("nb").format("dddd HH:mm").capitalizeFirstLetter() + 
+				  							'<br><b>Til:</b> ' + moment(parkingRequest.endTime).locale("nb").format("dddd HH:mm").capitalizeFirstLetter() +
 				  							'<br><b>Registrerningsnummer:</b> ' + parkingRequest.regNr + 
 				  							'<br><b>Telfonnummer:</b> ' + parkingRequest.phoneNumber +
 				                        '</div>' +
@@ -48,10 +51,15 @@ function refreshParkingRequests() {
 						    		myApp.showTab('#offerForParkingRequestPage');
 
 							});
-						}
+						
 					}	
 					$("#requests-view-loading").hide();
 					$("#requests-view-cards").show();
+				}
+
+				if(numberOfRequests === 0) {
+					$("#requests-view-loading").hide();
+					$("#requests-view-done").show();
 				}
 			});
 		}
