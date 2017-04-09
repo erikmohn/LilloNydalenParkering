@@ -45,11 +45,6 @@ function initPushwoosh() {
 $$(document).on('deviceready', function() {
     console.log("Device is ready!");
 
-	//StatusBar.styleDefault();
-	//StatusBar.styleLightContent();
-	//StatusBar.styleBlackTranslucent();
-	StatusBar.styleBlackOpaque();
-
 	var devicePlatform = device.platform;
 	if (devicePlatform === "Android" || devicePlatform === "iOS") {
     initPushwoosh();		
