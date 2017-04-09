@@ -92,9 +92,9 @@ function refreshCurrentRequest() {
 					$("#request-eier").val(parkingRequest[0].offerParkingUser[0].userName);
 					$("#request-eier-telefon").val(parkingRequest[0].offerParkingUser[0].phoneNumber);
 					
-					var now = moment().toDate();
-					var parkingTime = moment(parkingRequest[0].startTime).subtract(2, 'hours').toDate();
-					var diff =  parkingTime.getTime() - now.getTime();
+					var now = moment();
+					var parkingTime = moment(parkingRequest[0].startTime);
+					var diff =  parkingTime.diff(now, 'milliseconds');
 
 					if (diff < 0 ) {
 						$("#request-loading").hide();
