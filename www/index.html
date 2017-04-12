@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
-
+  <head>
     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *;script-src * http://onlineerp.solution.quebec 'unsafe-inline' 'unsafe-eval'; ">
-
     <!-- Required meta tags-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
@@ -11,16 +9,13 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-
     <!-- Your app title -->
     <title>Lillo Nydalen Parkering</title>
     <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
     <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
-
     <link rel="stylesheet" href="css/styles.css">
-</head>
-
-<body>
+  </head>
+  <body>
     <div class="panel-overlay"></div>
     <div class="views tabs toolbar-through">
       <!-- First view -->
@@ -28,8 +23,7 @@
         <div class="pages">
           <div data-page="index-page" class="page bgimg">
             <div class="page-content">
-
-              <div class="content-block"> 
+              <div class="content-block">
               </div>
             </div>
           </div>
@@ -37,8 +31,7 @@
       </div>
       <!-- Second view -->
       <div id="registerRequest" class="view tab">
-
-       <div class="navbar">
+        <div class="navbar">
           <div class="navbar-inner">
             <div class="center">Parkeringsforespørsel</div>
           </div>
@@ -46,19 +39,19 @@
         <div class="pages navbar-through">
           <div data-page="index-2" class="page">
             <div class="page-content">
-             <div id="parking-request-fail" class="content-block center-align vertical-center">
+              <div id="parking-request-fail" class="content-block center-align vertical-center">
                 <i class="icon warning-icon"></i>
                 <h2>Mangler brukerinformasjon</h2>
-            </div>
-            <div id="parking-request" class="list-block">
-            <div class="content-block center-align">
-                <i class="icon parking-request-large-icon"></i>
               </div>
+              <div id="parking-request" class="list-block">
+                <div class="content-block center-align">
+                  <i class="icon parking-request-large-icon"></i>
+                </div>
                 <ul>
                   <li>
                     <div class="item-content">
                       <div class="item-media"><i class="icon icon-form-name"></i></div>
-                      <div class="item-inner"> 
+                      <div class="item-inner">
                         <div class="item-title label">Regnr</div>
                         <div class="item-input">
                           <input id="request-regnr" type="text" placeholder="Registreringsnummer">
@@ -68,19 +61,8 @@
                   </li>
                   <li>
                     <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-tel"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">Telefon</div>
-                        <div class="item-input">
-                          <input id="request-telefon" type="tel" placeholder="telefon">
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
                       <div class="item-media"><i class="icon icon-form-calendar"></i></div>
-                      <div class="item-inner"> 
+                      <div class="item-inner">
                         <div class="item-title label">Fra</div>
                         <div class="item-input">
                           <input id="request-fom" type="datetime-local" placeholder="Fra" >
@@ -91,7 +73,7 @@
                   <li>
                     <div class="item-content">
                       <div class="item-media"><i class="icon icon-form-calendar"></i></div>
-                      <div class="item-inner"> 
+                      <div class="item-inner">
                         <div class="item-title label">Til</div>
                         <div class="item-input">
                           <input id="request-tom" type="datetime-local" placeholder="Til">
@@ -101,216 +83,17 @@
                   </li>
                 </ul>
                 <div id="request-tildeltParkering">
-                <div class="center-align">
-                  <h5>Parkeringstilbud</h5>
-                </div>
-                <ul>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="icon icon-form-name"></i></div>
-                          <div class="item-inner"> 
-                            <div class="item-title label">Parkering: </div>
-                            <div class="item-input">
-                              <input id="request-parkering" type="text" disabled>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="icon icon-form-name"></i></div>
-                          <div class="item-inner"> 
-                            <div class="item-title label">Eier: </div>
-                            <div class="item-input">
-                              <input id="request-eier" type="text" disabled>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="item-content">
-                          <div class="item-media"><i class="icon icon-form-tel"></i></div>
-                          <div class="item-inner"> 
-                            <div class="item-title label">Telefon eier:</div>
-                            <div class="item-input">
-                              <input id="request-eier-telefon" type="text" disabled>
-                            </div>
-                          </div>
-                        </div>
-                      </li>
-                  <ul>
+                  <div class="center-align">
+                    <h5>Parkeringstilbud</h5>
                   </div>
-                  <div id="request-venter-svar" class="center-align">
-                  <h4>Parkeringstilbud</h4>
-                    <p>Venter på svar</p>
-                  </div>
-
-                <div class="item-content">
-                  <div class="item-inner">
-                      <span class="center-align">
-                      <img id="request-loading" src="./img/loading_small.gif" />
-                      <i id="send-request" class="button button-big button-fill color-orange">Send</i>
-                      <i id="cancel-request" class="button button-big button-fill color-red">Avbryt</i>
-                      <i id="done-request" class="button button-big button-fill color-green">Ferdigstill</i>
-                      </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Gjeldende forespørsler -->
-      <div id="requestsView" class="view tab">
-       <div class="navbar">
-          <div class="navbar-inner">
-            <div class="center">Forespørsler</div>
-          </div>
-        </div>
-        <div class="pages">
-          <div data-page="index-3" class="page">
-            <div class="page-content ">
-              <div id="requests-view-loading" class="content-block center-align vertical-center">
-                <img src="img/loading.gif"/>
-              </div>
-              <div id="requests-view-done" class="content-block center-align vertical-center">
-                  <i class="icon done-icon"></i>
-                  <h2>Ingen forespørsler</h2>
-              </div>
-              <div id="requests-view-cards" class="content-block"><br>
-                <div id="request-cards"> </div>
-              </div>
-              <div id="requests-view-fail" class="content-block center-align vertical-center">
-                <i class="icon warning-icon"></i>
-                <h2>Mangler brukerinformasjon</h2>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- END Gjeldende forespørsler -->
-      <!-- Brukerdata -->
-   <div id="userDataView" class="view tab">
-    <div class="navbar">
-          <div class="navbar-inner">
-            <div class="center">Brukerinformasjon</div>
-          </div>
-        </div>
-        <div class="pages navbar-through">
-          <div data-page="index-2" class="page">
-            <div class="page-content">
-              <div class="content-block center-align">
-              <i class="icon user-icon"></i>
-              </div>
-                <div class="list-block">
-                <ul>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-name"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">Navn</div>
-                        <div class="item-input">
-                          <input id="user-nameInput" type="text" placeholder="Ditt navn">
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-name"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">Regnr</div>
-                        <div class="item-input">
-                          <input id="user-regnrInput" type="text" placeholder="Registreringsnummer">
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-tel"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">Telefon</div>
-                        <div class="item-input">
-                          <input id="user-phoneInput" type="tel" placeholder="telefon">
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-name"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">Parkering</div>
-                        <div class="item-input">
-                          <input id="user-parkingLotInput" type="text" placeholder="parkeringsplass">
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-media"><i class="icon icon-form-email"></i></div>
-                      <div class="item-inner"> 
-                        <div class="item-title label">E-post</div>
-                        <div class="item-input">
-                          <input id="user-emailInput" type="email" placeholder="epost">
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-                <div class="item-content">
-                  <div class="item-inner">
-                      <span class="center-align">
-                        <i id="user-save" class="button button-big button-fill color-orange" >Lagre</i>
-                        <i id="user-saved" class="icon saved-icon"></i>
-                        <img id="user-save-loading" src="./img/loading_small.gif" />
-                      </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- END Brukerdata -->
-
-
-      <!-- START Offer Parking -->
-      <div id="offerForParkingRequestPage" class="view tab">
-       <div class="navbar">
-          <div class="navbar-inner">
-            <div class="center">Tilby parkering</div>
-          </div>
-        </div>
-        <div class="pages">
-          <div data-page="offerForParkingRequestPage" class="page">
-            <div class="page-content ">
-              <div id="parking-offer-loading" class="content-block center-align vertical-center">
-                  <img src="img/loading.gif"/>
-                </div>
-              <div id="parking-offer-success" class="content-block center-align vertical-center">
-                  <i class="icon success-icon "></i>
-                  <h2>Takk for at du deler din parkeringsplass</h2>
-              </div>
-              <div id="parking-offer-fail" class="content-block center-align vertical-center">
-                  <i class="icon warning-icon"></i>
-                  <h2>Noen andre har svart på denne forespørselen før deg!</h2>
-              </div>
-           <div id="parking-offer-input" class="vertical-center">
-           <div class="center-align">
-              <i class="icon parking-large-icon"></i>
-              </div>
-              <div class="list-block">
                   <ul>
                     <li>
                       <div class="item-content">
                         <div class="item-media"><i class="icon icon-form-name"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title label">Navn</div>
+                        <div class="item-inner">
+                          <div class="item-title label">Parkering: </div>
                           <div class="item-input">
-                            <input id="offer-navn" type="text" disabled>
+                            <input id="request-parkering" type="text" disabled>
                           </div>
                         </div>
                       </div>
@@ -318,10 +101,10 @@
                     <li>
                       <div class="item-content">
                         <div class="item-media"><i class="icon icon-form-name"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title label">Regnr</div>
+                        <div class="item-inner">
+                          <div class="item-title label">Eier: </div>
                           <div class="item-input">
-                            <input id="offer-regnr" type="text" disabled>
+                            <input id="request-eier" type="text" disabled>
                           </div>
                         </div>
                       </div>
@@ -329,90 +112,377 @@
                     <li>
                       <div class="item-content">
                         <div class="item-media"><i class="icon icon-form-tel"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title label">Telefon</div>
+                        <div class="item-inner">
+                          <div class="item-title label">Telefon eier:</div>
                           <div class="item-input">
-                            <input id="offer-telefon" type="text" disabled>
+                            <input id="request-eier-telefon" type="text" disabled>
                           </div>
                         </div>
                       </div>
                     </li>
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-form-calendar"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title label">Fra</div>
-                          <div class="item-input">
-                            <input id="offer-fom" type="text" disabled>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-form-calendar"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title label">Til</div>
-                          <div class="item-input">
-                            <input id="offer-tom" type="text" disabled>
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="item-content">
-                        <div class="item-media"><i class="icon icon-form-name"></i></div>
-                        <div class="item-inner"> 
-                          <div class="item-title label">Parkering</div>
-                          <div class="item-input">
-                            <input id="offer-parkingLotInput" type="text" placeholder="parkeringsplass">
-                            <input id="offer-currentRequest" type="hidden" >
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  </ul>
-                  <div class="item-content">
-                    <div class="item-inner">
+                    <ul>
+                    </div>
+                    <div id="request-venter-svar" class="center-align">
+                      <h4>Parkeringstilbud</h4>
+                      <p>Venter på svar</p>
+                    </div>
+                    <div class="item-content">
+                      <div class="item-inner">
                         <span class="center-align">
-                        <a href="#requestsView" id="send-offer" class="button button-big button-fill color-orange">Tilby parkering</a>
+                          <img id="request-loading" src="./img/loading_small.gif" />
+                          <i id="send-request" class="button button-big button-fill color-orange">Send</i>
+                          <i id="cancel-request" class="button button-big button-fill color-red">Avbryt</i>
+                          <i id="done-request" class="button button-big button-fill color-green">Ferdigstill</i>
                         </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-
             </div>
+          </div>
+          <!-- Gjeldende forespørsler -->
+          <div id="requestsView" class="view tab">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="center">Forespørsler</div>
+              </div>
+            </div>
+            <div class="pages">
+              <div data-page="index-3" class="page">
+                <div class="page-content ">
+                  <div id="requests-view-loading" class="content-block center-align vertical-center">
+                    <img src="img/loading.gif"/>
+                  </div>
+                  <div id="requests-view-done" class="content-block center-align vertical-center">
+                    <i class="icon done-icon"></i>
+                    <h2>Ingen ventende forespørsler</h2>
+                  </div>
+                  <div id="requests-view-cards" class="content-block"><br>
+                    <div id="request-cards"> </div>
+                  </div>
+                  <div id="requests-view-fail" class="content-block center-align vertical-center">
+                    <i class="icon warning-icon"></i>
+                    <h2>Mangler brukerinformasjon</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END Gjeldende forespørsler -->
+          <!-- Brukerdata -->
+          <div id="userDataView" class="view tab">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="center">Brukerinformasjon</div>
+              </div>
+            </div>
+            <div class="pages navbar-through">
+              <div data-page="index-2" class="page">
+                <div class="page-content">
+                  <div class="content-block center-align">
+                    <i class="icon user-icon"></i>
+                  </div>
+                  <div class="list-block">
+                    <ul>
+                      <li>
+                        <div class="item-content">
+                          <div class="item-media"><i class="icon icon-form-name"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title label">Navn</div>
+                            <div class="item-input">
+                              <input id="user-nameInput" type="text" placeholder="Ditt navn">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                          <div class="item-media"><i class="icon icon-form-name"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title label">Regnr</div>
+                            <div class="item-input">
+                              <input id="user-regnrInput" type="text" placeholder="Registreringsnummer">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                          <div class="item-media"><i class="icon icon-form-tel"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title label">Telefon</div>
+                            <div class="item-input">
+                              <input id="user-phoneInput" type="tel" placeholder="telefon">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                          <div class="item-media"><i class="icon icon-form-name"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title label">Parkering</div>
+                            <div class="item-input">
+                              <input id="user-parkingLotInput" type="text" placeholder="parkeringsplass">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item-content">
+                          <div class="item-media"><i class="icon icon-form-email"></i></div>
+                          <div class="item-inner">
+                            <div class="item-title label">E-post</div>
+                            <div class="item-input">
+                              <input id="user-emailInput" type="email" placeholder="epost">
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <span class="center-align">
+                          <i id="user-save" class="button button-big button-fill color-orange" >Lagre</i>
+                          <i id="user-saved" class="icon saved-icon"></i>
+                          <img id="user-save-loading" src="./img/loading_small.gif" />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END Brukerdata -->
+          <!-- START Offer Parking -->
+          <div id="offerForParkingRequestPage" class="view tab">
+            <div class="navbar">
+              <div class="navbar-inner">
+                <div class="center">Tilby parkering</div>
+              </div>
+            </div>
+            <div class="pages">
+              <div data-page="offerForParkingRequestPage" class="page">
+                <div class="page-content ">
+                  <div id="parking-offer-loading" class="content-block center-align vertical-center">
+                    <img src="img/loading.gif"/>
+                  </div>
+                  <div id="parking-offer-success" class="content-block center-align vertical-center">
+                    <i class="icon success-icon "></i>
+                    <h2>Takk for at du deler din parkeringsplass</h2>
+                  </div>
+                  <div id="parking-offer-fail" class="content-block center-align vertical-center">
+                    <i class="icon warning-icon"></i>
+                    <h2>Noen andre har svart på denne forespørselen før deg!</h2>
+                  </div>
+                  <div id="parking-offer-input" class="vertical-center">
+                    <div class="center-align">
+                      <i class="icon parking-large-icon"></i>
+                    </div>
+                    <div class="list-block">
+                      <ul>
+                        <li>
+                          <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                              <div class="item-title label">Navn</div>
+                              <div class="item-input">
+                                <input id="offer-navn" type="text" disabled>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                              <div class="item-title label">Regnr</div>
+                              <div class="item-input">
+                                <input id="offer-regnr" type="text" disabled>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-tel"></i></div>
+                            <div class="item-inner">
+                              <div class="item-title label">Telefon</div>
+                              <div class="item-input">
+                                <input id="offer-telefon" type="text" disabled>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                            <div class="item-inner">
+                              <div class="item-title label">Fra</div>
+                              <div class="item-input">
+                                <input id="offer-fom" type="text" disabled>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+                            <div class="item-inner">
+                              <div class="item-title label">Til</div>
+                              <div class="item-input">
+                                <input id="offer-tom" type="text" disabled>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="item-content">
+                            <div class="item-media"><i class="icon icon-form-name"></i></div>
+                            <div class="item-inner">
+                              <div class="item-title label">Parkering</div>
+                              <div class="item-input">
+                                <input id="offer-parkingLotInput" type="text" placeholder="parkeringsplass">
+                                <input id="offer-currentRequest" type="hidden" >
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                      <div class="item-content">
+                        <div class="item-inner">
+                          <span class="center-align">
+                            <a href="#requestsView" id="send-offer" class="button button-big button-fill color-orange">Tilby parkering</a>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End offer Parking -->
+          <!-- Historikk -->
+          <div id="historyMenuView" class="view tab">
+            <div class="pages">
+              <div data-page="historyMenuViewDataPage" class="page">
+                <div class="page-content ">
+                  <div class="navbar">
+                    <div class="navbar-inner">
+                      <div class="center">Historikk</div>
+                    </div>
+                  </div>
+                  <div id="history-view-menu-loading" class="content-block center-align vertical-center">
+                    <img src="img/loading.gif"/>
+                  </div>
+                  <div id="history-view-menu" style="height:80%; width: 100%;">
+                    <ul style="display: table; table-layout: fixed; height:100%; width: 100%; border: 0px -moz-box-sizing: border-box; box-sizing: border-box;list-style:none;
+                      padding-left:0;">
+                      <li style="text-align: center; display: table-row">
+                        <span id="open-history-requests" style="display: table-cell; vertical-align: middle">
+                          <i class="icon parking-request-large-icon"></i><br><h3>Mine parkeringsforespørsler</h3>
+                        </span>
+                      </li>
+                      <li style="text-align: center; display: table-row">
+                        <span id="open-history-offers" style="display: table-cell; vertical-align: middle">
+                          <i class="icon done-icon"></i><br><h3>Mine tilbudte parkeringer</h3>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div id="history-view-fail" class="content-block center-align vertical-center">
+                    <i class="icon warning-icon"></i>
+                    <h2>Mangler brukerinformasjon</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Historikk -->
+          <div id="historyViewRequests" class="view tab">
+            <div class="pages">
+              <div data-page="historyViewRequestsPage" class="page">
+                <div class="page-content ">
+                  <div class="navbar">
+                    <div class="navbar-inner">
+                      <div class="center">Mine parkeringsforespørsler</div>
+                    </div>
+                  </div>
+                  <div id="history-view-requests-loading" class="content-block center-align vertical-center">
+                    <img src="img/loading.gif"/>
+                  </div>
+                  <div id="history-view-requests">
+                    <div class="content-block"><br>
+                      <div id="history-requests-cards"> </div>
+                    </div>
+                  </div>
+                  <div id="history-view-requests-none" class="content-block center-align vertical-center">
+                    <i class="icon done-icon"></i>
+                    <h2>Du har ikke svart på noen forespørsler</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="historyViewOffers" class="view tab">
+            <div class="pages">
+              <div data-page="historyViewOffersPage" class="page">
+                <div class="page-content ">
+                  <div class="navbar">
+                    <div class="navbar-inner">
+                      <div class="center">Mine tilbudte parkeringer</div>
+                    </div>
+                  </div>
+                  <div id="history-view-offers-loading" class="content-block center-align vertical-center">
+                    <img src="img/loading.gif"/>
+                  </div>
+                  <div id="history-view-offers">
+                    <div class="content-block" style="margin-top: 0px"><br>
+                      <div id="history-offers-cards"> </div>
+                    </div>
+                  </div>
+                  <div id="history-view-offers-none" class="content-block center-align vertical-center">
+                    <i class="icon done-icon"></i>
+                    <h2>Du har ikke tilbudt noen parkeringsplass</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--div id="history-view-offerss">
+          <div class="content-block"><br>
+            <div id="history-offers-cards"> </div>
+          </div>
+        </div>
+        <div id="history-view-offers-none" class="content-block center-align vertical-center">
+          <i class="icon done-icon"></i>
+          <h2>Du har ingen parkeringsforespørsler</h2>
+        </div-->
+        <!-- Bottom Tabbar-->
+        <div class="toolbar tabbar tabbar-labels">
+          <div class="toolbar-inner">
+            <a href="#registerRequest" class="tab-link active"> <i class="icon parking-request-icon"></i><span class="tabbar-label">Trenger parkering</span></a>
+            <a href="#requestsView" class="tab-link"><i class="icon all-requests-icon"></i><span class="tabbar-label">Forespørsler</span></a>
+            <a href="#historyMenuView" class="tab-link"><i class="icon history-icon"></i><span class="tabbar-label">Historikk</span></a>
+            <a href="#userDataView" class="tab-link"><i class="icon userdata-icon"></i><span class="tabbar-label">Bruker</span></a>
           </div>
         </div>
       </div>
-      <!-- End offer Parking -->
-
-      <!-- Bottom Tabbar-->
-      <div class="toolbar tabbar tabbar-labels">
-        <div class="toolbar-inner">
-
-        <a href="#registerRequest" class="tab-link active"> <i class="icon parking-request-icon"></i><span class="tabbar-label">Trenger parkering</span></a>
-
-        <a href="#requestsView" class="tab-link"><i class="icon all-requests-icon"></i><span class="tabbar-label">Forespørsler</span></a>
-
-        <a href="#userDataView" class="tab-link"><i class="icon userdata-icon"></i><span class="tabbar-label">Bruker</span></a>
-
-        </div>
-      </div>
-
-    </div>
-    <script type="text/javascript" src="lib/pusher.min.js"></script>
-    <script type="text/javascript" src="lib/moment-with-locales.js"></script>
-    <script type="text/javascript" src="lib/jquery-3.2.0.min.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
-    <script type="text/javascript" src="js/views/request.js"></script>
-    <script type="text/javascript" src="js/views/user.js"></script>
-    <script type="text/javascript" src="js/views/offer.js"></script>
-    <script type="text/javascript" src="js/views/requests.js"></script>
-    <script type="text/javascript" src="js/lillo-nydalen-parkering.js"></script>
-</body>
-
-</html>
+      <script type="text/javascript" src="lib/pusher.min.js"></script>
+      <script type="text/javascript" src="lib/moment-with-locales.js"></script>
+      <script type="text/javascript" src="lib/jquery-3.2.0.min.js"></script>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+      <script type="text/javascript" src="js/views/request.js"></script>
+      <script type="text/javascript" src="js/views/user.js"></script>
+      <script type="text/javascript" src="js/views/offer.js"></script>
+      <script type="text/javascript" src="js/views/pending-requests.js"></script>
+      <script type="text/javascript" src="js/views/history-menu.js"></script>
+      <script type="text/javascript" src="js/views/history-requests.js"></script>
+      <script type="text/javascript" src="js/views/history-offers.js"></script>
+      <script type="text/javascript" src="js/lillo-nydalen-parkering.js"></script>
+    </body>
+  </html>

@@ -1,5 +1,5 @@
 //Open tab respond to request!
-$("#offerForParkingRequestPage").on('show', function(){
+$("#offerForParkingRequestPage").on('show', function() {
 	$("#parking-offer-loading").show();
 	$("#parking-offer-success").hide();
 	$("#parking-offer-fail").hide();
@@ -9,7 +9,7 @@ $("#offerForParkingRequestPage").on('show', function(){
 		parkingId: $("#offer-currentRequest").val()
 	}).done(function(parking) {
 		String.prototype.capitalizeFirstLetter = function() {
-				    return this.charAt(0).toUpperCase() + this.slice(1);
+			return this.charAt(0).toUpperCase() + this.slice(1);
 		};
 
 		$("#offer-navn").val(parking.requestUser[0].userName);
@@ -25,20 +25,20 @@ $("#offerForParkingRequestPage").on('show', function(){
 function initializeOffer() {
 	$("#send-offer").click(function() {
 		$("#parking-offer-input").hide();
- 		$("#parking-offer-loading").show();
+		$("#parking-offer-loading").show();
 		var parkingId = $("#offer-currentRequest").val();
-		 $.post(SERVER_URL + "/parking/offer", {
-		 		offerUserId: localStorage.getItem("userId"),
-		 		parkingId: parkingId,
-		 		parkingLot: $("#offer-parkingLotInput").val()
-		 }).done(function(parking) {
-		 		$("#parking-offer-loading").hide();
-		 		if (parking.alreadyAnswered) {
-		 			$("#parking-offer-fail").show();
-		 		} else {
-					$("#parking-offer-success").show();
-		 		} 
-		 });
+		$.post(SERVER_URL + "/parking/offer", {
+			offerUserId: localStorage.getItem("userId"),
+			parkingId: parkingId,
+			parkingLot: $("#offer-parkingLotInput").val(),
+			answeredDate: moment().toDate()
+		}).done(function(parking) {
+			$("#parking-offer-loading").hide();
+			if (parking.alreadyAnswered) {
+				$("#parking-offer-fail").show();
+			} else {
+				$("#parking-offer-success").show();
+			}
+		});
 	});
 };
-
