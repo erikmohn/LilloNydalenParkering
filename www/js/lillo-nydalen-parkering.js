@@ -41,6 +41,7 @@ function initializePushwoosh() {
 
 		pushwoosh.registerDevice(function(status) {
 				var pushToken = status.pushToken;
+				localStorage.setItem("pushToken", status.pushToken);
 			},
 			function(status) {}
 		);

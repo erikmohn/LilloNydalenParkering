@@ -20,6 +20,7 @@ function initializeUser() {
 				parkingSpace: $("#user-parkingLotInput").val(),
 				regnr: $("#user-regnrInput").val(),
 				epost: $("#user-emailInput").val(),
+				pushToken: local
 			}).done(function(user) {
 				$("#user-save-loading").hide();
 				$("#user-saved").show();
