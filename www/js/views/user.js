@@ -19,7 +19,8 @@ function initializeUser() {
 				phoneNumber: $("#user-phoneInput").val(),
 				parkingSpace: $("#user-parkingLotInput").val(),
 				regnr: $("#user-regnrInput").val(),
-				epost: $("#user-emailInput").val()
+				epost: $("#user-emailInput").val(),
+				pushToken: localStorage.get("pushToken")
 			}).fail(function(xhr, status, error) {
 				myApp.alert(status);
 				myApp.alert(error);
