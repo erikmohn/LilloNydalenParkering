@@ -19,9 +19,12 @@ function initializeUser() {
 				phoneNumber: $("#user-phoneInput").val(),
 				parkingSpace: $("#user-parkingLotInput").val(),
 				regnr: $("#user-regnrInput").val(),
-				epost: $("#user-emailInput").val(),
-				pushToken: local
-			}).done(function(user) {
+				epost: $("#user-emailInput").val()
+			}).fail(function(xhr, status, error) {
+				myApp.alert(status);
+				myApp.alert(error);
+			})
+			.done(function(user) {
 				$("#user-save-loading").hide();
 				$("#user-saved").show();
 				setTimeout(function() {
