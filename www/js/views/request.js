@@ -1,13 +1,16 @@
 //Open tab register request!
 $("#registerRequest").on('show', function() {
+	$("#request-view-loading").show();
 	$("#parking-request").hide();
 	$("#parking-request-fail").hide();
 
 	var userId = localStorage.getItem("userId");
 	if (userId === null) {
+		$("#request-view-loading").hide();
 		$("#parking-request-fail").show();
 	} else {
 		refreshCurrentRequest();
+		$("#request-view-loading").hide();
 		$("#parking-request").show();
 	}
 });
@@ -15,10 +18,10 @@ $("#registerRequest").on('show', function() {
 function initializeCurrentRequest() {
 	resetCurrentRequest();
 
-	//TODO:Remove request-telefon
+
 	$("#send-request").click(function() {
 		var regNr = $("#request-regnr").val();
-		var phoneNumber = localStorage.getItem("phoneNumber");
+
 		var startTime = $("#request-fom").val();
 		var endTime = $("#request-tom").val();
 
@@ -37,7 +40,7 @@ function initializeCurrentRequest() {
 			$.post(SERVER_URL + "/parking/request", {
 				userId: localStorage.getItem("userId"),
 				regNr: regNr,
-				phoneNumber: phoneNumber,
+				phoneNumber: localStorage.getItem("phoneNumber"),
 				starTime: moment(startTime).toDate(),
 				endTime: moment(endTime).toDate(),
 				registredDate: moment().toDate()
@@ -76,19 +79,10 @@ function initializeCurrentRequest() {
 };
 
 function resetCurrentRequest() {
-	$("#request-regnr").on('focus', function(event) {
-		$("#request-regnr").val(localStorage.getItem("regnr"));
-	});
+	$("#request-regnr").val(localStorage.getItem("regnr"));
+	$("#request-fom").val(moment().add(1, 'hours').format("YYYY-MM-DDTHH:00"));
+	$("#request-tom").val(moment().add(4, 'hours').format("YYYY-MM-DDTHH:00"));
 
-	$("#request-fom").on('focus', function(event) {
-		this.type = 'datetime-local';
-		$('#request-fom').val(moment().add(1, 'hours').format("YYYY-MM-DDTHH:00"));
-	});
-
-	$("#request-tom").on('focus', function(event) {
-		this.type = 'datetime-local';
-		$('#request-tom').val(moment().add(4, 'hours').format("YYYY-MM-DDTHH:00"));
-	});
 	$("#request-tom").css({
 		'color': 'black'
 	});
@@ -103,9 +97,6 @@ function resetCurrentRequest() {
 	$("#request-regnr").prop('disabled', false);
 	$("#request-fom").prop('disabled', false);
 	$("#request-tom").prop('disabled', false);
-	$("#request-regnr").val("");
-	$("#request-fom").val("");
-	$("#request-tom").val("");
 };
 
 function refreshCurrentRequest() {
@@ -125,7 +116,6 @@ function refreshCurrentRequest() {
 	$.get(SERVER_URL + "/parking/user/" + userId, function(parkingRequest) {
 		if (typeof parkingRequest != "undefined" && parkingRequest != null && parkingRequest.length > 0) {
 			$("#request-regnr").val(parkingRequest[0].regNr).prop('disabled', true);
-			$("#request-telefon").val(parkingRequest[0].phoneNumber).prop('disabled', true);
 			$("#request-fom").val(moment(parkingRequest[0].startTime).format("YYYY-MM-DDTHH:mm")).prop('disabled', true);
 			$("#request-tom").val(moment(parkingRequest[0].endTime).format("YYYY-MM-DDTHH:mm")).prop('disabled', true);
 
@@ -153,16 +143,15 @@ function refreshCurrentRequest() {
 			} else {
 				$("#request-loading").hide();
 				$("#cancel-request").show();
-
 				$("#request-venter-svar").show();
 			}
 
 			localStorage.setItem("currentRequest", parkingRequest[0]._id);
 		} else {
 			//Populate default values for parking requests
-			//$("#request-regnr").prop('disabled', false);
-			//$("#request-fom").prop('disabled', false);
-			//$("#request-tom").prop('disabled', false);
+			$("#request-regnr").prop('disabled', false);
+			$("#request-fom").prop('disabled', false);
+			$("#request-tom").prop('disabled', false);
 
 			$("#request-loading").hide();
 			$("#send-request").show();

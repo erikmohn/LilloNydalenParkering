@@ -36,7 +36,11 @@ function initializeOffer() {
 			$("#parking-offer-loading").hide();
 			if (parking.alreadyAnswered) {
 				$("#parking-offer-fail").show();
+			} else if (parking.ongoingParking) {
+				$("#parkingOfferErrorMessage").html("Du har allerede lånt ut din parkering i denne perioden");
+				$("#parking-offer-fail").show();
 			} else {
+				$("#parkingOfferErrorMessage").html("Noen andre har svart på denne forespørselen før deg!")
 				$("#parking-offer-success").show();
 			}
 		});

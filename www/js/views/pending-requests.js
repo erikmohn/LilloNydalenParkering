@@ -53,7 +53,7 @@ function refreshParkingRequests() {
 						'<div class="card-content-inner">' +
 						duration +
 						'<br><b>Regnr:</b> ' + parkingRequest.regNr +
-						'<br><b>Telfon:</b> ' + parkingRequest.phoneNumber +
+						'<br><b>Telefon:</b> ' + parkingRequest.phoneNumber +
 						'</div>' +
 						'</div>' +
 						'<div class="card-footer no-border">' +

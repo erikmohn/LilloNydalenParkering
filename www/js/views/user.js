@@ -4,6 +4,10 @@ $("#userDataView").on('show', function() {
 	$("#user-save-loading").hide();
 	$("#user-saved").hide();
 	resetErrorColors();
+
+	$("#user-regnrInput").focusout(function(event) {
+		this.value = this.value.toUpperCase();
+	});
 });
 
 function initializeUser() {
@@ -13,8 +17,6 @@ function initializeUser() {
 		$("#user-save-loading").show();
 		if (validateInput()) {
 			resetErrorColors()
-			myApp.alert("Will begin post!");
-			myApp.alert("HWID: " + localStorage.getItem("pushToken"));
 			$.post(SERVER_URL + "/user/save", {
 				userId: localStorage.getItem("userId"),
 				userName: $("#user-nameInput").val(),
@@ -23,12 +25,8 @@ function initializeUser() {
 				regnr: $("#user-regnrInput").val(),
 				epost: $("#user-emailInput").val(),
 				pushToken: localStorage.getItem("pushToken")
-			}).fail(function(xhr, status, error) {
-				myApp.alert(status);
-				myApp.alert(error);
 			})
 			.done(function(user) {
-				myApp.alert("Post has completed!");
 				$("#user-save-loading").hide();
 				$("#user-saved").show();
 				setTimeout(function() {
@@ -112,8 +110,7 @@ function refreshUser() {
 		var channel = pusher.subscribe("USER-" + localStorage.getItem("userId"));
 		channel.bind('parking-offer', function(data) {
 			refreshCurrentRequest();
-			navigator.vibrate(500);
-			console.log("Recieved Pusher update!");
+			myApp.alert("Du har mottatt svar på din parkeringsforespørsel!","Mottatt svar");
 		});
 
 		//Get user data

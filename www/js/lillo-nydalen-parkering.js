@@ -41,7 +41,6 @@ function initializePushwoosh() {
 
 		pushwoosh.registerDevice(function(status) {
 				var pushToken = status.pushToken;
-				myApp.alert("Device Registred to recieve push notificatons \n " + status.pushToken)
 				localStorage.setItem("pushToken", status.pushToken);
 			},
 			function(status) {}
