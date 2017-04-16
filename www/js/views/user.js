@@ -13,6 +13,8 @@ function initializeUser() {
 		$("#user-save-loading").show();
 		if (validateInput()) {
 			resetErrorColors()
+			myApp.alert("Will begin post!");
+			myApp.alert("HWID: " + localStorage.getItem("pushToken"));
 			$.post(SERVER_URL + "/user/save", {
 				userId: localStorage.getItem("userId"),
 				userName: $("#user-nameInput").val(),
@@ -20,12 +22,13 @@ function initializeUser() {
 				parkingSpace: $("#user-parkingLotInput").val(),
 				regnr: $("#user-regnrInput").val(),
 				epost: $("#user-emailInput").val(),
-				pushToken: localStorage.get("pushToken")
+				pushToken: localStorage.getItem("pushToken")
 			}).fail(function(xhr, status, error) {
 				myApp.alert(status);
 				myApp.alert(error);
 			})
 			.done(function(user) {
+				myApp.alert("Post has completed!");
 				$("#user-save-loading").hide();
 				$("#user-saved").show();
 				setTimeout(function() {
