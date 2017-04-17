@@ -28,7 +28,7 @@ function initializeOffer() {
 	$("#send-offer").click(function() {
 		$("#parking-offer-input").hide();
 		$("#parking-offer-loading").show();
-		var parkingId = $("#offer-currentRequest").val();
+		var parkingId = localStorage.getItem("offer-currentRequest");
 		$.post(SERVER_URL + "/parking/offer", {
 			offerUserId: localStorage.getItem("userId"),
 			parkingId: parkingId,
