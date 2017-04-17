@@ -16,6 +16,9 @@ function refreshNewRequests() {
 		$("#new-requests-cards").empty();
 
 		$("#new-requests-cards").append('<div class="card request-card" id="addNewRequest">' +
+			'<div class="card-header">' +
+					'<div class="request-name" style="font-size: large"> <center>Ny forespørsel</center></div>' +
+					'</div>' +
 			'<div class="card-content">' +
 			'<div class="card-content-inner center-align">' +
 			'<i class="icon add-icon"></i> ' +
