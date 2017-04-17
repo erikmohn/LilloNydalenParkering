@@ -63,16 +63,13 @@ function refreshParkingRequests() {
 						'</div></div>' +
 						'</div>');
 					$("#click-" + parkingRequest._id).click(function() {
-						$("#offer-currentRequest").val(parkingRequest._id);
-						$("#offer-parkingLotInput").val(localStorage.getItem("parkingSpace"));
 						localStorage.setItem("offer-currentRequest", parkingRequest._id)
 						myApp.showTab('#offerForParkingRequestPage');
 
 					});
-
+					$("#requests-view-loading").hide();
+					$("#requests-view-cards").show();
 				}
-				$("#requests-view-loading").hide();
-				$("#requests-view-cards").show();
 			}
 
 			if (numberOfRequests === 0) {
