@@ -113,8 +113,16 @@ function refreshUser() {
 			refreshCurrentRequest();
 			refreshNewRequests();
 			refreshHistoryRequests();
-
-			myApp.alert("Du har mottatt svar på din parkeringsforespørsel!","Mottatt svar");
+			console.log("Data:");
+			console.log(data);
+			if(data.parkingAnswered) {
+				myApp.alert("Du har mottatt svar på din parkeringsforespørsel!","Mottatt svar");	
+			} else if (data.parkingDone) {
+				myApp.alert(data.msg,"Avsluttet parkering");
+			} else if (data.parkingCanceled) {
+				myApp.alert(data.msg,"Avbrutt parkering");
+			}
+			
 		});
 
 		//Get user data
