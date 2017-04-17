@@ -30,11 +30,9 @@ function refreshHistoryRequests() {
 				var duration;
 				var start = moment(parkingRequest.startTime);
 				var end = moment(parkingRequest.endTime);
-				var icon, body, statusColor, statusText;
+				var body, statusColor, statusText;
 
 				if (parkingRequest.requestUser[0]._id === userId) {
-
-					icon = "parking-request-icon";
 					if (parkingRequest.answered) {
 						body = '<h3>Parkeringsforespørsel</h3><b>Utlånt av:</b> ' + parkingRequest.offerParkingUser[0].userName + ' <br />' +
 							'<b>Telefon:</b> ' + parkingRequest.offerParkingUser[0].phoneNumber + ' <br />' +
@@ -44,8 +42,6 @@ function refreshHistoryRequests() {
 						body = "<h3>Parkeringsforespørsel</h3>";
 					}
 				} else {
-
-					icon = "parking-icon";
 					body = '<h3>Tilbudt parkering</h3><b>Utlånt til:</b> ' + parkingRequest.requestUser[0].userName + ' <br />' +
 						'<b>Telefon:</b> ' + parkingRequest.requestUser[0].phoneNumber + ' <br />' +
 						'<b>Regnr:</b> ' + parkingRequest.requestUser[0].regnr +
@@ -59,7 +55,7 @@ function refreshHistoryRequests() {
 					statusColor = "#ff3b30";
 					statusText = "Avsluttet";
 				} else if (parkingRequest.done) {
-					statusColor = "color-gray";
+					statusColor = "	#9e9e9e";
 					statusText = "Ferdig";
 				} else if (parkingRequest.answered) {
 					if (moment().isAfter(moment(parkingRequest.startTime))) {
