@@ -57,16 +57,18 @@ function refreshParkingRequests() {
 						'</div>' +
 						'</div>' +
 						'<div class="card-footer no-border">' +
-						'' +
 						'<a href="#" class="link">Tilby parkering</a>' +
-						' <i class="icon arrow-icon"></i> ' +
-						'</div></div>' +
-						'</div>');
-					$("#click-" + parkingRequest._id).click(function() {
-						localStorage.setItem("offer-currentRequest", parkingRequest._id)
+						'<i class="icon arrow-icon"></i> ' +
+						'</div>' +
+						'</div>'
+					);
+					$("#click-" + parkingRequest._id).on('click', {
+						id: parkingRequest._id
+					}, function(params) {
+						localStorage.setItem("offer-currentRequest", params.data.id);
 						myApp.showTab('#offerForParkingRequestPage');
-
 					});
+
 					$("#requests-view-loading").hide();
 					$("#requests-view-cards").show();
 				}
