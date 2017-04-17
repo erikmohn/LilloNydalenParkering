@@ -16,9 +16,6 @@ $$(document).on('deviceready', function() {
 	initializeUser();
 	initializeCurrentRequest();
 	initializeOffer();
-	initializeHistoryMenu();
-	initializeHistoryRequests();
-	initializeHistoryOffers()
 	initializePushwoosh();
 	initializePusher();
 

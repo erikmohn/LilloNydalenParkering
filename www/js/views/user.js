@@ -109,7 +109,11 @@ function refreshUser() {
 	if (userId != null) {
 		var channel = pusher.subscribe("USER-" + localStorage.getItem("userId"));
 		channel.bind('parking-offer', function(data) {
+			//Refresh everything, when something happens for this user
 			refreshCurrentRequest();
+			refreshNewRequests();
+			refreshHistoryRequests();
+
 			myApp.alert("Du har mottatt svar på din parkeringsforespørsel!","Mottatt svar");
 		});
 
