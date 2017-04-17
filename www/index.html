@@ -135,7 +135,7 @@
                           <img id="request-loading" src="./img/loading_small.gif" />
                           <i id="send-request" class="button button-big button-fill color-orange">Send</i>
                           <i id="cancel-request" class="button button-big button-fill color-red">Avbryt</i>
-                          <i id="done-request" class="button button-big button-fill color-green">Ferdigstill</i>
+                          <i id="done-request" class="button button-big button-fill color-red">Avslutt</i>
                         </span>
                       </div>
                     </div>
@@ -347,8 +347,8 @@
                             <div class="item-inner">
                               <div class="item-title label">Parkering</div>
                               <div class="item-input">
-                                <input id="offer-parkingLotInput" type="text" placeholder="parkeringsplass">
-                                <!--input id="offer-currentRequest" type="hidden" -->
+                                <input id="offer-parkingLotInput" type="text" disabled>
+                                
                               </div>
                             </div>
                           </div>
@@ -372,7 +372,7 @@
           <div id="historyView" class="view tab">
             <div class="navbar">
               <div class="navbar-inner">
-                <div class="center">Din historikk</div>
+                <div class="center">Min historikk</div>
               </div>
             </div>
             <div class="pages">
@@ -399,7 +399,7 @@
           <div id="newRequestView" class="view tab">
             <div class="navbar">
               <div class="navbar-inner">
-                <div class="center">Dine forespørsler</div>
+                <div class="center">Mine forespørsler</div>
               </div>
             </div>
             <div class="pages">
@@ -422,9 +422,9 @@
           <!-- Bottom Tabbar-->
           <div class="toolbar tabbar tabbar-labels">
             <div class="toolbar-inner">
-              <a href="#newRequestView" class="tab-link active"> <i class="icon parking-request-icon"></i><span class="tabbar-label">Trenger parkering</span></a>
+              <a href="#newRequestView" class="tab-link active"> <i class="icon parking-request-icon"></i><span class="tabbar-label">Mine forespørsler</span></a>
               <a href="#requestsView" class="tab-link"><i class="icon all-requests-icon"></i><span class="tabbar-label">Forespørsler</span></a>
-              <a href="#historyView" class="tab-link"><i class="icon history-icon"></i><span class="tabbar-label">Historikk</span></a>
+              <a href="#historyView" class="tab-link"><i class="icon history-icon"></i><span class="tabbar-label">Min historikk</span></a>
               <a href="#userDataView" class="tab-link"><i class="icon userdata-icon"></i><span class="tabbar-label">Bruker</span></a>
             </div>
           </div>

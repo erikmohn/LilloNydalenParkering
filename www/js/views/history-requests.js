@@ -30,45 +30,47 @@ function refreshHistoryRequests() {
 				var duration;
 				var start = moment(parkingRequest.startTime);
 				var end = moment(parkingRequest.endTime);
-				var title, icon, body, statusColor, statusText;
+				var  icon, body, statusColor, statusText;
 
 				if (parkingRequest.requestUser[0]._id === userId) {
-					title = "Parkeringsforespørsel";
+					
 					icon = "parking-request-icon";
 					if (parkingRequest.answered) {
-						body = '<br><b>Utlånt fra:</b> ' + parkingRequest.offerParkingUser[0].userName + ' <br />' +
+						body = '<h3>Parkeringsforespørsel</h3><b>Utlånt av:</b> ' + parkingRequest.offerParkingUser[0].userName + ' <br />' +
 							'<b>Telefon:</b> ' + parkingRequest.offerParkingUser[0].phoneNumber + ' <br />' +
-							'<b>Parkeringsplass:</b> ' + parkingRequest.parkingLot;
+							'<b>Parkeringsplass:</b> ' + parkingRequest.parkingLot +
+							'<br>';
 					} else {
-						body = "";
+						body = "<h3>Parkeringsforespørsel</h3>";
 					}
 				} else {
-					title = "Tilbudt parkering";
+
 					icon = "parking-icon";
-					body = '<br><b>Utlånt til:</b> ' + parkingRequest.requestUser[0].userName + ' <br />' +
+					body = '<h3>Tilbudt parkering</h3><b>Utlånt til:</b> ' + parkingRequest.requestUser[0].userName + ' <br />' +
 						'<b>Telefon:</b> ' + parkingRequest.requestUser[0].phoneNumber + ' <br />' +
-						'<b>Regnr:</b> ' + parkingRequest.requestUser[0].regnr;
+						'<b>Regnr:</b> ' + parkingRequest.requestUser[0].regnr +
+						'<br>';
 				}
 
 				if (moment().isAfter(moment(parkingRequest.endTime))) {
-					statusColor = "color-gray";
+					statusColor = "#8e8e93";
 					statusText = "Utløpt";
 				} else if (parkingRequest.canceled) {
-					statusColor = "color-red";
-					statusText = "Avbrutt";
+					statusColor = "#ff3b30";
+					statusText = "Avsluttet";
 				} else if (parkingRequest.done) {
 					statusColor = "color-gray";
 					statusText = "Ferdig";
 				} else if (parkingRequest.answered) {
 					if (moment().isAfter(moment(parkingRequest.startTime))) {
-						statusColor = "color-green";
-						statusText = "Pågående";
+						statusColor = "#4cd964";
+						statusText = "Aktiv";
 					} else {
-						statusColor = "color-green";
+						statusColor = "#4cd964";
 						statusText = "Tildelt plass";
 					}
 				} else {
-					statusColor = "color-orange";
+					statusColor = "#ff9500";
 					statusText = "Avventer svar";
 				}
 
@@ -76,21 +78,23 @@ function refreshHistoryRequests() {
 					'<br><b>Til:</b> ' + moment(parkingRequest.endTime).locale("nb").format("dddd, MMMM DD, YYYY HH:mm").capitalizeFirstLetter();
 				$("#history-cards").append(
 					'<div class="card request-card" id="click-' + parkingRequest._id + '">' +
-					'<div class="card-header no-border">' +
-					'<div class="request-icon"><i class="icon ' + icon + '"></i></div>' +
-					'<div class="request-name">' + title + '</div>' +
-					'<div class="request-date">' + moment(parkingRequest.registredDate).locale("nb").format("dddd, MMMM DD, YYYY HH:mm").capitalizeFirstLetter() + '</div>' +
+					'<div class="card-header" style="background-color:' + statusColor + '; color:#FFFFFF;">' +
+					//'<div class="request-icon"><i class="icon ' + icon + '"></i></div>' +
+					//+ '<b> ' + statusText + '</b>' +
+					'<div class="request-name" style="font-size: large"><center>' + statusText + '</center></div>' +
+					//'<div class="request-date">' + moment(parkingRequest.registredDate).locale("nb").format("dddd, MMMM DD, YYYY HH:mm").capitalizeFirstLetter() + '</div>' +
 					'</div>' +
 					'<div class="card-content">' +
 					'<div class="card-content-inner">' +
-					duration + '<br />' +
 					body +
+					duration  +
 					'</div>' +
 					'</div>' +
-					'<div class="card-footer no-border">' +
+					'<div class="card-footer">' +
 					'' +
-					'<a href="#" class="link"><b>Status</b></a>' +
-					' <p class="button button-fill ' + statusColor + '"> ' + statusText + '</p> ' +
+					//'<a href="#" class="link"><b>Status</b></a>' +
+					//' <p class="button button-fill ' + statusColor + '"> ' + statusText + '</p> ' +
+					'<a></a><i class="icon arrow-icon"></i>' +
 					'</div></div>' +
 					'</div>');
 			}

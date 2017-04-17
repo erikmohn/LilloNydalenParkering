@@ -16,9 +16,6 @@ function refreshNewRequests() {
 		$("#new-requests-cards").empty();
 
 		$("#new-requests-cards").append('<div class="card request-card" id="addNewRequest">' +
-			'<div class="card-header no-border">' +
-			'<div class="request-name"> <b>Ny parkeringsforespørsel</b></div>' +
-			'</div>' +
 			'<div class="card-content">' +
 			'<div class="card-content-inner center-align">' +
 			'<i class="icon add-icon"></i> ' +
@@ -42,30 +39,29 @@ function refreshNewRequests() {
 
 				if (parkingRequest.answered) {
 					if (moment().isAfter(moment(parkingRequest.startTime))) {
-						statusColor = "color-green";
-						statusText = "Pågående";
+						statusColor = "#4cd964";
+						statusText = "Aktiv";
 					} else {
-						statusColor = "color-green";
+						statusColor = "#4cd964";
 						statusText = "Tildelt plass";
 					}
 				} else {
-					statusColor = "color-orange";
+					statusColor = "#ff9500";
 					statusText = "Avventer svar";
 				}
 				duration = '<b>Fra:</b> ' + moment(parkingRequest.startTime).locale("nb").format("dddd, MMMM DD, YYYY HH:mm") +
 					'<br><b>Til:</b> ' + moment(parkingRequest.endTime).locale("nb").format("dddd, MMMM DD, YYYY HH:mm");
 
 				$("#new-requests-cards").append('<div class="card request-card" id="request-' + parkingRequest._id + '">' +
-					'<div class="card-header no-border">' +
-					'<div class="request-name"> <b>Parkeringsforespørsel</b></div>' +
+					'<div class="card-header" style="background-color:' + statusColor + '; color:#FFFFFF">' +
+					'<div class="request-name" style="font-size: large"> <center> ' + statusText + '</center></div>' +
 					'</div>' +
 					'<div class="card-content">' +
-					'<div class="card-content-inner center-align">' +
+					'<div class="card-content-inner">' +
 					duration +
 					'</div>' +
-					'<div class="card-footer no-border">' +
-					'<a href="#" class="link"><b>Status</b></a>' +
-					' <p class="button button-fill ' + statusColor + '"> ' + statusText + '</p> ' +
+					'<div class="card-footer">' +
+					'<a></a><i class="icon arrow-icon"></i>' +
 					'</div>' +
 					'</div>');
 
