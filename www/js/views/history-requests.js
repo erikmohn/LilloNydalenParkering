@@ -30,10 +30,10 @@ function refreshHistoryRequests() {
 				var duration;
 				var start = moment(parkingRequest.startTime);
 				var end = moment(parkingRequest.endTime);
-				var  icon, body, statusColor, statusText;
+				var icon, body, statusColor, statusText;
 
 				if (parkingRequest.requestUser[0]._id === userId) {
-					
+
 					icon = "parking-request-icon";
 					if (parkingRequest.answered) {
 						body = '<h3>Parkeringsforespørsel</h3><b>Utlånt av:</b> ' + parkingRequest.offerParkingUser[0].userName + ' <br />' +
@@ -76,27 +76,29 @@ function refreshHistoryRequests() {
 
 				duration = '<b>Fra:</b> ' + moment(parkingRequest.startTime).locale("nb").format("dddd, MMMM DD, YYYY HH:mm").capitalizeFirstLetter() +
 					'<br><b>Til:</b> ' + moment(parkingRequest.endTime).locale("nb").format("dddd, MMMM DD, YYYY HH:mm").capitalizeFirstLetter();
+
 				$("#history-cards").append(
-					'<div class="card request-card" id="click-' + parkingRequest._id + '">' +
+					'<div class="card request-card" id="history-' + parkingRequest._id + '">' +
 					'<div class="card-header" style="background-color:' + statusColor + '; color:#FFFFFF;">' +
-					//'<div class="request-icon"><i class="icon ' + icon + '"></i></div>' +
-					//+ '<b> ' + statusText + '</b>' +
 					'<div class="request-name" style="font-size: large"><center>' + statusText + '</center></div>' +
-					//'<div class="request-date">' + moment(parkingRequest.registredDate).locale("nb").format("dddd, MMMM DD, YYYY HH:mm").capitalizeFirstLetter() + '</div>' +
 					'</div>' +
 					'<div class="card-content">' +
 					'<div class="card-content-inner">' +
 					body +
-					duration  +
+					duration +
 					'</div>' +
 					'</div>' +
 					'<div class="card-footer">' +
-					'' +
-					//'<a href="#" class="link"><b>Status</b></a>' +
-					//' <p class="button button-fill ' + statusColor + '"> ' + statusText + '</p> ' +
 					'<a></a><i class="icon arrow-icon"></i>' +
 					'</div></div>' +
 					'</div>');
+
+				$("#history-" + parkingRequest._id).on('click', {
+					id: parkingRequest._id
+				}, function(params) {
+					localStorage.setItem("currentRequest", params.data.id);
+					myApp.showTab("#registerRequest");
+				});
 			}
 
 			$("#history-view-loading").hide();
