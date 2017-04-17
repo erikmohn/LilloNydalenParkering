@@ -18,7 +18,6 @@ $("#registerRequest").on('show', function() {
 function initializeCurrentRequest() {
 	resetCurrentRequest();
 
-
 	$("#send-request").click(function() {
 		var regNr = $("#request-regnr").val();
 
@@ -132,11 +131,8 @@ function refreshCurrentRequest() {
 					$("#request-eier").val(parkingRequest.offerParkingUser[0].userName);
 					$("#request-eier-telefon").val(parkingRequest.offerParkingUser[0].phoneNumber);
 
-					var now = moment();
-					var parkingTime = moment(parkingRequest.startTime);
-					var diff = parkingTime.diff(now, 'milliseconds');
 
-					if (diff < 0) {
+					if (moment().isAfter(moment(parkingRequest.startTime))) {
 						$("#request-loading").hide();
 						$("#done-request").show();
 					} else {
@@ -145,7 +141,7 @@ function refreshCurrentRequest() {
 						setTimeout(function() {
 							$("#cancel-request").hide();
 							$("#done-request").show();
-						}, diff);
+						}, moment(parkingRequest.startTime).diff(moment(), 'milliseconds'));
 					}
 					$("#request-tildeltParkering").show();
 				} else {
@@ -153,8 +149,14 @@ function refreshCurrentRequest() {
 					$("#cancel-request").show();
 					$("#request-venter-svar").show();
 				}
-
+				if (parkingRequest.done || parkingRequest.canceled || moment().isAfter(moment(parkingRequest.endTime))) {
+					$("#cancel-request").hide();
+					$("#done-request").hide();
+				}
 			});
+
+
+
 	} else {
 		$("#request-loading").hide();
 		$("#send-request").show();
