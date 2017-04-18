@@ -1,9 +1,12 @@
-//Open tab register request!
-$("#registerRequest").on('show', function() {
+myApp.onPageBeforeInit('new-request', function(page) {
 	$("#request-view-loading").show();
 	$("#parking-request").hide();
 	$("#parking-request-fail").hide();
+});
 
+myApp.onPageInit('new-request', function(page) {
+	myApp.closePanel();
+	initializeCurrentRequest();
 	var userId = localStorage.getItem("userId");
 	if (userId === null) {
 		$("#request-view-loading").hide();
@@ -57,7 +60,7 @@ function initializeCurrentRequest() {
 			}).done(function(parking) {
 				localStorage.removeItem("currentRequest");
 				refreshCurrentRequest();
-				myApp.showTab("#newRequestView");
+				mainView.router.loadPage('views/new-request.html');
 			});
 		});
 	});
@@ -73,7 +76,7 @@ function initializeCurrentRequest() {
 				}).done(function(parking) {
 					localStorage.removeItem("currentRequest");
 					refreshCurrentRequest();
-					myApp.showTab("#newRequestView");
+					mainView.router.loadPage('views/new-request.html');
 				});
 			});
 	});

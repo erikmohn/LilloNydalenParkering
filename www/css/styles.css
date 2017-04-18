@@ -12,6 +12,20 @@ input {
 -moz-user-select: auto !important;
 -ms-user-select: auto !important;
 user-select: auto !important;
+} 
+
+.panel-background {
+  background-color: #333941
+}
+
+.menu-list {
+  background-color: #333941; 
+  color:#FFFFFF
+}
+
+.navbar {
+background-color: #f2862a;
+color:#FFFFFF;
 }
 
 .bgimg {

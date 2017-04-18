@@ -1,13 +1,18 @@
-//Open tab view requests
-$("#requestsView").on('show', function() {
-	refreshParkingRequests();
-});
-
-function refreshParkingRequests() {
+myApp.onPageBeforeInit('foresporsler', function(page) {
 	$("#requests-view-loading").show();
 	$("#requests-view-done").hide();
 	$("#requests-view-cards").hide();
 	$("#requests-view-fail").hide();
+});
+
+
+myApp.onPageInit('foresporsler', function(page) {
+	myApp.closePanel();
+	refreshParkingRequests();
+});
+
+function refreshParkingRequests() {
+
 
 	var userId = localStorage.getItem("userId");
 	if (userId === null) {
@@ -66,7 +71,7 @@ function refreshParkingRequests() {
 						id: parkingRequest._id
 					}, function(params) {
 						localStorage.setItem("offer-currentRequest", params.data.id);
-						myApp.showTab('#offerForParkingRequestPage');
+						mainView.router.loadPage('views/offer.html');
 					});
 
 					$("#requests-view-loading").hide();

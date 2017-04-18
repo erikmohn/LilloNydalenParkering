@@ -1,0 +1,106 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left">
+      <i class="icon icon-bars open-panel color-white"></i>
+    </div>
+    <div class="center">Tilby parkering</div>
+  </div>
+</div>
+<div data-page="offer" class="page">
+  <div class="page-content ">
+    <div id="parking-offer-loading" class="content-block center-align vertical-center">
+      <img src="../img/loading.gif"/>
+    </div>
+    <div id="parking-offer-success" class="content-block center-align vertical-center">
+      <i class="icon success-icon "></i>
+      <h2>Takk for at du deler din parkeringsplass</h2>
+    </div>
+    <div id="parking-offer-fail" class="content-block center-align vertical-center">
+      <i class="icon warning-icon"></i>
+      <h2 id="parkingOfferErrorMessage"></h2>
+    </div>
+    <div id="parking-offer-input" class="vertical-center">
+      <div class="center-align">
+        <i class="icon parking-large-icon"></i>
+      </div>
+      <div class="list-block">
+        <ul>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name"></i></div>
+              <div class="item-inner">
+                <div class="item-title label">Navn</div>
+                <div class="item-input">
+                  <input id="offer-navn" type="text" disabled>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name"></i></div>
+              <div class="item-inner">
+                <div class="item-title label">Regnr</div>
+                <div class="item-input">
+                  <input id="offer-regnr" type="text" disabled>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-tel"></i></div>
+              <div class="item-inner">
+                <div class="item-title label">Telefon</div>
+                <div class="item-input">
+                  <input id="offer-telefon" type="text" disabled>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+              <div class="item-inner">
+                <div class="item-title label">Fra</div>
+                <div class="item-input">
+                  <input id="offer-fom" type="text" disabled>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+              <div class="item-inner">
+                <div class="item-title label">Til</div>
+                <div class="item-input">
+                  <input id="offer-tom" type="text" disabled>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="item-content">
+              <div class="item-media"><i class="icon icon-form-name"></i></div>
+              <div class="item-inner">
+                <div class="item-title label">Parkering</div>
+                <div class="item-input">
+                  <input id="offer-parkingLotInput" type="text" disabled>
+                  
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="item-content">
+          <div class="item-inner">
+            <span class="center-align">
+              <a href="#requestsView" id="send-offer" class="button button-big button-fill color-orange">Tilby parkering</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

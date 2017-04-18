@@ -12,14 +12,21 @@ var pusher = new Pusher('b3268785e53213585357', {
 	encrypted: true
 });
 
+myApp.onPageBeforeInit('*', function(page) {
+	$(".navbar").css({
+		"background-color": "#979797"
+	});
+});
+
+
 $$(document).on('deviceready', function() {
-	initializeUser();
 	initializeCurrentRequest();
 	initializeOffer();
 	initializePushwoosh();
 	initializePusher();
 
 });
+
 
 function initializePusher() {
 	var channel = pusher.subscribe("global-request-channel");

@@ -1,9 +1,13 @@
-//Open tab respond to request!
-$("#offerForParkingRequestPage").on('show', function() {
+myApp.onPageBeforeInit('offer', function(page) {
 	$("#parking-offer-loading").show();
 	$("#parking-offer-success").hide();
 	$("#parking-offer-fail").hide();
 	$("#parking-offer-input").hide();
+});
+
+myApp.onPageInit('offer', function(page) {
+	myApp.closePanel();
+	initializeOffer();
 
 	$.post(SERVER_URL + "/parking", {
 		parkingId: localStorage.getItem("offer-currentRequest")
@@ -11,7 +15,6 @@ $("#offerForParkingRequestPage").on('show', function() {
 		String.prototype.capitalizeFirstLetter = function() {
 			return this.charAt(0).toUpperCase() + this.slice(1);
 		};
-
 
 		$("#offer-navn").val(parking.requestUser[0].userName);
 		$("#offer-regnr").val(parking.regNr);
@@ -23,6 +26,7 @@ $("#offerForParkingRequestPage").on('show', function() {
 		$("#parking-offer-input").show();
 	});
 });
+
 
 function initializeOffer() {
 	$("#send-offer").click(function() {

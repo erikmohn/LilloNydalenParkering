@@ -1,12 +1,15 @@
-$("#newRequestView").on('show', function() {
+myApp.onPageBeforeInit('newRequest', function(page) {
+	$("#new-request-view-loading").show();
+	$("#new-request-view-cards").hide();
+	$("#new-request-view-fail").hide();
+});
+
+myApp.onPageInit('newRequest', function(page) {
+	myApp.closePanel();
 	refreshNewRequests();
 });
 
 function refreshNewRequests() {
-	$("#new-request-view-loading").show();
-	$("#new-request-view-cards").hide();
-	$("#new-request-view-fail").hide();
-
 	var userId = localStorage.getItem("userId")
 
 	if (userId === null) {
@@ -28,7 +31,8 @@ function refreshNewRequests() {
 
 		$("#addNewRequest").click(function() {
 			localStorage.removeItem("currentRequest");
-			myApp.showTab("#registerRequest");
+			mainView.router.loadPage('views/request.html');
+			
 		});
 
 		//Add existing valid requests
@@ -72,7 +76,7 @@ function refreshNewRequests() {
 					id: parkingRequest._id
 				}, function(params) {
 					localStorage.setItem("currentRequest", params.data.id);
-					myApp.showTab("#registerRequest");
+					mainView.router.loadPage('views/request.html');
 				});
 			}
 		});

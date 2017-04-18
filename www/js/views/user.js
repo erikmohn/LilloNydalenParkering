@@ -1,9 +1,13 @@
-//Open tab edit user data
-$("#userDataView").on('show', function() {
+myApp.onPageBeforeInit('user', function(page) {
+	initializeUser();
+
+});
+
+myApp.onPageInit('user', function(page) {
+	myApp.closePanel();
 	$("#user-save").show();
 	$("#user-save-loading").hide();
 	$("#user-saved").hide();
-	resetErrorColors();
 
 	$("#user-regnrInput").focusout(function(event) {
 		this.value = this.value.toUpperCase();
@@ -18,25 +22,25 @@ function initializeUser() {
 		if (validateInput()) {
 			resetErrorColors()
 			$.post(SERVER_URL + "/user/save", {
-				userId: localStorage.getItem("userId"),
-				userName: $("#user-nameInput").val(),
-				phoneNumber: $("#user-phoneInput").val(),
-				parkingSpace: $("#user-parkingLotInput").val(),
-				regnr: $("#user-regnrInput").val(),
-				epost: $("#user-emailInput").val(),
-				pushToken: localStorage.getItem("pushToken")
-			})
-			.done(function(user) {
-				$("#user-save-loading").hide();
-				$("#user-saved").show();
-				setTimeout(function() {
-					$("#user-saved").hide();
-					$("#user-save").show();
-				}, 1500)
+					userId: localStorage.getItem("userId"),
+					userName: $("#user-nameInput").val(),
+					phoneNumber: $("#user-phoneInput").val(),
+					parkingSpace: $("#user-parkingLotInput").val(),
+					regnr: $("#user-regnrInput").val(),
+					epost: $("#user-emailInput").val(),
+					pushToken: localStorage.getItem("pushToken")
+				})
+				.done(function(user) {
+					$("#user-save-loading").hide();
+					$("#user-saved").show();
+					setTimeout(function() {
+						$("#user-saved").hide();
+						$("#user-save").show();
+					}, 1500)
 
-				localStorage.setItem("userId", user.user._id);
-				refreshUser();
-			});
+					localStorage.setItem("userId", user.user._id);
+					refreshUser();
+				});
 		}
 	});
 };
@@ -115,14 +119,14 @@ function refreshUser() {
 			refreshHistoryRequests();
 			console.log("Data:");
 			console.log(data);
-			if(data.parkingAnswered) {
-				myApp.alert("Du har mottatt svar på din parkeringsforespørsel!","Mottatt svar");	
+			if (data.parkingAnswered) {
+				myApp.alert("Du har mottatt svar på din parkeringsforespørsel!", "Mottatt svar");
 			} else if (data.parkingDone) {
-				myApp.alert(data.msg,"Avsluttet parkering");
+				myApp.alert(data.msg, "Avsluttet parkering");
 			} else if (data.parkingCanceled) {
-				myApp.alert(data.msg,"Avbrutt parkering");
+				myApp.alert(data.msg, "Avbrutt parkering");
 			}
-			
+
 		});
 
 		//Get user data

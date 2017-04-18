@@ -1,14 +1,18 @@
-$("#historyView").on('show', function() {
-	refreshHistoryRequests();
-});
-
-function refreshHistoryRequests() {
+myApp.onPageBeforeInit('history', function(page) {
 	$("#history-cards-view").hide();
 	$("#history-view-fail").hide();
 	$("#history-view-none").hide();
 	$("#history-view-loading").show();
+});
 
-	$("#history-view-loading").show();
+myApp.onPageInit('history', function(page) {
+	myApp.closePanel();
+	refreshHistoryRequests();
+});
+
+
+function refreshHistoryRequests() {
+
 	var userId = localStorage.getItem("userId");
 
 	if (userId === null) {
@@ -93,7 +97,7 @@ function refreshHistoryRequests() {
 					id: parkingRequest._id
 				}, function(params) {
 					localStorage.setItem("currentRequest", params.data.id);
-					myApp.showTab("#registerRequest");
+					mainView.router.loadPage('views/request.html');
 				});
 			}
 
