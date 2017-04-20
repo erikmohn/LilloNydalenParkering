@@ -4,7 +4,8 @@ var mainView = myApp.addView('.view-main', {
 	dynamicNavbar: true
 });
 
-var SERVER_URL = "https://lillo-nydalen-parkering.herokuapp.com"
+//var SERVER_URL = "https://lillo-nydalen-parkering.herokuapp.com"
+var SERVER_URL = "http://localhost"
 moment().locale("nb");
 
 var pusher = new Pusher('b3268785e53213585357', {
@@ -44,6 +45,7 @@ $$(document).on('deviceready', function() {
 					});
 					mainView.router.loadPage('index.html');
 					myApp.closeModal();
+					//TODO: Clear credentials
 
 				}
 
