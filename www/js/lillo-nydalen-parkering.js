@@ -4,8 +4,8 @@ var mainView = myApp.addView('.view-main', {
 	dynamicNavbar: true
 });
 
-//var SERVER_URL = "https://lillo-nydalen-parkering.herokuapp.com"
-var SERVER_URL = "http://localhost"
+var SERVER_URL = "https://lillo-nydalen-parkering.herokuapp.com"
+//var SERVER_URL = "http://localhost"
 moment().locale("nb");
 
 var pusher = new Pusher('b3268785e53213585357', {
@@ -22,9 +22,11 @@ myApp.onPageBeforeInit('*', function(page) {
 
 $$(document).on('deviceready', function() {
 	//localStorage.setItem("userId","58f6fa9aae6c971300a2bed3");
+	//localStorage.clear()
 	if (!localStorage.getItem("userId")) {
 		myApp.loginScreen();
 	}
+
 	initializePushwoosh();
 	initializePusher();
 
@@ -45,8 +47,6 @@ $$(document).on('deviceready', function() {
 					});
 					mainView.router.loadPage('index.html');
 					myApp.closeModal();
-					//TODO: Clear credentials
-
 				}
 
 			}
@@ -54,13 +54,14 @@ $$(document).on('deviceready', function() {
 	});
 
 	$("#logout").click(function() {
+		$("#login-email").val("");
+		$("#login-password").val("");
 		localStorage.clear();
 		myApp.closePanel();
 		myApp.loginScreen();
 	});
 
 	$("#newUser").click(function() {
-		
 		mainView.router.loadPage('views/user.html');
 		myApp.closePanel();
 		myApp.closeModal();
