@@ -31,7 +31,7 @@ $$(document).on('deviceready', function() {
 	initializePusher();
 
 	$("#login").click(function() {
-		$.post(SERVER_URL + "/user/email", {
+		$.post(SERVER_URL + "/user/authenticate", {
 			username: $("#login-email").val(),
 			password: hex_sha256($("#login-password").val())
 		}).done(function(user) {
