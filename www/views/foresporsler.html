@@ -1,25 +1,29 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="left">
-      <i class="icon icon-bars open-panel color-white"></i>
+      <i class="material-icons open-panel">menu</i>
     </div>
     <div class="center">Forespørsler</div>
   </div>
 </div>
 <div data-page="foresporsler" class="page">
-  <div class="page-content ">
+  <div class="page-content pull-to-refresh-content" data-ptr-distance="55"">
+    <div class="pull-to-refresh-layer">
+      <div class="preloader"></div>
+      <div class="pull-to-refresh-arrow"></div>
+    </div>
     <div id="requests-view-loading" class="content-block center-align vertical-center">
       <img src="../img/loading.gif"/>
     </div>
-    <div id="requests-view-cards" class="content-block"><br>
+    <div id="requests-view-cards" class="content-block">
       <div id="request-cards"> </div>
     </div>
     <div id="requests-view-done" class="content-block center-align vertical-center">
-      <i class="icon done-icon"></i>
+      <i class="material-icons md-48">done_all</i>
       <h2>Ingen ventende forespørsler</h2>
     </div>
     <div id="requests-view-fail" class="content-block center-align vertical-center">
-      <i class="icon warning-icon"></i>
+      <i class="material-icons md-48">warning</i>
       <h2>Mangler brukerinformasjon</h2>
     </div>
   </div>

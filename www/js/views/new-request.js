@@ -24,7 +24,7 @@ function refreshNewRequests() {
 					'</div>' +
 			'<div class="card-content">' +
 			'<div class="card-content-inner center-align">' +
-			'<i class="icon add-icon"></i> ' +
+			'<i class="material-icons md-light md-36">note_add</i> ' +
 
 			'</div>' +
 			'</div>');

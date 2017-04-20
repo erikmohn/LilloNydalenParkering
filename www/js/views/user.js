@@ -28,7 +28,8 @@ function initializeUser() {
 					parkingSpace: $("#user-parkingLotInput").val(),
 					regnr: $("#user-regnrInput").val(),
 					epost: $("#user-emailInput").val(),
-					pushToken: localStorage.getItem("pushToken")
+					pushToken: localStorage.getItem("pushToken"),
+					password: hex_sha256($("#user-passwordInput").val())
 				})
 				.done(function(user) {
 					$("#user-save-loading").hide();
@@ -69,6 +70,7 @@ function validateInput() {
 	var parkingSpace = $("#user-parkingLotInput");
 	var regNr = $("#user-regnrInput");
 	var email = $("#user-emailInput");
+	var password = $("#user-passwordInput");
 
 	var validated = true;
 	if (!/^.+$/.test(name.val())) {
@@ -97,6 +99,14 @@ function validateInput() {
 	}
 	if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email.val())) {
 		email.css({
+			'color': 'red'
+		});
+		$("#user-save-loading").hide();
+		$("#user-save").show();
+		validated = false;
+	}
+	if (false) {
+		password.css({
 			'color': 'red'
 		});
 		$("#user-save-loading").hide();

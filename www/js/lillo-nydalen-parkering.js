@@ -20,11 +20,49 @@ myApp.onPageBeforeInit('*', function(page) {
 
 
 $$(document).on('deviceready', function() {
-	initializeCurrentRequest();
-	initializeOffer();
+	//localStorage.setItem("userId","58f6fa9aae6c971300a2bed3");
+	if (!localStorage.getItem("userId")) {
+		myApp.loginScreen();
+	}
 	initializePushwoosh();
 	initializePusher();
 
+	$("#login").click(function() {
+		$.post(SERVER_URL + "/user/email", {
+			username: $("#login-email").val(),
+			password: hex_sha256($("#login-password").val())
+		}).done(function(user) {
+			if (user) {
+				if (user.notAuthenticated) {
+					myApp.alert("Pålogging feilet!");
+				} else {
+					$("#login-email").val("");
+					$("#login-password").val("");
+					localStorage.setItem("userId", user._id);
+					$(".navbar").css({
+						"background-color": "#f2862a"
+					});
+					mainView.router.loadPage('index.html');
+					myApp.closeModal();
+
+				}
+
+			}
+		});
+	});
+
+	$("#logout").click(function() {
+		localStorage.clear();
+		myApp.closePanel();
+		myApp.loginScreen();
+	});
+
+	$("#newUser").click(function() {
+		
+		mainView.router.loadPage('views/user.html');
+		myApp.closePanel();
+		myApp.closeModal();
+	});
 });
 
 

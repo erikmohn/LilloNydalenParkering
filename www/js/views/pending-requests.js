@@ -5,6 +5,12 @@ myApp.onPageBeforeInit('foresporsler', function(page) {
 	$("#requests-view-fail").hide();
 });
 
+var ptrContent = $$('.pull-to-refresh-content');
+
+ptrContent.on('ptr:refresh', function (e) {
+	refreshParkingRequests();
+	myApp.pullToRefreshDone();
+});
 
 myApp.onPageInit('foresporsler', function(page) {
 	myApp.closePanel();
