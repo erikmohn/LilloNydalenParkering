@@ -1,0 +1,194 @@
+<div data-page="new-user" class="page">
+  <div class="page-content">
+    <div class="content-block">
+      <!--Brukerinformasjon-->
+      <div id="newUserinformation">
+        <div class="login-screen-title" style="color:#f2862a">Brukerinformasjon</div>
+        <div class="list-block inset">
+          <ul>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div id="fornavn-title" class="item-title floating-label">Fornavn</div>
+                  <div class="item-input">
+                    <input id="fornavn" type="text">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div id="etternavn-title" class="item-title floating-label">Etternavn</div>
+                  <div class="item-input">
+                    <input id="etternavn" type="text">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div id="phone-title" class="item-title floating-label">Telefonnummer</div>
+                  <div class="item-input">
+                    <input id="telefon" type="tel" placeholder="telefon">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div id="email-title" class="item-title floating-label">E-post</div>
+                  <div class="item-input">
+                    <input id="email" type="email" placeholder="epost">
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="list-block inset center-align">
+        <p id="user-error" class="input-error"></p>
+          <ul>
+            <li>
+              <a id="next1" href="#" class="item-link list-button">Neste</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Passord-->
+      <div id="newUserPassword">
+        <div class="login-screen-title" style="color:#f2862a">Passord</div>
+        <div class="list-block inset">
+          <ul>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div id="passord-title" class="item-title floating-label">Passord</div>
+                  <div class="item-input">
+                    <input id="passord" type="password" placeholder="Passord">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div id="passordBekrefte-title" class="item-title floating-label">Bekreft passord</div>
+                  <div class="item-input">
+                    <input id="bekreftPassord" type="password" placeholder="Bekreft passord">
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="list-block inset center-align">
+          <p id="password-error" class="input-error"></p>
+          <ul>
+            <li>
+              <a id="next2" href="#" class="item-link list-button">Neste</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Parkering-->
+      <div id="newUserParkering">
+        <div class="login-screen-title" style="color:#f2862a">Din parkering</div>
+        <div class="list-block inset">
+          <ul>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title floating-label">Din parkeringsplass (valgfri)</div>
+                  <div class="item-input">
+                    <input id="parkering" type="text" placeholder="Din parkeringsplass">
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title floating-label">Bil registreringsnummer (valgfri) </div>
+                  <div class="item-input">
+                    <input id="regnr" type="text" placeholder="Registreringsnummer">
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="list-block inset center-align">
+          <ul>
+            <li>
+              <a id="next3" href="#" class="item-link list-button">Neste</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Varslinger -->
+      <div id="newUserNotifications">
+        <div class="login-screen-title" style="color:#f2862a">Varslinger</div>
+        <div class="list-block inset">
+          <ul>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Ønsker du å låne ut din parkering?</div>
+                  <div class="item-input">
+                    <label class="label-switch">
+                      <input id="has-parking" type="checkbox" checked>
+                      <div class="checkbox"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Ønsker du å låne parkering av andre?</div>
+                  <div class="item-input">
+                    <label class="label-switch">
+                      <input id="needs-parking" type="checkbox" checked>
+                      <div class="checkbox"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-inner">
+                  <div class="item-title label">Ønsker du push varsler?</div>
+                  <div class="item-input">
+                    <label class="label-switch">
+                      <input id="wants-push" type="checkbox" checked>
+                      <div class="checkbox"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="list-block inset center-align">
+          <ul>
+            <li>
+              <a id="new-user-done" href="#" class="item-link list-button">Ferdig</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="list-block inset center-align">
+        <ul>
+          <li>
+            <a id="avbryt" href="#" class="item-link list-button">Avbryt</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
