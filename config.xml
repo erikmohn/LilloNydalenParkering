@@ -60,7 +60,7 @@
     </feature>
     <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarOverlaysWebView" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarBackgroundColor" value="#f2862a" />
     <preference name="StatusBarStyle" value="lightcontent" />
     <plugin name="pushwoosh-cordova-plugin" spec="~6.5.1">
         <variable name="LOG_LEVEL" value="DEBUG" />

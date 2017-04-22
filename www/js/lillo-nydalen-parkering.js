@@ -17,7 +17,7 @@ var pusher = new Pusher('b3268785e53213585357', {
 
 myApp.onPageBeforeInit('*', function(page) {
 	$(".navbar").css({
-		"background-color": "#979797"
+		"background-color": "#f2862a"//"#979797"
 	});
 });
 

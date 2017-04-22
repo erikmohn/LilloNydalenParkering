@@ -48,7 +48,6 @@ myApp.onPageInit('endre-passord', function(page) {
 	});
 
 	$("#back-endre-passord").click(function(event) {
-		console.log("Going back!");
 		mainView.router.back();
 	});
 });
