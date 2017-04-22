@@ -2,7 +2,7 @@
 <widget id="no.fernanda.nissen.parkering" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Lillo nydalen Parkering</name>
     <description>
-        A basic Framework7 template for PhoneGap.
+        Parkeringsdeling for sameiet Lillo nydalen
     </description>
     <author email="mohn.erik@gmail.com">
     </author>
