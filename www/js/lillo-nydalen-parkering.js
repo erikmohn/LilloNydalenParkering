@@ -1,11 +1,13 @@
-var myApp = new Framework7();
+var myApp = new Framework7({
+	material: true
+});
 var $$ = Dom7;
 var mainView = myApp.addView('.view-main', {
 	dynamicNavbar: true
 });
 
 var SERVER_URL = "https://lillo-nydalen-parkering.herokuapp.com"
-//var SERVER_URL = "http://localhost"
+	//var SERVER_URL = "http://localhost"
 moment().locale("nb");
 
 var pusher = new Pusher('b3268785e53213585357', {
@@ -25,10 +27,10 @@ $$(document).on('deviceready', function() {
 	//localStorage.clear()
 	if (!localStorage.getItem("userId")) {
 		myApp.loginScreen();
+	} else {
+		initializePushwoosh();
+		initializePusher();
 	}
-
-	initializePushwoosh();
-	initializePusher();
 
 	$("#login").click(function() {
 		$.post(SERVER_URL + "/user/authenticate", {
@@ -62,7 +64,13 @@ $$(document).on('deviceready', function() {
 	});
 
 	$("#newUser").click(function() {
-		mainView.router.loadPage('views/user.html');
+		mainView.router.loadPage('views/new-user.html');
+		myApp.closePanel();
+		myApp.closeModal();
+	});
+
+	$("#glemtPassord").click(function() {
+		mainView.router.loadPage('views/glemt-passord.html');
 		myApp.closePanel();
 		myApp.closeModal();
 	});
@@ -96,3 +104,11 @@ function initializePushwoosh() {
 		});
 	}
 };
+
+function activeMenuItem(menuItem) {
+	$("#myRequestLi").removeClass('currentLi');
+	$("#requestsLi").removeClass('currentLi');
+	$("#historyLi").removeClass('currentLi');
+	$("#settingsLi").removeClass('currentLi');
+	$(menuItem).addClass('currentLi');
+}

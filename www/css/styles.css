@@ -19,6 +19,14 @@ user-select: auto !important;
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
 
+.currentLi {
+  background-color: #000000;
+}
+
+.input-error {
+  color:  #f2862a !important;
+}
+
 .panel-background {
   background-color: #333941
 }
@@ -31,6 +39,10 @@ user-select: auto !important;
 .navbar {
 background-color: #f2862a;
 color:#FFFFFF;
+}
+
+.link-item:active {
+  background-color: #FFFFFF;
 }
 
 .bgimg {

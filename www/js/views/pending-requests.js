@@ -3,6 +3,7 @@ myApp.onPageBeforeInit('foresporsler', function(page) {
 	$("#requests-view-done").hide();
 	$("#requests-view-cards").hide();
 	$("#requests-view-fail").hide();
+	activeMenuItem("#requestsLi");
 });
 
 var ptrContent = $$('.pull-to-refresh-content');

@@ -2,6 +2,7 @@ myApp.onPageBeforeInit('newRequest', function(page) {
 	$("#new-request-view-loading").show();
 	$("#new-request-view-cards").hide();
 	$("#new-request-view-fail").hide();
+	activeMenuItem("#myRequestLi");
 });
 
 myApp.onPageInit('newRequest', function(page) {
@@ -20,8 +21,8 @@ function refreshNewRequests() {
 
 		$("#new-requests-cards").append('<div class="card request-card" id="addNewRequest">' +
 			'<div class="card-header">' +
-					'<div class="request-name" style="font-size: large"> <center>Ny forespørsel</center></div>' +
-					'</div>' +
+			'<div class="request-name" style="font-size: large"> <center>Ny forespørsel</center></div>' +
+			'</div>' +
 			'<div class="card-content">' +
 			'<div class="card-content-inner center-align">' +
 			'<i class="material-icons md-light md-36">note_add</i> ' +
@@ -32,7 +33,7 @@ function refreshNewRequests() {
 		$("#addNewRequest").click(function() {
 			localStorage.removeItem("currentRequest");
 			mainView.router.loadPage('views/request.html');
-			
+
 		});
 
 		//Add existing valid requests

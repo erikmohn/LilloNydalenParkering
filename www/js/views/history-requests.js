@@ -3,6 +3,7 @@ myApp.onPageBeforeInit('history', function(page) {
 	$("#history-view-fail").hide();
 	$("#history-view-none").hide();
 	$("#history-view-loading").show();
+	activeMenuItem("#historyLi")
 });
 
 myApp.onPageInit('history', function(page) {
