@@ -21,18 +21,18 @@ function refreshNewRequests() {
 
 		$("#new-requests-cards").append('<div class="card request-card" id="addNewRequest">' +
 			'<div class="card-header">' +
-			'<div class="request-name" style="font-size: large"> <center>Ny forespørsel</center></div>' +
+			'<div class="request-name" style="font-size: large;"> <center>Ny parkering</center></div>' +
 			'</div>' +
 			'<div class="card-content">' +
 			'<div class="card-content-inner center-align">' +
-			'<i class="material-icons md-light md-36">note_add</i> ' +
+			'<i id="addParking" class="material-icons md-36" style="color:#ff9100;">add_circle</i>' +
 
 			'</div>' +
 			'</div>');
 
 		$("#addNewRequest").click(function() {
 			localStorage.removeItem("currentRequest");
-			mainView.router.loadPage('views/request.html');
+			mainView.router.loadPage('views/new-parking.html');
 
 		});
 
@@ -57,19 +57,31 @@ function refreshNewRequests() {
 					statusColor = "#ff9500";
 					statusText = "Avventer svar";
 				}
-				duration = '<b>Fra:</b> ' + moment(parkingRequest.startTime).locale("nb").format("dddd, MMMM DD, YYYY HH:mm") +
-					'<br><b>Til:</b> ' + moment(parkingRequest.endTime).locale("nb").format("dddd, MMMM DD, YYYY HH:mm");
+				duration = '<b>Fra:</b> ' + moment(parkingRequest.startTime).format("dddd, MMMM DD, HH:mm") +
+					'<br><b>Til:</b> ' + moment(parkingRequest.endTime).format("dddd, MMMM DD, HH:mm");
 
 				$("#new-requests-cards").append('<div class="card request-card" id="request-' + parkingRequest._id + '">' +
 					'<div class="card-header" style="background-color:' + statusColor + '; color:#FFFFFF">' +
 					'<div class="request-name" style="font-size: large"> <center> ' + statusText + '</center></div>' +
 					'</div>' +
 					'<div class="card-content">' +
-					'<div class="card-content-inner">' +
-					duration +
-					'</div>' +
+					'<div class="card-content-inner"><center>' +
+					'  <table>'+
+					'	<tbody>'+
+					'	<tr>'+
+					'		<td class="label-cell"><b>Fra:</b></td>'+
+					'		<td class="label-cell"><i class="material-icons md-18 color-gray">date_range</i>'+moment(parkingRequest.startTime).format("DD/MM/YY")+'</td>'+
+					'		<td class="label-cell"><i class="material-icons md-18 color-gray">access_time</i>'+moment(parkingRequest.startTime).format("HH:mm")+'</td>'+
+					'	</tr>'+
+					'	<tr>'+
+					'		<td class="label-cell"><b>Fra:</b></td>'+
+					'		<td class="label-cell"><i class="material-icons md-18 color-gray">date_range</i>'+moment(parkingRequest.endTime).format("DD/MM/YY")+'</td>'+
+					'		<td class="label-cell"><i class="material-icons md-18 color-gray">access_time</i>'+moment(parkingRequest.endTime).format("HH:mm")+'</td>'+
+					'	</tr>'+
+					'</tbody>  </table>'+
+					'</center></div>' +
 					'<div class="card-footer">' +
-					'<a></a><i class="icon arrow-icon"></i>' +
+					'<a></a><i class="material-icons" style="color:#f2862a">play_circle_outline</i>' +
 					'</div>' +
 					'</div>');
 

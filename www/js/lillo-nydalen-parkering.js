@@ -17,10 +17,13 @@ var pusher = new Pusher('b3268785e53213585357', {
 
 myApp.onPageBeforeInit('*', function(page) {
 	$(".navbar").css({
-		"background-color": "#f2862a"//"#979797"
+		"background-color": "#f2862a" //"#979797"
 	});
 });
 
+$$('.panel-left').on('panel:open', function() {
+	refreshBadges();
+});
 
 $$(document).on('deviceready', function() {
 	//localStorage.setItem("userId","58f6fa9aae6c971300a2bed3");
@@ -80,6 +83,7 @@ $$(document).on('deviceready', function() {
 function initializePusher() {
 	var channel = pusher.subscribe("global-request-channel");
 	channel.bind('request-update', function(data) {
+		refreshBadges();
 		refreshParkingRequests();
 	});
 };
@@ -112,3 +116,24 @@ function activeMenuItem(menuItem) {
 	$("#settingsLi").removeClass('currentLi');
 	$(menuItem).addClass('currentLi');
 }
+
+function refreshBadges() {
+	$.post(SERVER_URL + "/parking/requests", {
+		userId: localStorage.getItem("userId"),
+		now: new Date()
+	}).done(function(parkingRequests) {
+		var count = 0;
+		var userId = localStorage.getItem("userId");
+		parkingRequests.forEach(function(item) {
+			if (item.requestUser[0]._id !== userId) {
+				count++;
+			}
+		});
+		if (count !== 0) {
+			$("#offerBadge").html('<span class="badge bg-grey right-align">' + parkingRequests.length + '</span>');
+		} else {
+			$("#offerBadge").empty();
+		}
+
+	})
+};

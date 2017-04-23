@@ -18,7 +18,7 @@
       <link rel="stylesheet" href="css/styles.css">
     </head>
     <body class="theme-amber">
-     <div class="statusbar-overlay" style="background-color: #f2862a"></div>
+      <div class="statusbar-overlay" style="background-color: #f2862a"></div>
       <div class="login-screen">
         <div class="view">
           <div class="page">
@@ -32,7 +32,7 @@
                       <div class="item-inner">
                         <div class="item-title floating-label">Brukernavn</div>
                         <div class="item-input">
-                          <input id="login-email" type="text" name="username" placeholder="E-post">
+                          <input id="login-email" type="email" name="username" placeholder="E-post">
                         </div>
                       </div>
                     </li>
@@ -88,7 +88,26 @@
               </div>
             </a>
           </li>
-          <li id="historyLi">
+          <li id="requestsLi">
+            <a href="views/foresporsler.html" class="item-link color-white close-panel">
+              <div class="item-content">
+                <div class="item-media">
+                  <i class="material-icons">folder</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title lightText">
+                    Tilby parkering
+
+                  </div>
+                  <div id="offerBadge">
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li class="item-divider" style="background-color: #333941; color:#6c6f72;">Historikk</li>
+
+                    <li id="historyLi">
             <a href="views/historikk.html" class="item-link color-white close-panel">
               <div class="item-content">
                 <div class="item-media">
@@ -102,24 +121,9 @@
               </div>
             </a>
           </li>
-          <li class="item-divider" style="background-color: #333941; color:#6c6f72;">Forespørsler fra andre</li>
-          <li id="requestsLi">
-            <a href="views/foresporsler.html" class="item-link color-white close-panel">
-              <div class="item-content">
-                <div class="item-media">
-                  <i class="material-icons">folder</i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-title lightText">
-                    Tilby parkering
-                  </div>
-                </div>
-              </div>
-            </a>
-          </li>
         </ul>
         <div style="">
-          <div style="color:#979797; font-size: small; margin-left: 15px; margin-bottom: 10px ">Instillinger</div>
+          <div style="color:#979797; font-size: small; margin-left: 15px; margin-bottom: 10px ">Innstillinger</div>
           <ul style="background-color: #333941; color:#FFFFFF;">
             <li id="settingsLi">
               <a href="views/settings.html" class="item-link color-white close-panel">
@@ -129,7 +133,7 @@
                   </div>
                   <div class="item-inner">
                     <div class="item-title lightText">
-                      Instillinger
+                      Innstillinger
                     </div>
                   </div>
                 </div>
@@ -155,8 +159,7 @@
     </div>
     <div class="views">
       <!-- First view -->
-      <div id="start" class="view view-main tab active">
-        
+      <div id="start" class="view view-main tab active"> 
         <div class="pages">
           <div data-page="index-page" class="page bgimg">
             <div class="page-content">
@@ -164,7 +167,7 @@
                 <div class="navbar-inner" >
                   <div class="left nb-left">
                     <i class="material-icons open-panel">menu</i>
-                  </div> 
+                  </div>
                 </div>
               </div>
               <div class="content-block">
@@ -182,10 +185,17 @@
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
     
     <script type="text/javascript" src="js/lillo-nydalen-parkering.js"></script>
+    <script type="text/javascript" src="js/views/hjelp.js"></script>
+    <script type="text/javascript" src="js/views/brukervilkar.js"></script>
+    <script type="text/javascript" src="js/views/personvern.js"></script>
     <script type="text/javascript" src="js/views/new-user.js"></script>
+    <script type="text/javascript" src="js/views/new-parking.js"></script>
     <script type="text/javascript" src="js/views/endre-bruker.js"></script>
-    <script type="text/javascript" src="js/views/glemt-passord.js"></script>
+    <script type="text/javascript" src="js/views/endre-varslinger.js"></script>
+    <script type="text/javascript" src="js/views/endre-parkeringsplass.js"></script>
+    <script type="text/javascript" src="js/views/endre-biler.js"></script>
     <script type="text/javascript" src="js/views/endre-passord.js"></script>
+    <script type="text/javascript" src="js/views/glemt-passord.js"></script>
     <script type="text/javascript" src="js/views/request.js"></script>
     <script type="text/javascript" src="js/views/settings.js"></script>
     <script type="text/javascript" src="js/views/history-requests.js"></script>
