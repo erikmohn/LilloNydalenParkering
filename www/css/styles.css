@@ -27,6 +27,10 @@ user-select: auto !important;
   color:  #f2862a !important;
 }
 
+.statusbar-overlay {
+  background-color: #f2862a;
+}
+
 .nb-left {
   opacity: 0.50;
   margin-left: 10px;
