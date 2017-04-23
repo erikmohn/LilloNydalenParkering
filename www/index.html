@@ -9,12 +9,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <!-- Your app title -->
+    
     <title>Lillo Nydalen Parkering</title>
     <link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">
     <link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">
-    <!--link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
-    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css"-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
       <link rel="stylesheet" href="css/styles.css">
@@ -70,7 +68,7 @@
       </div>
     </body>
     
-    <!--div class="panel-overlay"></div-->
+    <div class="panel-overlay"></div>
     <div class="panel panel-left panel-reveal panel-background">
       <!-- no-hairlines -->
       <div class="list-block no-border no-hairlines no-hairlines-between" >
@@ -78,7 +76,7 @@
         <div class="content-block-title color-white" style="color: #6c6f72">Mine parkeringer</div>
         <ul style="background-color: #333941; color:#FFFFFF; ">
           <li id="myRequestLi">
-            <a href="views/new-request.html" class="item-link color-white" >
+            <a href="views/new-request.html" class="item-link color-white close-panel" >
               <div class="item-content">
                 <div class="item-media">
                   <i class="material-icons">note_add</i>
@@ -92,7 +90,7 @@
             </a>
           </li>
           <li id="historyLi">
-            <a href="views/historikk.html" class="item-link color-white">
+            <a href="views/historikk.html" class="item-link color-white close-panel">
               <div class="item-content">
                 <div class="item-media">
                   <i class="material-icons">local_parking</i>
@@ -107,7 +105,7 @@
           </li>
           <li class="item-divider" style="background-color: #333941; color:#6c6f72;">Forespørsler fra andre</li>
           <li id="requestsLi">
-            <a href="views/foresporsler.html" class="item-link color-white">
+            <a href="views/foresporsler.html" class="item-link color-white close-panel">
               <div class="item-content">
                 <div class="item-media">
                   <i class="material-icons">folder</i>
@@ -121,12 +119,11 @@
             </a>
           </li>
         </ul>
-        <!--hr style="height: 1px; background-color: #979797; border: none; "-->
         <div style="">
           <div style="color:#979797; font-size: small; margin-left: 15px; margin-bottom: 10px ">Instillinger</div>
           <ul style="background-color: #333941; color:#FFFFFF;">
             <li id="settingsLi">
-              <a href="views/settings.html" class="item-link color-white">
+              <a href="views/settings.html" class="item-link color-white close-panel">
                 <div class="item-content">
                   <div class="item-media">
                     <i class="material-icons">settings</i>
@@ -140,7 +137,7 @@
               </a>
             </li>
             <li>
-              <a id="logout" href="" class="item-link color-white">
+              <a id="logout" href="" class="item-link color-white close-panel">
                 <div class="item-content">
                   <div class="item-media">
                     <i class="material-icons ">exit_to_app</i>
@@ -164,11 +161,11 @@
         <div class="pages">
           <div data-page="index-page" class="page bgimg">
             <div class="page-content">
-              <div class="navbar no-border"  style="background-color: #f2862a">
+              <div class="navbar no-border"  style="background-color: #f2862a;">
                 <div class="navbar-inner" >
-                  <div class="left">
+                  <div class="left nb-left">
                     <i class="material-icons open-panel">menu</i>
-                  </div>
+                  </div> 
                 </div>
               </div>
               <div class="content-block">

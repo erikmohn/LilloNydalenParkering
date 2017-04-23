@@ -27,6 +27,16 @@ user-select: auto !important;
   color:  #f2862a !important;
 }
 
+.nb-left {
+  opacity: 0.50;
+  margin-left: 10px;
+}
+
+.nb-right {
+  opacity: 0.50;
+  margin-right: 10px;
+}
+
 .panel-background {
   background-color: #333941
 }
