@@ -69,12 +69,12 @@ function refreshNewRequests() {
 					'  <table>'+
 					'	<tbody>'+
 					'	<tr>'+
-					'		<td class="label-cell"><b>Fra:</b></td>'+
+					'		<td class="label-cell color-gray"><b>Fra:</b></td>'+
 					'		<td class="label-cell"><i class="material-icons md-18 color-gray">date_range</i>'+moment(parkingRequest.startTime).format("DD/MM/YY")+'</td>'+
 					'		<td class="label-cell"><i class="material-icons md-18 color-gray">access_time</i>'+moment(parkingRequest.startTime).format("HH:mm")+'</td>'+
 					'	</tr>'+
 					'	<tr>'+
-					'		<td class="label-cell"><b>Fra:</b></td>'+
+					'		<td class="label-cell color-gray"><b>Fra:</b></td>'+
 					'		<td class="label-cell"><i class="material-icons md-18 color-gray">date_range</i>'+moment(parkingRequest.endTime).format("DD/MM/YY")+'</td>'+
 					'		<td class="label-cell"><i class="material-icons md-18 color-gray">access_time</i>'+moment(parkingRequest.endTime).format("HH:mm")+'</td>'+
 					'	</tr>'+

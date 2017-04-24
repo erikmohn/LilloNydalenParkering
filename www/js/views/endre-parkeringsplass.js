@@ -8,30 +8,41 @@ myApp.onPageBeforeInit('endre-parkerigsplass', function(page) {
 	$("#addParking").click(function(event) {
 		i++;
 		$("#noParkingSpaces").remove();
-		$("#parkeringsplasser").append(
-			'<li>' +
-			'<div class = "item-content">' +
-			'<div class="item-media">' +
-			'<i id="removeCar' + i + '"class="material-icons">place</i>' +
-			'</div>' +
-			'<div class="item-inner">' +
-			'<div class="item-title floating-label">Plassnummer</div>' +
-			'<div class="item-input">' +
-			'<input id="parkering" type="text">' +
-			'</div>' +
-			'</div>' +
-			'<div class="item-media">' +
-			'<i id="removeParkingA' + i + '" class="material-icons" style="color:#919292">remove_circle</i>' +
-			'</div>' +
-			'</div>' +
-			'</li>'
-		);
-		$("#removeParkingA" + i).click(function(event) {
-			$(this).parent().parent().parent().remove()
-			if ($("#parkeringsplasser").children().length == 0) {
-				addNoParkingSpaces();
-			}
-		})
+		if ($("#parkeringsplasser > li").length < 5) {
+			$("#parkeringsplasser").append(
+				'<li id="liA' + i + '" hidden>' +
+				'<div class = "item-content">' +
+				'<div class="item-media">' +
+				'<i id="removeCar' + i + '"class="material-icons">place</i>' +
+				'</div>' +
+				'<div class="item-inner">' +
+				'<div class="item-title floating-label">Plassnummer</div>' +
+				'<div class="item-input">' +
+				'<input id="parkering" type="text">' +
+				'</div>' +
+				'</div>' +
+				'<div class="item-media">' +
+				'<i id="removeParkingA' + i + '" class="material-icons" style="color:#919292">remove_circle</i>' +
+				'</div>' +
+				'</div>' +
+				'</li>'
+			);
+
+			$("#liA" + i).animate({
+				width: 'toggle'
+			}, 350);
+
+			$("#removeParkingA" + i).click(function(event) {
+				$(this).parent().parent().parent().animate({
+					width: 'toggle'
+				}, 350, function() {
+					$(this).remove();
+					if ($("#parkeringsplasser").children().length == 0) {
+						addNoParkingSpaces();
+					}
+				})
+			})
+		}
 	});
 
 	$("#save-parkering").click(function(event) {
@@ -97,10 +108,14 @@ function refreshParkering() {
 						'</li>'
 					);
 					$("#removeParkingB" + i).click(function(event) {
-						$(this).parent().parent().parent().remove()
-						if ($("#parkeringsplasser").children().length == 0) {
-							addNoParkingSpaces();
-						}
+						$(this).parent().parent().parent().animate({
+							width: 'toggle'
+						}, 350, function() {
+							$(this).remove();
+							if ($("#parkeringsplasser").children().length == 0) {
+								addNoParkingSpaces();
+							}
+						})
 					})
 
 				})
@@ -114,12 +129,14 @@ function refreshParkering() {
 
 function addNoParkingSpaces() {
 	$("#parkeringsplasser").append(
-		'<li id="noParkingSpaces">' +
+		'<li id="noParkingSpaces" hidden>' +
 		'<div class="item-content">' +
 		'<div class="item-inner">' +
-		'<div>Ingen parkeringsplasser registrert</div>' +
-		'<div class="item-input"></div>' +
+		'<input type="text" value="Ingen parkeringsplasser registrert" disabled>' +
 		'</div>' +
-		'</div> ' +
+		'</div>' +
 		'</li>');
+	$("#noParkingSpaces").animate({
+		width: 'toggle'
+	}, 350)
 }

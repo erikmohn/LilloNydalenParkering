@@ -5,12 +5,18 @@ myApp.onPageBeforeInit('new-parkering', function(page) {
 
 	$.get(SERVER_URL + "/user/cars/" + localStorage.getItem("userId"))
 		.done(function(cars) {
-			cars.forEach(function(car) {
-				$('#cars')
-					.append($("<option></option>")
+			if (cars.length == 0) {
+				$('#cars').append($("<option></option>")
+					.text("Ingen biler registrert"));
+				$("#new-parkering-error").html('Du må må registrere din bil, gå til <a href="views/settings.html" class="link">innstillinger</a> for registrering');
+				$("#lagre-parkering").hide();
+			} else {
+				cars.forEach(function(car) {
+					$('#cars').append($("<option></option>")
 						.attr("value", car.regNr)
 						.text(car.regNr));
-			});
+				});
+			}
 		});
 
 	$("#request-fom").val(moment().add(1, 'hours').format("YYYY-MM-DDTHH:00"));
@@ -24,7 +30,7 @@ myApp.onPageBeforeInit('new-parkering', function(page) {
 		var validated = true;
 
 		if (new Date(endTime).getTime() <= new Date(startTime).getTime()) {
-			//TODO: Error message
+			$("#new-parkering-error").text("Starttidspunkt må være før slutttidspunkt");
 			validated = false;
 		}
 

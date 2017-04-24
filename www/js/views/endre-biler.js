@@ -8,31 +8,40 @@ myApp.onPageBeforeInit('endre-biler', function(page) {
 	$("#addCar").click(function(event) {
 		i++;
 		$("#noCars").remove();
-		$("#cars").append(
-			'<li>' +
-			'<div class="item-content">' +
-			'<div class="item-media">' +
-			'<i class="material-icons">directions_car</i>' +
-			'</div>' +
-			'<div class="item-inner">' +
-			'<div class="item-title floating-label">Registreringsnummer</div>' +
-			'<div class="item-input">' +
-			'<input id="car" type="text">' +
-			'</div>' +
-			'</div>' +
-			'<div class="item-media">' +
-			'<i id="removeCarA' + i + '" class="material-icons" style="color:#919292">remove_circle</i>' +
-			'</div>' +
-			'</div>' +
-			'</li>'
-		);
+		if ($("#cars > li").length < 5) {
+			$("#cars").append(
+				'<li id="liA' + i + '" hidden>' +
+				'<div class="item-content">' +
+				'<div class="item-media">' +
+				'<i class="material-icons">directions_car</i>' +
+				'</div>' +
+				'<div class="item-inner">' +
+				'<div class="item-title floating-label">Registreringsnummer</div>' +
+				'<div class="item-input">' +
+				'<input id="car" type="text">' +
+				'</div>' +
+				'</div>' +
+				'<div class="item-media">' +
+				'<i id="removeCarA' + i + '" class="material-icons" style="color:#919292">remove_circle</i>' +
+				'</div>' +
+				'</div>' +
+				'</li>'
+			);
+			$("#liA" + i).animate({
+				width: 'toggle'
+			}, 350);
 
-		$("#removeCarA" + i).click(function(event) {
-			$(this).parent().parent().parent().remove()
-			if ($("#cars").children().length == 0) {
-				addNoCars();
-			}
-		})
+			$("#removeCarA" + i).click(function(event) {
+				$(this).parent().parent().parent().animate({
+					width: 'toggle'
+				}, 350, function() {
+					$(this).remove();
+					if ($("#cars").children().length == 0) {
+						addNoCars();
+					}
+				})
+			})
+		}
 	});
 
 	$("#save-car").click(function(event) {
@@ -40,12 +49,17 @@ myApp.onPageBeforeInit('endre-biler', function(page) {
 		var cars = [];
 		var validated = true;
 		$("#cars").children().each(function(index, value) {
-			if ($(this).find("#car").val().length !== 7) {
-				validated = false
+			var car = $(this).find("#car");
+			if (car.val()) {
+				if (!/^[A-Z]{2}\d{5}$/.test(car.val())) {
+					$("#cars-error").text("Registreringsnummer har feil format (XX12345)");
+					validated = false
+				}
+				cars.push({
+					regNr: car.val()
+				});
 			}
-			cars.push({
-				regNr: $(this).find("#car").val()
-			});
+
 		});
 
 		if (validated) {
@@ -54,11 +68,9 @@ myApp.onPageBeforeInit('endre-biler', function(page) {
 					cars: cars
 				})
 				.done(function(result) {
-					$("#cars-error").text("Lagret dine biler");
+					$("#cars-error").text("Dine biler er lagret");
 				});
-		} else {
-			$("#cars-error").text("Du må fylle inn registreringsnummer");
-		}
+		} 
 	});
 
 });
@@ -92,17 +104,22 @@ function refreshCars() {
 						'</div>' +
 						'</div>' +
 						'<div class="item-media">' +
-						'<i id="removeCarB' + i +'" class="material-icons" style="color:#919292">remove_circle</i>' +
+						'<i id="removeCarB' + i + '" class="material-icons" style="color:#919292">remove_circle</i>' +
 						'</div>' +
 						'</div>' +
 						'</li>'
 					);
 
 					$("#removeCarB" + i).click(function(event) {
-						$(this).parent().parent().parent().remove()
-						if ($("#cars").children().length == 0) {
-							addNoCars();
-						}
+						$(this).parent().parent().parent().animate({
+							width: 'toggle'
+						}, 350, function() {
+							$(this).remove();
+							if ($("#cars").children().length == 0) {
+								addNoCars();
+							}
+						})
+
 					});
 				});
 
@@ -116,12 +133,15 @@ function refreshCars() {
 
 function addNoCars() {
 	$("#cars").append(
-		'<li id="noCars">' +
+		'<li id="noCars" hidden>' +
 		'<div class="item-content">' +
 		'<div class="item-inner">' +
-		'<div> Ingen biler registrert</div>' +
-		'<div class="item-input"></div>' +
+		'<input type="text" value="Ingen biler registrert" disabled>' +
 		'</div>' +
-		'</div> ' +
+		'</div>' +
 		'</li>');
+
+	$("#noCars").animate({
+		width: 'toggle'
+	}, 350)
 }

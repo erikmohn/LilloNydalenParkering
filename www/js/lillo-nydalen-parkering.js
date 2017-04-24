@@ -124,13 +124,14 @@ function refreshBadges() {
 	}).done(function(parkingRequests) {
 		var count = 0;
 		var userId = localStorage.getItem("userId");
+		console.log(parkingRequests.length);
 		parkingRequests.forEach(function(item) {
 			if (item.requestUser[0]._id !== userId) {
 				count++;
 			}
 		});
 		if (count !== 0) {
-			$("#offerBadge").html('<span class="badge bg-grey right-align">' + parkingRequests.length + '</span>');
+			$("#offerBadge").html('<span class="badge bg-grey right-align">' + count + '</span>');
 		} else {
 			$("#offerBadge").empty();
 		}
