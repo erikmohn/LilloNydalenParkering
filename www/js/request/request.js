@@ -60,7 +60,7 @@ function initializeCurrentRequest() {
 			}).done(function(parking) {
 				localStorage.removeItem("currentRequest");
 				refreshCurrentRequest();
-				mainView.router.loadPage('views/new-request.html');
+				mainView.router.loadPage('views/request/new-request.html');
 			});
 		});
 	});
@@ -76,7 +76,7 @@ function initializeCurrentRequest() {
 				}).done(function(parking) {
 					localStorage.removeItem("currentRequest");
 					refreshCurrentRequest();
-					mainView.router.loadPage('views/new-request.html');
+					mainView.router.loadPage('views/request/new-request.html');
 				});
 			});
 	});

@@ -98,7 +98,7 @@ function refreshHistoryRequests() {
 					id: parkingRequest._id
 				}, function(params) {
 					localStorage.setItem("currentRequest", params.data.id);
-					mainView.router.loadPage('views/request.html');
+					mainView.router.loadPage('views/request/request.html');
 				});
 			}
 

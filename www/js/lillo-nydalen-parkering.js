@@ -6,8 +6,7 @@ var mainView = myApp.addView('.view-main', {
 	dynamicNavbar: true
 });
 
-var SERVER_URL = "https://lillo-nydalen-parkering.herokuapp.com"
-	//var SERVER_URL = "http://localhost"
+var SERVER_URL = "http://api.lillonydalenparkering.no"
 moment().locale("nb");
 
 var pusher = new Pusher('b3268785e53213585357', {
@@ -58,6 +57,10 @@ $$(document).on('deviceready', function() {
 		});
 	});
 
+	$("#oPanel").click(function()  {
+
+	})
+
 	$("#logout").click(function() {
 		$("#login-email").val("");
 		$("#login-password").val("");
@@ -67,13 +70,13 @@ $$(document).on('deviceready', function() {
 	});
 
 	$("#newUser").click(function() {
-		mainView.router.loadPage('views/new-user.html');
+		mainView.router.loadPage('views/login/new-user.html');
 		myApp.closePanel();
 		myApp.closeModal();
 	});
 
 	$("#glemtPassord").click(function() {
-		mainView.router.loadPage('views/glemt-passord.html');
+		mainView.router.loadPage('views/login/glemt-passord.html');
 		myApp.closePanel();
 		myApp.closeModal();
 	});

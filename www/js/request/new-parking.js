@@ -3,12 +3,26 @@ myApp.onPageBeforeInit('new-parkering', function(page) {
 		mainView.router.back();
 	});
 
+	$("#requestMessage").focus(function(event) {
+		var style = $(this).attr('style'),
+			id = $(this).attr('id'),
+			textbox = $(document.createElement('textarea')).attr('style', style).attr('id', id);
+		$(this).replaceWith(textbox);
+	});
+
+	$("#requestMessage").focusout(function(event) {
+		var style = $(this).attr('style'),
+			id = $(this).attr('id'),
+			textbox = $(document.createElement('input')).attr('style', style).attr('id', id);
+		$(this).replaceWith(textbox);
+	})
+
 	$.get(SERVER_URL + "/user/cars/" + localStorage.getItem("userId"))
 		.done(function(cars) {
 			if (cars.length == 0) {
 				$('#cars').append($("<option></option>")
 					.text("Ingen biler registrert"));
-				$("#new-parkering-error").html('Du må må registrere din bil, gå til <a href="views/settings.html" class="link">innstillinger</a> for registrering');
+				$("#new-parkering-error").html('Du må må registrere din bil, gå til <a href="views/settings/settings.html" class="link">innstillinger</a> for registrering');
 				$("#lagre-parkering").hide();
 			} else {
 				cars.forEach(function(car) {
@@ -44,7 +58,7 @@ myApp.onPageBeforeInit('new-parkering', function(page) {
 				registredDate: moment().toDate(),
 				requestMessage: $("#requestMessage").val()
 			}).done(function(data) {
-				mainView.router.loadPage('views/new-request.html');
+				mainView.router.loadPage('views/request/new-request.html');
 			});
 		}
 	});

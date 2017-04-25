@@ -5,18 +5,16 @@ myApp.onPageBeforeInit('glemt-passord', function(page) {
 });
 
 myApp.onPageInit('glemt-passord', function(page) {
-
 	$("#send-glemt-passord").click(function(event) {
 		if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test($("#email").val())) {
 			$.post(SERVER_URL + "/user/password/reset", {
-				epost: $("#email").val()
+				epost: $("#email").val().toLowerCase()
 			}).done(function(result) {
-				console.log(result);
-				$("#start-glemt-passord").hide();
-				$("#done-glemt-passord").show();
 				if (result.passwordReset) {
 					$("#glemt-passord-msg").html("En e-post med et nytt passord har blitt sendt");
 				} else {
+					$("#start-glemt-passord").hide();
+					$("#done-glemt-passord").show();
 					$("#glemt-passord-msg").html("Brukerinformasjon ikke funnet");
 				}
 

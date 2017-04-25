@@ -58,7 +58,7 @@ function refreshParkingRequests() {
 						'<div class="card request-card" id="click-' + parkingRequest._id + '">' +
 						'<div class="card-header no-border">' +
 						'<div class="request-icon"><i class="icon parking-icon"></i></div>' +
-						'<div class="request-name ">' + parkingRequest.requestUser[0].firstName + ' ' + parkingRequest.requestUser[0].lastName + '</div>' +
+						'<div class="request-name">' + parkingRequest.requestUser[0].firstName + ' ' + parkingRequest.requestUser[0].lastName + '</div>' +
 						'<div class="request-date">' + moment(parkingRequest.registredDate).locale("nb").format("dddd, MMMM DD, YYYY HH:mm").capitalizeFirstLetter() + '</div>' +
 						'</div>' +
 						'<div class="card-content">' +
@@ -78,7 +78,7 @@ function refreshParkingRequests() {
 						id: parkingRequest._id
 					}, function(params) {
 						localStorage.setItem("offer-currentRequest", params.data.id);
-						mainView.router.loadPage('views/offer.html');
+						mainView.router.loadPage('views/offer/offer.html');
 					});
 
 					$("#requests-view-loading").hide();

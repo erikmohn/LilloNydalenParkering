@@ -32,7 +32,7 @@ function refreshNewRequests() {
 
 		$("#addNewRequest").click(function() {
 			localStorage.removeItem("currentRequest");
-			mainView.router.loadPage('views/new-parking.html');
+			mainView.router.loadPage('views/request/new-parking.html');
 
 		});
 
@@ -89,7 +89,7 @@ function refreshNewRequests() {
 					id: parkingRequest._id
 				}, function(params) {
 					localStorage.setItem("currentRequest", params.data.id);
-					mainView.router.loadPage('views/request.html');
+					mainView.router.loadPage('views/request/request.html');
 				});
 			}
 		});

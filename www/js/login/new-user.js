@@ -43,7 +43,7 @@ myApp.onPageInit('new-user', function(page) {
 			}).done(function(result) {
 
 				if (result.userAlreadyExists) {
-					$("#user-error").html("En annen bruker med samme epost er allerede registrert,  <a href='/views/glemt-passord.html'> glemt passord? </a> ");
+					$("#user-error").html("En annen bruker med samme epost er allerede registrert,  <a href='/views/login/glemt-passord.html'> glemt passord? </a> ");
 					validated = false;
 				}
 

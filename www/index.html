@@ -13,6 +13,8 @@
     <title>Lillo Nydalen Parkering</title>
     <link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">
     <link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico?" type="image/x-icon">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
       <link rel="stylesheet" href="css/styles.css">
@@ -71,11 +73,10 @@
     <div class="panel panel-left panel-reveal panel-background">
       <!-- no-hairlines -->
       <div class="list-block no-border no-hairlines no-hairlines-between" >
-        <!--div style="color:#979797; font-size: small; margin-left: 15px; margin-bottom: 10px ">MINE PARKERING</div-->
         <div class="content-block-title color-white" style="color: #6c6f72">Mine parkeringer</div>
         <ul style="background-color: #333941; color:#FFFFFF; ">
           <li id="myRequestLi">
-            <a href="views/new-request.html" class="item-link color-white close-panel" >
+            <a href="views/request/new-request.html" class="item-link color-white close-panel" >
               <div class="item-content">
                 <div class="item-media">
                   <i class="material-icons">note_add</i>
@@ -89,7 +90,7 @@
             </a>
           </li>
           <li id="requestsLi">
-            <a href="views/foresporsler.html" class="item-link color-white close-panel">
+            <a href="views/history/foresporsler.html" class="item-link color-white close-panel">
               <div class="item-content">
                 <div class="item-media">
                   <i class="material-icons">folder</i>
@@ -97,7 +98,6 @@
                 <div class="item-inner">
                   <div class="item-title lightText">
                     Tilby parkering
-
                   </div>
                   <div id="offerBadge">
                   </div>
@@ -106,9 +106,8 @@
             </a>
           </li>
           <li class="item-divider" style="background-color: #333941; color:#6c6f72;">Historikk</li>
-
-                    <li id="historyLi">
-            <a href="views/historikk.html" class="item-link color-white close-panel">
+          <li id="historyLi">
+            <a href="views/history/historikk.html" class="item-link color-white close-panel">
               <div class="item-content">
                 <div class="item-media">
                   <i class="material-icons">local_parking</i>
@@ -126,7 +125,7 @@
           <div style="color:#979797; font-size: small; margin-left: 15px; margin-bottom: 10px ">Innstillinger</div>
           <ul style="background-color: #333941; color:#FFFFFF;">
             <li id="settingsLi">
-              <a href="views/settings.html" class="item-link color-white close-panel">
+              <a href="views/settings/settings.html" class="item-link color-white close-panel">
                 <div class="item-content">
                   <div class="item-media">
                     <i class="material-icons">settings</i>
@@ -159,7 +158,7 @@
     </div>
     <div class="views">
       <!-- First view -->
-      <div id="start" class="view view-main tab active"> 
+      <div id="start" class="view view-main tab active">
         <div class="pages">
           <div data-page="index-page" class="page bgimg">
             <div class="page-content">
@@ -185,22 +184,23 @@
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
     
     <script type="text/javascript" src="js/lillo-nydalen-parkering.js"></script>
-    <script type="text/javascript" src="js/views/hjelp.js"></script>
-    <script type="text/javascript" src="js/views/brukervilkar.js"></script>
-    <script type="text/javascript" src="js/views/personvern.js"></script>
-    <script type="text/javascript" src="js/views/new-user.js"></script>
-    <script type="text/javascript" src="js/views/new-parking.js"></script>
-    <script type="text/javascript" src="js/views/endre-bruker.js"></script>
-    <script type="text/javascript" src="js/views/endre-varslinger.js"></script>
-    <script type="text/javascript" src="js/views/endre-parkeringsplass.js"></script>
-    <script type="text/javascript" src="js/views/endre-biler.js"></script>
-    <script type="text/javascript" src="js/views/endre-passord.js"></script>
-    <script type="text/javascript" src="js/views/glemt-passord.js"></script>
-    <script type="text/javascript" src="js/views/request.js"></script>
-    <script type="text/javascript" src="js/views/settings.js"></script>
-    <script type="text/javascript" src="js/views/history-requests.js"></script>
-    <script type="text/javascript" src="js/views/pending-requests.js"></script>
-    <script type="text/javascript" src="js/views/offer.js"></script>
-    <script type="text/javascript" src="js/views/new-request.js"></script>
+    <script type="text/javascript" src="js/other/hjelp.js"></script>
+    <script type="text/javascript" src="js/other/brukervilkar.js"></script>
+    <script type="text/javascript" src="js/other/personvern.js"></script>
+    <script type="text/javascript" src="js/login/new-user.js"></script>
+    <script type="text/javascript" src="js/login/glemt-passord.js"></script>
+    <script type="text/javascript" src="js/settings/endre-bruker.js"></script>
+    <script type="text/javascript" src="js/settings/endre-varslinger.js"></script>
+    <script type="text/javascript" src="js/settings/endre-parkeringsplass.js"></script>
+    <script type="text/javascript" src="js/settings/endre-biler.js"></script>
+    <script type="text/javascript" src="js/settings/endre-passord.js"></script>
+    <script type="text/javascript" src="js/settings/settings.js"></script>
+    <script type="text/javascript" src="js/request/request.js"></script>
+    <script type="text/javascript" src="js/request/new-parking.js"></script>
+    <script type="text/javascript" src="js/request/new-request.js"></script>
+    <script type="text/javascript" src="js/history/history-requests.js"></script>
+    <script type="text/javascript" src="js/history/pending-requests.js"></script>
+    
+    <script type="text/javascript" src="js/offer/offer.js"></script>
   </body>
 </html>
