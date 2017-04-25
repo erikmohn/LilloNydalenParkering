@@ -1,5 +1,6 @@
 var myApp = new Framework7({
-	material: true
+	material: true,
+	swipePanel: 'left'
 });
 var $$ = Dom7;
 var mainView = myApp.addView('.view-main', {
@@ -14,6 +15,19 @@ var pusher = new Pusher('b3268785e53213585357', {
 	encrypted: true
 });
 
+$$('.panel-left').on('panel:open', function() {
+	$(".views").removeClass('grow')
+	$(".views").addClass('shrink')
+	//$("#start").addClass('panel-background')
+	refreshBadges();
+});
+
+
+$$('.panel-left').on('panel:close', function() {
+	$(".views").removeClass('shrink')
+	$(".views").addClass('grow')
+});
+
 myApp.onPageBeforeInit('*', function(page) {
 	$(".navbar").css({
 		"background-color": "#f2862a" //"#979797"
@@ -24,7 +38,10 @@ $$('.panel-left').on('panel:open', function() {
 	refreshBadges();
 });
 
+
+
 $$(document).on('deviceready', function() {
+
 	//localStorage.setItem("userId","58f6fa9aae6c971300a2bed3");
 	//localStorage.clear()
 	if (!localStorage.getItem("userId")) {

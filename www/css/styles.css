@@ -14,6 +14,33 @@ input {
 user-select: auto !important;
 } 
 
+.back-image {
+  background-color: #FF0000;
+}
+
+.shrink {
+-webkit-transition: all 0.75s ease;
+-moz-transition: all 0.75s ease;
+-o-transition: all 0.75s ease;
+transition: all 0.75s ease;
+-webkit-transform:scale(0.75) translateX(340px)  !important;
+-moz-transform:scale(0.75) translateX(340px) !important;
+-ms-transform:scale(0.75) translateX(340px) !important;
+transform:scale(0.75) translateX(340px) !important;
+
+}
+
+.grow {
+-webkit-transition: all 0.75s ease;
+-moz-transition: all 0.75s ease;
+-o-transition: all 0.75s ease;
+transition: all 0.75s ease;
+-webkit-transform:scale(1) translateX(0px) !important;
+-moz-transform:scale(1) translateX(0px) !important;
+-ms-transform:scale(1) translateX(0px) !important;
+transform:scale(1) translateX(0px) !important;
+}
+
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
@@ -67,7 +94,11 @@ body.with-panel-left-cover .statusbar-overlay {
 }
 
 .panel-background {
-  background-color: #333941
+  background-color: none
+}
+
+.bg-blur {
+  
 }
 
 .menu-list {

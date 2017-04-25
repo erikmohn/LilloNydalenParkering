@@ -19,8 +19,9 @@
       rel="stylesheet">
       <link rel="stylesheet" href="css/styles.css">
     </head>
-    <body class="theme-amber">
-      <div class="statusbar-overlay" style="background-color: #f2862a"></div>
+    <body class="theme-amber panel-background">
+      <!--div class="statusbar-overlay" style="background-color: #f2862a"></div-->
+      
       <div class="login-screen">
         <div class="view">
           <div class="page">
@@ -68,95 +69,97 @@
         </div>
       </div>
     </body>
-    
     <div class="panel-overlay"></div>
-    <div class="panel panel-left panel-reveal panel-background">
-      <!-- no-hairlines -->
-      <div class="list-block no-border no-hairlines no-hairlines-between" >
-        <div class="content-block-title color-white" style="color: #6c6f72">Mine parkeringer</div>
-        <ul style="background-color: #333941; color:#FFFFFF; ">
-          <li id="myRequestLi">
-            <a href="views/request/new-request.html" class="item-link color-white close-panel" >
-              <div class="item-content">
-                <div class="item-media">
-                  <i class="material-icons">note_add</i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-title lightText">
-                    Be om parkering
-                  </div>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li id="requestsLi">
-            <a href="views/history/foresporsler.html" class="item-link color-white close-panel">
-              <div class="item-content">
-                <div class="item-media">
-                  <i class="material-icons">folder</i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-title lightText">
-                    Tilby parkering
-                  </div>
-                  <div id="offerBadge">
-                  </div>
-                </div>
-              </div>
-            </a>
-          </li>
-          <li class="item-divider" style="background-color: #333941; color:#6c6f72;">Historikk</li>
-          <li id="historyLi">
-            <a href="views/history/historikk.html" class="item-link color-white close-panel">
-              <div class="item-content">
-                <div class="item-media">
-                  <i class="material-icons">local_parking</i>
-                </div>
-                <div class="item-inner">
-                  <div class="item-title lightText">
-                    Min Historikk
-                  </div>
-                </div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <div style="">
-          <div style="color:#979797; font-size: small; margin-left: 15px; margin-bottom: 10px ">Innstillinger</div>
-          <ul style="background-color: #333941; color:#FFFFFF;">
-            <li id="settingsLi">
-              <a href="views/settings/settings.html" class="item-link color-white close-panel">
+    <div class="panel panel-left panel-reveal" style="background-color: none; background:none; width:100%; background-size:cover; background-image: url('../img/image.png')">
+        <!-- no-hairlines -->
+        <div class="list-block no-border no-hairlines
+         no-hairlines-between" >
+          <div class="content-block-title color-white">Mine parkeringer</div>
+          <!--background-color: #333941;-->
+          <ul style=" color:#FFFFFF; ">
+            <li id="myRequestLi">
+              <a href="views/request/new-request.html" class="item-link color-white close-panel" >
                 <div class="item-content">
                   <div class="item-media">
-                    <i class="material-icons">settings</i>
+                    <i class="material-icons">note_add</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title lightText">
-                      Innstillinger
+                      Be om parkering
                     </div>
                   </div>
                 </div>
               </a>
             </li>
-            <li>
-              <a id="logout" href="" class="item-link color-white close-panel">
+            <li id="requestsLi">
+              <a href="views/history/foresporsler.html" class="item-link color-white close-panel">
                 <div class="item-content">
                   <div class="item-media">
-                    <i class="material-icons ">exit_to_app</i>
+                    <i class="material-icons">folder</i>
                   </div>
-                  <div class="item-inner lightText">
-                    <div class="item-title">
-                      Logg ut
+                  <div class="item-inner">
+                    <div class="item-title lightText">
+                      Tilby parkering
+                    </div>
+                    <div id="offerBadge">
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="item-divider" style="background-color: none ;background: none; color: #FFFFFF">Historikk</li>
+            <li id="historyLi">
+              <a href="views/history/historikk.html" class="item-link color-white close-panel">
+                <div class="item-content">
+                  <div class="item-media">
+                    <i class="material-icons">local_parking</i>
+                  </div>
+                  <div class="item-inner">
+                    <div class="item-title lightText">
+                      Min Historikk
                     </div>
                   </div>
                 </div>
               </a>
             </li>
           </ul>
+          <div style="">
+            <div style="color:#FFFFFF; font-size: small; margin-left: 15px; margin-bottom: 10px ">Innstillinger</div>
+            <ul style=" color:#FFFFFF;">
+              <li id="settingsLi">
+                <a href="views/settings/settings.html" class="item-link color-white close-panel">
+                  <div class="item-content">
+                    <div class="item-media">
+                      <i class="material-icons">settings</i>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title lightText">
+                        Innstillinger
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a id="logout" href="" class="item-link color-white close-panel">
+                  <div class="item-content">
+                    <div class="item-media">
+                      <i class="material-icons ">exit_to_app</i>
+                    </div>
+                    <div class="item-inner lightText">
+                      <div class="item-title">
+                        Logg ut
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
         </div>
       </div>
     </div>
     <div class="views">
+
       <!-- First view -->
       <div id="start" class="view view-main tab active">
         <div class="pages">
@@ -179,6 +182,7 @@
     <script type="text/javascript" src="lib/pusher.min.js"></script>
     <script type="text/javascript" src="lib/moment-with-locales.js"></script>
     <script type="text/javascript" src="lib/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript" src="lib/background-blur.js"></script>
     <script type="text/javascript" src="lib/sha256.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
