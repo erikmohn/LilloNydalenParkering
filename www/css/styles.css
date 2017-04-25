@@ -58,9 +58,7 @@ body.with-panel-left-cover .statusbar-overlay {
     background: #333941;
 }   
 
-.panel {
-background-color: none; 
-background:none; 
+.panel { 
 width:100%; 
 background-size:cover; 
 background-image: url(../img/image.png);
