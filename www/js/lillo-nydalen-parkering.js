@@ -16,14 +16,18 @@ var pusher = new Pusher('b3268785e53213585357', {
 });
 
 $$('.panel-left').on('panel:open', function() {
+	$("#statusbar").addClass('statusbar-overlay-panel');
+	$("#statusbar").removeClass('statusbar-overlay');
 	$(".views").removeClass('grow')
 	$(".views").addClass('shrink')
-	//$("#start").addClass('panel-background')
+
 	refreshBadges();
 });
 
 
 $$('.panel-left').on('panel:close', function() {
+	$("#statusbar").addClass('statusbar-overlay-panel');
+	$("#statusbar").removeClass('statusbar-overlay');
 	$(".views").removeClass('shrink')
 	$(".views").addClass('grow')
 });
@@ -74,7 +78,7 @@ $$(document).on('deviceready', function() {
 		});
 	});
 
-	$("#oPanel").click(function()  {
+	$("#oPanel").click(function() {
 
 	})
 

@@ -85,6 +85,10 @@ body.with-panel-left-cover .statusbar-overlay {
 .statusbar-overlay {
   background-color: #f2862a;
 }
+.statusbar-overlay-panel {
+  background-color: none;
+  color: #FFFFFF;
+}
 
 .bg-gray {
   background-color: #e1e2e1;
@@ -109,9 +113,6 @@ body.with-panel-left-cover .statusbar-overlay {
   margin-right: 10px;
 }
 
-.panel-background {
-  background-color: none
-}
 
 .bg-blur {
   
