@@ -58,6 +58,15 @@ body.with-panel-left-cover .statusbar-overlay {
     background: #333941;
 }   
 
+.panel {
+background-color: none; 
+background:none; 
+width:100%; 
+background-size:cover; 
+background-image: url(../img/image.png);
+
+}
+
 .currentLi {
   background-color: #000000;
 }
