@@ -16,8 +16,9 @@ var pusher = new Pusher('b3268785e53213585357', {
 });
 
 $$('.panel-left').on('panel:open', function() {
-	$("#statusbar").addClass('statusbar-overlay-panel');
 	$("#statusbar").removeClass('statusbar-overlay');
+	$("#statusbar").addClass('statusbar-overlay-panel');
+	
 	$(".views").removeClass('grow')
 	$(".views").addClass('shrink')
 
@@ -26,8 +27,8 @@ $$('.panel-left').on('panel:open', function() {
 
 
 $$('.panel-left').on('panel:close', function() {
-	$("#statusbar").addClass('statusbar-overlay-panel');
-	$("#statusbar").removeClass('statusbar-overlay');
+	$("#statusbar").removeClass('statusbar-overlay-panel');
+	$("#statusbar").addClass('statusbar-overlay');
 	$(".views").removeClass('shrink')
 	$(".views").addClass('grow')
 });
