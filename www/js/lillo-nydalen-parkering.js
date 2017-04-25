@@ -16,7 +16,6 @@ var pusher = new Pusher('b3268785e53213585357', {
 });
 
 $$('.panel-left').on('panel:open', function() {
-	$(".statusbar-overlay").attr('style','background-color: #none; color:#FFFFFF; -webkit-transition: 0.75s;transition: 0.75s;');
 	$(".views").removeClass('grow')
 	$(".views").addClass('shrink')
 
@@ -25,7 +24,6 @@ $$('.panel-left').on('panel:open', function() {
 
 
 $$('.panel-left').on('panel:close', function() {
-	$(".statusbar-overlay").attr('style','background-color: ##f2862a; color:#FFFFFF; -webkit-transition: 0.75s;transition: 0.75s;');
 	$(".views").removeClass('shrink')
 	$(".views").addClass('grow')
 });
