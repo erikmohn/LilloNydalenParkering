@@ -84,6 +84,7 @@ body.with-panel-left-cover .statusbar-overlay {
 
 .statusbar-overlay {
   background-color: #f2862a;
+  color: #FFFFFF;
 }
 .statusbar-overlay-panel {
   background-color: none;
