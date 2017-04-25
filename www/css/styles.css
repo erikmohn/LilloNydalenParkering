@@ -59,7 +59,7 @@ body.with-panel-left-cover .statusbar-overlay {
 }   
 
 .panel { 
-      background: url('../img/image.png') no-repeat center center;
+      background: url('/img/image.png') no-repeat center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     -o-background-size: cover;
