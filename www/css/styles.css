@@ -47,15 +47,16 @@ transform:scale(1) translateX(0px) !important;
 .material-icons.md-48 { font-size: 48px; }
 
 .statusbar-overlay {
+    background-color:; #f2862a;
     background: #f2862a;
     /* We can add transition for smooth color animation */
-    -webkit-transition: 400ms;
-    transition: 400ms;
+    -webkit-transition: 0.75s;
+    transition: 0.75s;
 }
  
 /* Change Status bar background when panel opened */
 body.with-panel-left-cover .statusbar-overlay {
-    background: #333941;
+    background-color: #333941;
 }   
 
 .panel { 
@@ -84,11 +85,9 @@ body.with-panel-left-cover .statusbar-overlay {
 
 .statusbar-overlay {
   background-color: #f2862a;
-  color: #FFFFFF;
 }
 .statusbar-overlay-panel {
-  background-color: none;
-  color: #FFFFFF;
+  background-color: #f2862a;
 }
 
 .bg-gray {
@@ -114,6 +113,9 @@ body.with-panel-left-cover .statusbar-overlay {
   margin-right: 10px;
 }
 
+.panel-background {
+  background-color: none
+}
 
 .bg-blur {
   
