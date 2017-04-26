@@ -3,7 +3,7 @@ myApp.onPageBeforeInit('newRequest', function(page) {
 	$("#new-request-view-loading").show();
 	$("#new-request-view-cards").hide();
 	$("#new-request-view-fail").hide();
-	activeMenuItem("#myRequestLi");
+	//activeMenuItem("#myRequestLi");
 });
 
 myApp.onPageInit('newRequest', function(page) {

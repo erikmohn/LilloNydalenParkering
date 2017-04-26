@@ -9,7 +9,7 @@ myApp.onPageBeforeInit('foresporsler', function(page) {
 
 var ptrContent = $$('.pull-to-refresh-content');
 
-ptrContent.on('ptr:refresh', function (e) {
+ptrContent.on('ptr:refresh', function(e) {
 	refreshParkingRequests();
 	myApp.pullToRefreshDone();
 });
@@ -75,6 +75,7 @@ function refreshParkingRequests() {
 						'</div>' +
 						'</div>'
 					);
+
 					$("#click-" + parkingRequest._id).on('click', {
 						id: parkingRequest._id
 					}, function(params) {

@@ -60,7 +60,7 @@ myApp.onPageBeforeInit('new-parkering', function(page) {
 				requestMessage: $("#requestMessage").val()
 			}).done(function(data) {
 				window.analytics.trackEvent('Ny parkeringsforespørsel', 'ny parkeringsforespørsel', 'Hits', 1);
-				mainView.router.loadPage('views/request/new-request.html');
+				mainView.router.loadPage('views/history/foresporsler.html');
 			});
 		}
 	});

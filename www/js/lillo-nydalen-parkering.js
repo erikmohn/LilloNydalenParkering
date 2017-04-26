@@ -153,7 +153,7 @@ function refreshBadges() {
 			}
 		});
 		if (count !== 0) {
-			$("#offerBadge").html('<span class="badge bg-grey right-align">' + count + '</span>');
+			$("#offerBadge").html('<span class="badge bg-orange md-36">' + count + '</span>');
 		} else {
 			$("#offerBadge").empty();
 		}

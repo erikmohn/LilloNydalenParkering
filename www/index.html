@@ -68,24 +68,46 @@
           </div>
         </div>
       </div>
-    </body>
-    <div class="panel-overlay"></div>
-    <div class="panel panel-left panel-reveal" style="width:100%;" ">
+      <div class="panel-overlay"></div>
+    </body> <div class="panel panel-left panel-reveal" style="width:100%;" ">
     <div class="content-container">
-        <div class="img-container"></div>
-        <div class="blur">
-        </div>
-
+      <div class="img-container"></div>
+      <div class="blur">
+      </div>
+      
+      <!-- no-hairlines -->
+      <div class="list-block no-border no-hairlines
+        no-hairlines-between" style="width: 310px" >
         
-
-        <!-- no-hairlines -->
-        <br><br><br>
-        <div class="list-block no-border no-hairlines
-         no-hairlines-between" style="width: 300px" >
+        <!--background-color: #333941;-->
+        <div class="menu-items">
           
-          <!--background-color: #333941;-->
-          <ul style=" color:#FFFFFF; ">
-            <li id="myRequestLi">
+          <div class="" style="height: 100%; width: 100%; position:absolute;">
+            <div class="topcorner">
+              <a href="views/settings/settings.html" class="color-white close-panel">
+                <i class="material-icons">settings</i>
+              </a>
+            </div>
+            <div class="valign-center bottomcorner">
+              <a id="logout" href="" class="color-white">
+                <i class="material-icons">exit_to_app</i><span> Logg ut</span>
+              </a>
+            </div>
+          </div>
+          <div class="menu-center">
+            <ul  style=" color:#FFFFFF; ">
+              <li>
+                <a href="views/request/new-parking.html" class="color-white close-panel " >
+                  <div class="item-content ">
+                    <div class="item-inner ">
+                      <div class="item-title lightText center-align">
+                        <i class="material-icons center-align md-36">add_circle</i>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <!--li id="myRequestLi">
               <a href="views/request/new-request.html" class="item-link color-white close-panel" >
                 <div class="item-content">
                   <div class="item-media">
@@ -98,12 +120,12 @@
                   </div>
                 </div>
               </a>
-            </li>
+            </li-->
             <li id="requestsLi">
-              <a href="views/history/foresporsler.html" class="item-link color-white close-panel">
+              <a href="views/history/foresporsler.html" class="item color-white close-panel">
                 <div class="item-content">
                   <div class="item-media">
-                    <i class="material-icons">folder</i>
+                    <i class="material-icons">reply_all</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title lightText">
@@ -116,10 +138,10 @@
               </a>
             </li>
             <li id="historyLi">
-              <a href="views/history/historikk.html" class="item-link color-white close-panel">
+              <a href="views/history/historikk.html" class="item color-white close-panel">
                 <div class="item-content">
                   <div class="item-media">
-                    <i class="material-icons">local_parking</i>
+                    <i class="material-icons">archive</i>
                   </div>
                   <div class="item-inner">
                     <div class="item-title lightText">
@@ -130,89 +152,55 @@
               </a>
             </li>
           </ul>
-          <div style="">
-
-            <ul style=" color:#FFFFFF;">
-              <li id="settingsLi">
-                <a href="views/settings/settings.html" class="item-link color-white close-panel">
-                  <div class="item-content">
-                    <div class="item-media">
-                      <i class="material-icons">settings</i>
-                    </div>
-                    <div class="item-inner">
-                      <div class="item-title lightText">
-                        Innstillinger
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a id="logout" href="" class="item-link color-white close-panel">
-                  <div class="item-content">
-                    <div class="item-media">
-                      <i class="material-icons ">exit_to_app</i>
-                    </div>
-                    <div class="item-inner lightText">
-                      <div class="item-title">
-                        Logg ut
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            </div>
         </div>
       </div>
     </div>
-    <div class="views">
-
-      <!-- First view -->
-      <div id="start" class="view view-main tab active">
-        <div class="pages">
-          <div data-page="index-page" class="page bgimg">
-            <div class="page-content">
-              <div class="navbar no-border"  style="background-color: #f2862a;">
-                <div class="navbar-inner" >
-                  <div class="left nb-left">
-                    <i class="material-icons open-panel">menu</i>
-                  </div>
-                </div>
-              </div>
-              <div class="content-block">
+  </div>
+</div>
+<div class="views">
+  <!-- First view -->
+  <div id="start" class="view view-main tab active">
+    <div class="pages">
+      <div data-page="index-page" class="page bgimg">
+        <div class="page-content">
+          <div class="navbar no-border"  style="background-color: #f2862a;">
+            <div class="navbar-inner" >
+              <div class="left nb-left">
+                <i class="material-icons open-panel">menu</i>
               </div>
             </div>
+          </div>
+          <div class="content-block">
           </div>
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="lib/pusher.min.js"></script>
-    <script type="text/javascript" src="lib/moment-with-locales.js"></script>
-    <script type="text/javascript" src="lib/jquery-3.2.0.min.js"></script>
-    <script type="text/javascript" src="lib/background-blur.js"></script>
-    <script type="text/javascript" src="lib/sha256.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
-    
-    <script type="text/javascript" src="js/lillo-nydalen-parkering.js"></script>
-    <script type="text/javascript" src="js/other/hjelp.js"></script>
-    <script type="text/javascript" src="js/other/brukervilkar.js"></script>
-    <script type="text/javascript" src="js/other/personvern.js"></script>
-    <script type="text/javascript" src="js/login/new-user.js"></script>
-    <script type="text/javascript" src="js/login/glemt-passord.js"></script>
-    <script type="text/javascript" src="js/settings/endre-bruker.js"></script>
-    <script type="text/javascript" src="js/settings/endre-varslinger.js"></script>
-    <script type="text/javascript" src="js/settings/endre-parkeringsplass.js"></script>
-    <script type="text/javascript" src="js/settings/endre-biler.js"></script>
-    <script type="text/javascript" src="js/settings/endre-passord.js"></script>
-    <script type="text/javascript" src="js/settings/settings.js"></script>
-    <script type="text/javascript" src="js/request/request.js"></script>
-    <script type="text/javascript" src="js/request/new-parking.js"></script>
-    <script type="text/javascript" src="js/request/new-request.js"></script>
-    <script type="text/javascript" src="js/history/history-requests.js"></script>
-    <script type="text/javascript" src="js/history/pending-requests.js"></script>
-    
-    <script type="text/javascript" src="js/offer/offer.js"></script>
-  </body>
+  </div>
+</div>
+<script type="text/javascript" src="lib/pusher.min.js"></script>
+<script type="text/javascript" src="lib/moment-with-locales.js"></script>
+<script type="text/javascript" src="lib/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="lib/background-blur.js"></script>
+<script type="text/javascript" src="lib/sha256.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+<script type="text/javascript" src="js/lillo-nydalen-parkering.js"></script>
+<script type="text/javascript" src="js/other/hjelp.js"></script>
+<script type="text/javascript" src="js/other/brukervilkar.js"></script>
+<script type="text/javascript" src="js/other/personvern.js"></script>
+<script type="text/javascript" src="js/login/new-user.js"></script>
+<script type="text/javascript" src="js/login/glemt-passord.js"></script>
+<script type="text/javascript" src="js/settings/endre-bruker.js"></script>
+<script type="text/javascript" src="js/settings/endre-varslinger.js"></script>
+<script type="text/javascript" src="js/settings/endre-parkeringsplass.js"></script>
+<script type="text/javascript" src="js/settings/endre-biler.js"></script>
+<script type="text/javascript" src="js/settings/endre-passord.js"></script>
+<script type="text/javascript" src="js/settings/settings.js"></script>
+<script type="text/javascript" src="js/request/request.js"></script>
+<script type="text/javascript" src="js/request/new-parking.js"></script>
+<script type="text/javascript" src="js/request/new-request.js"></script>
+<script type="text/javascript" src="js/history/history-requests.js"></script>
+<script type="text/javascript" src="js/history/pending-requests.js"></script>
+<script type="text/javascript" src="js/offer/offer.js"></script>
+</body>
 </html>
