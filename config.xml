@@ -58,6 +58,12 @@
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
+    <feature name="UniversalAnalytics">
+        <param name="ios-package" value="UniversalAnalyticsPlugin" />
+    </feature>
+    <feature name="UniversalAnalytics">
+        <param name="android-package" value="com.danielcwilson.plugins.analytics.UniversalAnalyticsPlugin" />
+    </feature>
     <preference name="DisallowOverscroll" value="true" />
     <plugin name="pushwoosh-cordova-plugin" spec="~6.5.1">
         <variable name="LOG_LEVEL" value="DEBUG" />
