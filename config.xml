@@ -69,4 +69,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.2" />
     <plugin name="cordova-plugin-whitelist" spec="~1.2.2" />
     <plugin name="cordova-plugin-vibration" spec="~2.1.4" />
+    <plugin name="cordova-plugin-google-analytics" spec="~1.7.11" />
 </widget>

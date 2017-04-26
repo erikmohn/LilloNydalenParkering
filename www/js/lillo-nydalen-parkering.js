@@ -41,7 +41,7 @@ $$('.panel-left').on('panel:open', function() {
 
 
 $$(document).on('deviceready', function() {
-
+	window.ga.startTrackerWithId('UA-98130150-1', 30)
 	//localStorage.setItem("userId","58f6fa9aae6c971300a2bed3");
 	//localStorage.clear()
 	if (!localStorage.getItem("userId")) {
