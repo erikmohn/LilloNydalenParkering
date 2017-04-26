@@ -85,7 +85,7 @@ body.with-panel-left-reveal .statusbar-overlay {
 }
 
 .blur {
-  /* All the background image supports */
+
   background-image: -webkit-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
   background-image: -moz-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
   background-image: -o-linear-gradient(bottom left, rgba(43, 40, 50, 0.8) 0%, rgba(83, 86, 99, 0.8) 45%, rgba(69, 77, 91, 0.6) 60%);
@@ -103,8 +103,8 @@ body.with-panel-left-reveal .statusbar-overlay {
   padding: 70px;
 }
 
-.blur:after {
-  content: '';
+/*.blur:after {
+/*  content: '';
   position: absolute;
   height: 100%;
   width: 100%;
@@ -117,7 +117,7 @@ body.with-panel-left-reveal .statusbar-overlay {
   -o-filter: blur(70px);
   filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius='70');
   filter: blur(70px);
-}
+}*/
 
 .currentLi {
   background-color: #000000;
