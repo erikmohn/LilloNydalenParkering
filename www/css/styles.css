@@ -19,10 +19,10 @@ user-select: auto !important;
 }
 
 .shrink {
--webkit-transition: all 0.75s ease;
--moz-transition: all 0.75s ease;
--o-transition: all 0.75s ease;
-transition: all 0.75s ease;
+-webkit-transition: all 0.5s ease;
+-moz-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+transition: all 0.5s ease;
 -webkit-transform:scale(0.75) translateX(340px)  !important;
 -moz-transform:scale(0.75) translateX(340px) !important;
 -ms-transform:scale(0.75) translateX(340px) !important;
@@ -31,10 +31,10 @@ transform:scale(0.75) translateX(340px) !important;
 }
 
 .grow {
--webkit-transition: all 0.75s ease;
--moz-transition: all 0.75s ease;
--o-transition: all 0.75s ease;
-transition: all 0.75s ease;
+-webkit-transition: all 0.5s ease;
+-moz-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+transition: all 0.5s ease;
 -webkit-transform:scale(1) translateX(0px) !important;
 -moz-transform:scale(1) translateX(0px) !important;
 -ms-transform:scale(1) translateX(0px) !important;
