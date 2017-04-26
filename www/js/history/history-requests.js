@@ -1,9 +1,11 @@
 myApp.onPageBeforeInit('history', function(page) {
+	window.ga.trackView('History');
+
 	$("#history-cards-view").hide();
 	$("#history-view-fail").hide();
 	$("#history-view-none").hide();
 	$("#history-view-loading").show();
-	activeMenuItem("#historyLi")
+	activeMenuItem("#historyLi");
 });
 
 myApp.onPageInit('history', function(page) {

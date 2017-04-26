@@ -58,6 +58,7 @@ function initializeCurrentRequest() {
 			$.post(SERVER_URL + "/parking/cancle", {
 				parkingId: localStorage.getItem("currentRequest")
 			}).done(function(parking) {
+				window.analytics.trackEvent('Parkeringsforespørsel', 'Avbrutt parkering', 'Hits', 1);
 				localStorage.removeItem("currentRequest");
 				refreshCurrentRequest();
 				mainView.router.loadPage('views/request/new-request.html');
@@ -74,6 +75,7 @@ function initializeCurrentRequest() {
 				$.post(SERVER_URL + "/parking/done", {
 					parkingId: localStorage.getItem("currentRequest")
 				}).done(function(parking) {
+					window.analytics.trackEvent('Parkeringsforespørsel', 'Ferdig parkering', 'Hits', 1);
 					localStorage.removeItem("currentRequest");
 					refreshCurrentRequest();
 					mainView.router.loadPage('views/request/new-request.html');

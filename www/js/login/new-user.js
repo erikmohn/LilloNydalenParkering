@@ -1,4 +1,5 @@
 myApp.onPageBeforeInit('new-user', function(page) {
+	window.ga.trackView('Ny bruker');
 	$("#newUserinformation").show();
 	$("#newUserPassword").hide();
 	$("#newUserParkering").hide();
@@ -107,6 +108,7 @@ myApp.onPageInit('new-user', function(page) {
 				localStorage.setItem("userId", user.user._id);
 				initializePushwoosh();
 				initializePusher();
+				window.analytics.trackEvent('Ny bruker', 'bruker registrert', 'Hits', 1);
 				mainView.router.loadPage('index.html');
 			});
 	});

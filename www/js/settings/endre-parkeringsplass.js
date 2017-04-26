@@ -1,5 +1,6 @@
 var i = 0;
 myApp.onPageBeforeInit('endre-parkerigsplass', function(page) {
+	window.ga.trackView('Endre parkeringsplass');
 	$("#back-endre-parkeringsplass").click(function(event) {
 		mainView.router.back();
 	});
@@ -65,6 +66,7 @@ myApp.onPageBeforeInit('endre-parkerigsplass', function(page) {
 					parkingSpaces: parkeringsplasser
 				})
 				.done(function(result) {
+					window.analytics.trackEvent('Settings', 'Endret parkeringsplasser', 'Hits', 1);
 					$("#parking-error").text("Lagret dine parkeringsplasser");
 				});
 		} else {

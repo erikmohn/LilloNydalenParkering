@@ -1,4 +1,5 @@
 myApp.onPageBeforeInit('settings', function(page) {
+	window.ga.trackView('Settings');
 	initializeUser();
 	activeMenuItem("#settingsLi");
 

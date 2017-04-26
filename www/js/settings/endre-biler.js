@@ -1,5 +1,6 @@
 var i = 0;
 myApp.onPageBeforeInit('endre-biler', function(page) {
+	window.ga.trackView('Endre biler');
 	$("#back-endre-biler").click(function(event) {
 		mainView.router.back();
 	});
@@ -68,6 +69,7 @@ myApp.onPageBeforeInit('endre-biler', function(page) {
 					cars: cars
 				})
 				.done(function(result) {
+					window.analytics.trackEvent('Settings', 'Bil endret', 'Hits', 1);
 					$("#cars-error").text("Dine biler er lagret");
 				});
 		} 

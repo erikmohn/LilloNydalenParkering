@@ -1,4 +1,5 @@
 myApp.onPageBeforeInit('foresporsler', function(page) {
+	window.ga.trackView('Forespørsler');
 	$("#requests-view-loading").show();
 	$("#requests-view-done").hide();
 	$("#requests-view-cards").hide();

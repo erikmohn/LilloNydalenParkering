@@ -1,4 +1,5 @@
 myApp.onPageBeforeInit('newRequest', function(page) {
+	window.ga.trackView('Vis aktive parkeringsforespørsler');
 	$("#new-request-view-loading").show();
 	$("#new-request-view-cards").hide();
 	$("#new-request-view-fail").hide();

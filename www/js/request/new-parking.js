@@ -1,4 +1,5 @@
 myApp.onPageBeforeInit('new-parkering', function(page) {
+	window.ga.trackView('Ny parkeringsforespørsel');
 	$("#back-new-parkering").click(function(event) {
 		mainView.router.back();
 	});
@@ -58,6 +59,7 @@ myApp.onPageBeforeInit('new-parkering', function(page) {
 				registredDate: moment().toDate(),
 				requestMessage: $("#requestMessage").val()
 			}).done(function(data) {
+				window.analytics.trackEvent('Ny parkeringsforespørsel', 'ny parkeringsforespørsel', 'Hits', 1);
 				mainView.router.loadPage('views/request/new-request.html');
 			});
 		}

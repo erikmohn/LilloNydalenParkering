@@ -1,4 +1,5 @@
 myApp.onPageBeforeInit('endre-passord', function(page) {
+	window.ga.trackView('Endre passord');
 
 });
 
@@ -34,6 +35,7 @@ myApp.onPageInit('endre-passord', function(page) {
 				newPassword: hex_sha256($("#nyttPassord").val())
 			}).done(function(result) {
 				if (result.passwordChanged) {
+					window.analytics.trackEvent('Settings', 'Passord endret', 'Hits', 1);
 					$("#endre-passord-msg").html("Ditt passord er endret");
 				} else {
 					$("#endre-passord-msg").html("Kunne ikke endre passord");

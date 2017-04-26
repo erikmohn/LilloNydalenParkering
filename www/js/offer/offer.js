@@ -1,4 +1,5 @@
 myApp.onPageBeforeInit('offer', function(page) {
+	window.ga.trackView('Tilby parkering');
 	$("#parking-offer-loading").show();
 	$("#parking-offer-success").hide();
 	$("#parking-offer-fail").hide();
@@ -39,6 +40,7 @@ function initializeOffer() {
 			parkingLot: $("#offer-parkingLotInput").val(),
 			answeredDate: moment().toDate()
 		}).done(function(parking) {
+			window.analytics.trackEvent('Tilby parkering', 'parkeringstilbud', 'Hits', 1);
 			$("#parking-offer-loading").hide();
 			if (parking.alreadyAnswered) {
 				$("#parking-offer-fail").show();

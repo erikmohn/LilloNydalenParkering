@@ -1,4 +1,5 @@
 myApp.onPageBeforeInit('endre-bruker', function(page) {
+	window.ga.trackView('Endre bruker');
 	$.get(SERVER_URL + "/user/" + localStorage.getItem("userId"))
 		.done(function(user) {
 			$("#fornavn").val(user.firstName).focus();
@@ -62,6 +63,7 @@ myApp.onPageInit('endre-bruker', function(page) {
 							if (user.userAlreadyExists) {
 								$("#user-error").html("En annen bruker er allerede registrert med samme e-post");
 							} else {
+								window.analytics.trackEvent('Settings', 'Bruker endret', 'Hits', 1);
 								$("#user-error").html("Brukerinformasjon lagret");
 
 							}

@@ -1,4 +1,5 @@
 myApp.onPageBeforeInit('glemt-passord', function(page) {
+	window.ga.trackView('Glemt passord');
 	$("#start-glemt-passord").show();
 	$("#done-glemt-passord").hide();
 
@@ -12,10 +13,12 @@ myApp.onPageInit('glemt-passord', function(page) {
 			}).done(function(result) {
 				if (result.passwordReset) {
 					$("#glemt-passord-msg").html("En e-post med et nytt passord har blitt sendt");
+					window.analytics.trackEvent('Glemt passord', 'passord tilbakestillt', 'Hits', 1);				
 				} else {
 					$("#start-glemt-passord").hide();
 					$("#done-glemt-passord").show();
 					$("#glemt-passord-msg").html("Brukerinformasjon ikke funnet");
+					window.analytics.trackEvent('Glemt passord', 'ingen bruker', 'Hits', 1); 
 				}
 
 			});
