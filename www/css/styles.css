@@ -51,9 +51,10 @@ user-select: auto !important;
 }
 
 .valign-center {
-  display: inline-flex;
-  vertical-align: middle;
-  align-items: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
 }
 
 .shrink {

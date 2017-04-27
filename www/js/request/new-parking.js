@@ -4,20 +4,6 @@ myApp.onPageBeforeInit('new-parkering', function(page) {
 		mainView.router.back();
 	});
 
-	$("#requestMessage").focus(function(event) {
-		var style = $(this).attr('style'),
-			id = $(this).attr('id'),
-			textbox = $(document.createElement('textarea')).attr('style', style).attr('id', id);
-		$(this).replaceWith(textbox);
-	});
-
-	$("#requestMessage").focusout(function(event) {
-		var style = $(this).attr('style'),
-			id = $(this).attr('id'),
-			textbox = $(document.createElement('input')).attr('style', style).attr('id', id);
-		$(this).replaceWith(textbox);
-	})
-
 	$.get(SERVER_URL + "/user/cars/" + localStorage.getItem("userId"))
 		.done(function(cars) {
 			if (cars.length == 0) {
