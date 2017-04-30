@@ -77,6 +77,7 @@ myApp.onPageInit('messages', function(page) {
 
 	var channel = pusher.subscribe("MESSAGE-" + localStorage.getItem("messageThread"));
 	channel.bind('newMessage', function(data) {
+		var avatar, name, messageType;
 		console.log("recieved pusher update about new message!");
 		$.get(SERVER_URL + "/messages/message/" + data.newMessage)
 			.done(function(message) {
