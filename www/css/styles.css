@@ -1,4 +1,4 @@
-* {
+/** {
 -webkit-user-select: none;
 -khtml-user-select: none;
 -moz-user-select: none;
@@ -12,7 +12,7 @@ input {
 -moz-user-select: auto !important;
 -ms-user-select: auto !important;
 user-select: auto !important;
-} 
+} */
 
 .back-image {
   background-color: #FF0000;

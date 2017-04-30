@@ -103,8 +103,10 @@ function refreshHistoryRequests() {
 					mainView.router.loadPage('views/request/request.html');
 				});
 
-				$("#chat-" + parkingRequest.messages).on('click', function(event) {
-					localStorage.setItem("messageThread", parkingRequest.messages);
+				$("#chat-" + parkingRequest.messages).on('click', {
+					id: parkingRequest.messages
+				}, function(params) {
+					localStorage.setItem("messageThread", params.data.id);
 					mainView.router.loadPage('views/messages/messages.html');
 				});
 			}
