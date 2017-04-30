@@ -42,9 +42,9 @@ myApp.onPageInit('messages', function(page) {
 	var myMessagebar = myApp.messagebar('.messagebar');
 
 	$$('.messagebar .link').on('click', function() {
-		var messageText = $("#messageText").val().trim();
+		var messageText = myMessagebar.value().trim();
 		if (messageText.length === 0) return;
-		$("#messageText").val("");
+		myMessagebar.clear()
 
 		$.post(SERVER_URL + "/messages/new", {
 			threadId: localStorage.getItem("messageThread"),
