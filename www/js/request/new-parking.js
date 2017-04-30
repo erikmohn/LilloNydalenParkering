@@ -1,8 +1,5 @@
 myApp.onPageBeforeInit('new-parkering', function(page) {
 	window.ga.trackView('Ny parkeringsforespørsel');
-	$("#back-new-parkering").click(function(event) {
-		mainView.router.back();
-	});
 
 	$.get(SERVER_URL + "/user/cars/" + localStorage.getItem("userId"))
 		.done(function(cars) {
@@ -46,7 +43,7 @@ myApp.onPageBeforeInit('new-parkering', function(page) {
 				requestMessage: $("#requestMessage").val()
 			}).done(function(data) {
 				window.analytics.trackEvent('Ny parkeringsforespørsel', 'ny parkeringsforespørsel', 'Hits', 1);
-				mainView.router.loadPage('views/history/foresporsler.html');
+				mainView.router.loadPage('views/history/history-requests.html');
 			});
 		}
 	});

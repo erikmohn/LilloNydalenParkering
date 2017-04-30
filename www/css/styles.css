@@ -395,3 +395,8 @@ i.gears-icon {
   .request-card .card-content-inner {
     padding: 15px 10px;
   }  
+
+
+.button.button-big.notactive {
+  background-color: #f5f5f6;
+} 

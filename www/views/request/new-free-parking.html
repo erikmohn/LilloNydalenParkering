@@ -1,11 +1,11 @@
-<div data-page="new-parkering" class="page">
+<div data-page="new-free-parkering" class="page">
   <div class="page-content">
     <div class="navbar">
       <div class="navbar-inner">
         <div class="left nb-left open-panel" >
           <i class="material-icons">menu</i>
         </div>
-        <div class="center">Etterspør ledig parkering</div>
+        <div class="center">Tilby ledig parkering</div>
         <div class="right nb-right">
           <i class="material-icons">add_circle</i>
         </div>
@@ -13,10 +13,10 @@
     </div>
     <div class="row">
       <div class="col-50">
-        <a href="views/request/new-parking.html" class="button button-big">Etterspør</a>
+        <a href="views/request/new-parking.html" class="button button-big notactive">ETTERSPØR</a>
       </div>
       <div class="col-50">
-        <a href="views/request/new-free-parking.html" class="button button-big notactive">Tilby</a>
+        <a href="views/request/new-free-parking.html" class="button button-big">TILBY</a>
       </div>
     </div>
     <div class="list-block inset align-top">
@@ -24,12 +24,12 @@
         <li class="align-top">
           <div class="item-content">
             <div class="item-media">
-              <i class="material-icons">directions_car</i>
+              <i class="material-icons">local_parking</i>
             </div>
             <div class="item-inner">
-              <div class="item-title label">Bil</div>
+              <div class="item-title label">Parkeringsplass</div>
               <div class="item-input">
-                <select id="cars">
+                <select id="parkeringsplasser">
                 </select>
               </div>
             </div>
@@ -43,7 +43,7 @@
             <div class="item-inner">
               <div class="item-title label">Fom</div>
               <div class="item-input">
-                <input id="request-fom" type="datetime-local" placeholder="Til" step="3600">
+                <input id="tilbud-fom" type="datetime-local" placeholder="Til" step="3600">
               </div>
             </div>
           </div>
@@ -56,7 +56,7 @@
             <div class="item-inner">
               <div class="item-title label">Til</div>
               <div class="item-input">
-                <input id="request-tom" type="datetime-local" placeholder="Til" step="3600">
+                <input id="tilbud-tom" type="datetime-local" placeholder="Til" step="3600">
               </div>
             </div>
           </div>
@@ -67,9 +67,9 @@
               <i class="material-icons" style="position: absolute; top: 50%">textsms</i><br>
             </div>
             <div class="item-inner">
-              <div class="item-title">Melding til utlåner</div>
+              <div class="item-title">Melding til lånetaker</div>
               <div  class="item item-input">
-                <textarea id="requestMessage" placeholder="Her kan du skrive en melding til utlåner"></textarea>
+                <textarea id="requestMessage" placeholder="Her kan du skrive en melding til lånetaker"></textarea>
               </div>
             </div>
           </div>

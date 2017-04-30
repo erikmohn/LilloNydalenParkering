@@ -81,7 +81,7 @@ function refreshHistoryRequests() {
 					'<br><b>Til:</b> ' + moment(parkingRequest.endTime).locale("nb").format("dddd, MMMM DD, YYYY HH:mm").capitalizeFirstLetter();
 
 				$("#history-cards").append(
-					'<div class="card request-card" id="history-' + parkingRequest._id + '">' +
+					'<div class="card request-card">' +
 					'<div class="card-header" style="background-color:' + statusColor + '; color:#FFFFFF;">' +
 					'<div class="request-name" style="font-size: large"><center>' + statusText + '</center></div>' +
 					'</div>' +
@@ -92,7 +92,7 @@ function refreshHistoryRequests() {
 					'</div>' +
 					'</div>' +
 					'<div class="card-footer">' +
-					'<a></a><i class="icon arrow-icon"></i>' +
+					'<i id="chat-' + parkingRequest.messages + '" class="material-icons">chat</i><a></a><i class="icon arrow-icon" id="history-' + parkingRequest._id + '"></i>' +
 					'</div></div>' +
 					'</div>');
 
@@ -101,6 +101,11 @@ function refreshHistoryRequests() {
 				}, function(params) {
 					localStorage.setItem("currentRequest", params.data.id);
 					mainView.router.loadPage('views/request/request.html');
+				});
+
+				$("#chat-" + parkingRequest.messages).on('click', function(event) {
+					localStorage.setItem("messageThread", parkingRequest.messages);
+					mainView.router.loadPage('views/messages/messages.html');
 				});
 			}
 
