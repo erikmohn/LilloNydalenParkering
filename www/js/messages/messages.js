@@ -26,8 +26,8 @@ myApp.onPageInit('messages', function(page) {
 					messageType = 'sent'
 				} else {
 					messageType = 'recieved'
+					avatar = 'img/noprofile.png'
 				}
-
 				myMessages.addMessage({
 					text: message.message,
 					type: messageType,
@@ -57,16 +57,11 @@ myApp.onPageInit('messages', function(page) {
 
 		var avatar, name, messageType;
 		messageType = 'sent'
-			// Add message
 		myMessages.addMessage({
-			// Message text
 			text: messageText,
-			// Random message type
 			type: 'sent',
-			// Avatar and name:
 			avatar: avatar,
 			name: name,
-			// Day
 			day: !conversationStarted ? 'Today' : false,
 			time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
 		})
@@ -78,19 +73,16 @@ myApp.onPageInit('messages', function(page) {
 	var channel = pusher.subscribe("MESSAGE-" + localStorage.getItem("messageThread"));
 	channel.bind('newMessage', function(data) {
 		var avatar, name, messageType;
-		console.log("recieved pusher update about new message!");
+		console.log("recieved pusher update about new message!");;
+		avatar = 'img/noprofile.png';
 		$.get(SERVER_URL + "/messages/message/" + data.newMessage)
 			.done(function(message) {
 				if (message.sender._id !== localStorage.getItem("userId")) {
 					myMessages.addMessage({
-						// Message text
 						text: message.message,
-						// Random message type
 						type: 'recieved',
-						// Avatar and name:
 						avatar: avatar,
 						name: message.sender.firstName + " " + message.sender.lastName,
-						// Day
 						day: !conversationStarted ? 'Today' : false,
 						time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
 					})

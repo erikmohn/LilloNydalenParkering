@@ -25,6 +25,17 @@ user-select: auto !important;
   width:310px;
 }
 
+.message-sent .message-text {
+  background-color: #ffd95a
+}
+
+.message-text {
+  margin-left: 50px;
+}
+
+.message-sent .message-text:before {
+    border-bottom: 8px solid #ffd95a;
+}
 .menu-center {
   position: relative;
   top: 30%;
