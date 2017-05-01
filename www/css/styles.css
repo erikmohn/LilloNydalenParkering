@@ -25,12 +25,17 @@ user-select: auto !important;
   width:310px;
 }
 
+.message-avatar {
+  width: 30px;
+  height: 30px;
+}
+
 .message-sent .message-text {
   background-color: #ffd95a
 }
 
 .message-text {
-  margin-left: 50px;
+  margin-left: 35px;
 }
 
 .message-sent .message-text:before {

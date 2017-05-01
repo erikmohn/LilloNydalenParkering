@@ -9,8 +9,7 @@ myApp.onPageBeforeInit('messages', function(page) {
 
 
 myApp.onPageInit('messages', function(page) {
-
-	var conversationStarted = false;
+	var lastMessageTime;
 
 	var myMessages = myApp.messages('.messages', {
 		autoLayout: true
@@ -27,15 +26,18 @@ myApp.onPageInit('messages', function(page) {
 				} else {
 					messageType = 'recieved'
 					avatar = 'img/noprofile.png'
+					name = message.sender.firstName + " " + message.sender.lastName; 
 				}
+				var timeDiff = moment(message.date).diff(lastMessageTime, 'minutes');
 				myMessages.addMessage({
 					text: message.message,
 					type: messageType,
 					avatar: avatar,
-					name: message.sender.firstName + " " + message.sender.lastName,
-					day: !conversationStarted ? 'Today' : false,
-					time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
+					name: name,
+					day: timeDiff >= 0 && timeDiff < 10 ? false : moment(message.date).isSame(moment(), 'day') ? 'I dag' : moment(message.date).format("dddd, MMMM DD"),
+					time: timeDiff >= 0 && timeDiff < 10 ? false: moment(message.date).format("HH:mm")
 				})
+				lastMessageTime = moment(message.date);
 			})
 		});
 
@@ -52,9 +54,8 @@ myApp.onPageInit('messages', function(page) {
 			message: messageText,
 			sendtDate: moment().toDate()
 		}).done(function(message) {
-			console.log("Message saved!");
 		});
-
+		var timeDiff = moment().diff(lastMessageTime, 'minutes');
 		var avatar, name, messageType;
 		messageType = 'sent'
 		myMessages.addMessage({
@@ -62,19 +63,16 @@ myApp.onPageInit('messages', function(page) {
 			type: 'sent',
 			avatar: avatar,
 			name: name,
-			day: !conversationStarted ? 'Today' : false,
-			time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
+					day: timeDiff >= 0 && timeDiff < 10 ? false : 'I dag' ,
+					time: timeDiff >= 0 && timeDiff < 10 ? false  : moment(message.date).format("HH:mm")
 		})
-
-		// Update conversation flag
-		conversationStarted = true;
 	});
 
 	var channel = pusher.subscribe("MESSAGE-" + localStorage.getItem("messageThread"));
 	channel.bind('newMessage', function(data) {
 		var avatar, name, messageType;
-		console.log("recieved pusher update about new message!");;
 		avatar = 'img/noprofile.png';
+		var timeDiff = moment().diff(lastMessageTime, 'minutes');
 		$.get(SERVER_URL + "/messages/message/" + data.newMessage)
 			.done(function(message) {
 				if (message.sender._id !== localStorage.getItem("userId")) {
@@ -83,8 +81,8 @@ myApp.onPageInit('messages', function(page) {
 						type: 'recieved',
 						avatar: avatar,
 						name: message.sender.firstName + " " + message.sender.lastName,
-						day: !conversationStarted ? 'Today' : false,
-						time: !conversationStarted ? (new Date()).getHours() + ':' + (new Date()).getMinutes() : false
+					day: timeDiff >= 0 && timeDiff < 10? false : moment(message.date).isSame(moment(), 'day') ? 'I dag' : moment(message.date).format("dddd, MMMM DD"),
+					time: timeDiff >= 0 && timeDiff < 10 ? false: moment(message.date).format("HH:mm")
 					})
 				}
 			});
