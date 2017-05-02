@@ -1,0 +1,176 @@
+<div data-page="parkering" class="page">
+  <div class="page-content">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left nb-left" >
+          <i id="parkering-back" class="material-icons">navigate_before</i>
+        </div>
+        <div class="center">Detaljer</div>
+        <div class="right nb-right">
+        </div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div id="messages" style="width: 100%; height:100%;">
+        <div style="border-radius: 50%; width: 48px; height: 48px; position: absolute; bottom: 15px; right:3px; background-color: #6c6f72; z-index:1000;">
+          <span style="    text-align: center;
+            display: table;">
+            <i class="material-icons md-24 color-white" style="position: absolute;
+            left: 50%;
+            top: 50%;
+            -ms-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);">chat</i>
+          </span>
+        </div>
+        <div style="position: absolute; bottom: 15px; right:3px" class="smalltext color-gray">
+          
+        </div>
+      </div>
+      <div id="venterSvar" class="card request-card no-border">
+        <div class="card-header no-border" style="background-color: #757575; color: #FFFFFF">
+          <div class="request-name no-border" style="font-size: large; color: #FFFFFF;"><center>Lån av parkeringsplass</center></div>
+        </div>
+        <div class="parking-status" >
+        </div>
+        <div class="parking-status-text">
+          <p>Venter på svar</p>
+        </div >
+        <div class="parkering-content center-align" style="padding-bottom: 5px">
+          <p class="center-align smalltext">
+            Du blir varslet når du får svar
+          </p>
+          <p>
+            <a id="cancel-parking" href="#" class="button button-fill color-red center-align" style="width:30%">Avbryt</a>
+          </p>
+        </div>
+      </div>
+      <div id="avbrutt" class="card request-card no-border">
+        <div class="card-header no-border" style="background-color: #757575; color: #FFFFFF">
+          <div class="request-name no-border" style="font-size: large; color: #FFFFFF;"><center>Lån av parkeringsplass</center></div>
+        </div>
+        <div class="parking-status" style="background-color: #d50000" >
+        </div>
+        <div class="parking-status-text" style="color: #d50000">
+          <p>Avbrutt</p>
+        </div >
+        <div class="parkering-content center-align" style="padding-bottom: 5px">
+          <p class="center-align smalltext">
+            Du har avbrutt din parkeringsforespørsel
+          </p>
+          <div id="tildeltParkering">
+            <p class="center-align smalltext">
+              Du var tildelt parkeringsplass
+            </p>
+            <div style="font-size: x-large;">
+              <b><span id="plassnummer"> </span></b>
+            </div>
+            <div style="font-size: small;">
+              <span id="eier"> </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="svarMottatt" class="card request-card no-border">
+        <div class="card-header no-border" style="background-color: #757575; color: #FFFFFF">
+          <div class="request-name no-border" style="font-size: large; color: #FFFFFF;"><center>Lån av parkeringsplass</center></div>
+        </div>
+        <div class="parking-status" style="background-color: #448aff" >
+        </div>
+        <div class="parking-status-text" style="color: #448aff">
+          <p>Tildelt plass</p>
+        </div >
+        <div class="parkering-content center-align" style="padding-bottom: 5px">
+          <p class="center-align smalltext">
+            Parkeringsplass
+          </p>
+          <div style="font-size: x-large;">
+            <b><span id="plassnummer"> </span></b>
+          </div>
+          <div style="font-size: small;">
+            <span id="eier"> </span>
+          </div>
+          <h4>Starter om</h4>
+          <div id="waitingClock" class="clock">
+            <div>
+              <span class="hours"></span>
+              <div class="smalltext">Timer</div>
+            </div>
+            <div>
+              <span class="minutes"></span>
+              <div class="smalltext">Minutter</div>
+            </div>
+          </div>
+          <p>
+            <div class="buttons-row center-align valign-center">
+              <a id="cancel-parking" href="#" class="button button-fill button-big color-red center-align">Avbryt</a>
+            </div>
+          </p>
+        </div>
+      </div>
+      <div id="ferdig" class="card request-card no-border">
+        <div class="card-header no-border" style="background-color: #757575; color: #FFFFFF">
+          <div class="request-name no-border" style="font-size: large; color: #FFFFFF;"><center>Lån av parkeringsplass</center></div>
+        </div>
+        <div class="parking-status" style="background-color: #78909c" >
+        </div>
+        <div class="parking-status-text" style="color: #78909c">
+          <p>Ferdig</p>
+        </div >
+        <div class="parkering-content center-align" style="padding-bottom: 5px">
+          <p class="center-align smalltext">
+            Du lånte parkeringsplass
+          </p>
+          <div style="font-size: x-large;">
+            <b><span id="plassnummer"> </span></b>
+          </div>
+          <div style="font-size: small;">
+            <span id="eier"> </span>
+          </div>
+        </div>
+      </div>
+      <div id="startet" class="card request-card no-border">
+        <div class="card-header no-border" style="background-color: #757575; color: #FFFFFF">
+          <div class="request-name no-border" style="font-size: large; color: #FFFFFF;"><center>Lån av parkeringsplass</center></div>
+        </div>
+        <div class="parking-status" style="background-color: #64dd17" >
+        </div>
+        <div class="parking-status-text" style="color: #64dd17">
+          <p>Pågående</p>
+        </div >
+        <div class="parkering-content center-align" style="padding-bottom: 5px">
+          <p class="center-align smalltext">
+            Parkeringsplass
+          </p>
+          <div style="font-size: x-large;">
+            <b><span id="plassnummer"> </span></b>
+          </div>
+          <div style="font-size: small;">
+            <span id="eier"> </span>
+          </div>
+          <h4>Ferdig om</h4>
+          <div id="startedClock" class="clock">
+            <div>
+              <span class="hours"></span>
+              <div class="smalltext">Timer</div>
+            </div>
+            <div>
+              <span class="minutes"></span>
+              <div class="smalltext">Minutter</div>
+            </div>
+          </div>
+          <p>
+            <div class="buttons-row center-align valign-center">
+              <a id="done" href="#" class="button button-fill button-big center-align" style="background: #64dd17;">Ferdig</a>
+            </div>
+          </p>
+        </div>
+      </div>
+      <p class="center-align color-gray" style="font-size: 13px">
+        Gjelder fra <span id="startTime"></span>
+        <br>Gjelder til <span id="endTime"></span>
+        <br> For bil <span id="regNr"></span>
+      </p>
+    </div>
+  </div>
+</div>

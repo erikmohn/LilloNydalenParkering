@@ -2,9 +2,7 @@ myApp.onPageBeforeInit('history', function(page) {
 	window.ga.trackView('History');
 
 	$("#history-cards-view").hide();
-	$("#history-view-fail").hide();
 	$("#history-view-none").hide();
-	$("#history-view-loading").show();
 	activeMenuItem("#historyLi");
 });
 
@@ -18,106 +16,76 @@ function refreshHistoryRequests() {
 
 	var userId = localStorage.getItem("userId");
 
-	if (userId === null) {
-		$("#history-view-loading").hide();
-		$("#history-view-fail").show();
-	} else {
-		$.post(SERVER_URL + "/parking/requests/past", {
-			userId: userId
-		}).done(function(parkingRequests) {
-			$("#history-cards").empty();
+	$.post(SERVER_URL + "/parking/requests/past", {
+		userId: userId
+	}).done(function(parkingRequests) {
+		$("#history-cards").empty();
 
-			String.prototype.capitalizeFirstLetter = function() {
-				return this.charAt(0).toUpperCase() + this.slice(1);
-			}
+		for (i in parkingRequests) {
+			var parking = parkingRequests[i];
 
-			for (i in parkingRequests) {
-				var parkingRequest = parkingRequests[i];
+			var fom = moment(parking.startTime).locale("nb");
+			var tom = moment(parking.endTime).locale("nb");
 
-				var duration;
-				var start = moment(parkingRequest.startTime);
-				var end = moment(parkingRequest.endTime);
-				var body, statusColor, statusText;
+			var timeFormat = "HH:mm (dddd)";
 
-				if (parkingRequest.requestUser[0]._id === userId) {
-					if (parkingRequest.answered) {
-						body = '<h3>Parkeringsforespørsel</h3><b>Utlånt av:</b> ' + parkingRequest.offerParkingUser[0].userName + ' <br />' +
-							'<b>Telefon:</b> ' + parkingRequest.offerParkingUser[0].phoneNumber + ' <br />' +
-							'<b>Parkeringsplass:</b> ' + parkingRequest.parkingLot +
-							'<br>';
-					} else {
-						body = "<h3>Parkeringsforespørsel</h3>";
-					}
+			var status, statusColor, message;
+
+			if (parking.done || moment().isAfter(moment(parking.endTime))) {
+				status = "Ferdig";
+				statusColor = "#78909c";
+			} else if (parking.canceled) {
+				status = "Avbrutt";
+				statusColor = "#d50000";
+			} else if (parking.answered) {
+				if (moment().isBefore(moment(parking.startTime))) {
+					status = "Tildelt plass";
+					statusColor = "#448aff";
 				} else {
-					body = '<h3>Tilbudt parkering</h3><b>Utlånt til:</b> ' + parkingRequest.requestUser[0].userName + ' <br />' +
-						'<b>Telefon:</b> ' + parkingRequest.requestUser[0].phoneNumber + ' <br />' +
-						'<b>Regnr:</b> ' + parkingRequest.requestUser[0].regnr +
-						'<br>';
+					status = "Pågående";
+					statusColor = "#64dd17";
 				}
-
-				if (moment().isAfter(moment(parkingRequest.endTime))) {
-					statusColor = "#8e8e93";
-					statusText = "Utløpt";
-				} else if (parkingRequest.canceled) {
-					statusColor = "#ff3b30";
-					statusText = "Avsluttet";
-				} else if (parkingRequest.done) {
-					statusColor = "	#9e9e9e";
-					statusText = "Ferdig";
-				} else if (parkingRequest.answered) {
-					if (moment().isAfter(moment(parkingRequest.startTime))) {
-						statusColor = "#4cd964";
-						statusText = "Aktiv";
-					} else {
-						statusColor = "#4cd964";
-						statusText = "Tildelt plass";
-					}
-				} else {
-					statusColor = "#ff9500";
-					statusText = "Avventer svar";
-				}
-
-				duration = '<b>Fra:</b> ' + moment(parkingRequest.startTime).locale("nb").format("dddd, MMMM DD, YYYY HH:mm").capitalizeFirstLetter() +
-					'<br><b>Til:</b> ' + moment(parkingRequest.endTime).locale("nb").format("dddd, MMMM DD, YYYY HH:mm").capitalizeFirstLetter();
-
-				$("#history-cards").append(
-					'<div class="card request-card">' +
-					'<div class="card-header" style="background-color:' + statusColor + '; color:#FFFFFF;">' +
-					'<div class="request-name" style="font-size: large"><center>' + statusText + '</center></div>' +
-					'</div>' +
-					'<div class="card-content">' +
-					'<div class="card-content-inner">' +
-					body +
-					duration +
-					'</div>' +
-					'</div>' +
-					'<div class="card-footer">' +
-					'<i id="chat-' + parkingRequest.messages + '" class="material-icons">chat</i><a></a><i class="icon arrow-icon" id="history-' + parkingRequest._id + '"></i>' +
-					'</div></div>' +
-					'</div>');
-
-				$("#history-" + parkingRequest._id).on('click', {
-					id: parkingRequest._id
-				}, function(params) {
-					localStorage.setItem("currentRequest", params.data.id);
-					mainView.router.loadPage('views/request/request.html');
-				});
-
-				$("#chat-" + parkingRequest.messages).on('click', {
-					id: parkingRequest.messages
-				}, function(params) {
-					localStorage.setItem("messageThread", params.data.id);
-					mainView.router.loadPage('views/messages/messages.html');
-				});
-			}
-
-			$("#history-view-loading").hide();
-			if (parkingRequests.length === 0) {
-				$("#history-view-none").show();
 			} else {
-				$("#history-cards-view").show();
+				status = "Venter på svar";
+				statusColor = "#ffab40";
 			}
 
-		});
-	}
+			if (parking.messages) {
+				message = '<div class="swipeout-actions-right">' +
+					'<a id="chat-' + parking.messages + '" href="#"><i class="material-icons md-24 color-white">chat</i></a>' +
+					'</div>';
+			} else {message =""}
+
+
+			$("#requests").append('<li class="swipeout" style="background:#FFFFFF">' +
+				'<a id="history-' + parking._id + '" href="#" class="item-link item-content">' +
+				'<div class="item-inner swipeout-content">' +
+				'<div class="item-title-row">' +
+				'<div class="item-title" style="font-size: large">' + parking.regNr + '</div>' +
+				'<div class="item-after">' + moment(parking.registredDate).format("DD/MM HH:mm") + '</div>' + //13/04 17:14
+				'</div>' +
+				'<div class="item-subtitle"> ' + fom.format(timeFormat) + ' - ' + tom.format(timeFormat) + '</div>' + //
+				'<div class="item-text" style="color: ' + statusColor + '">' + status + '</div>' +
+				'<div class="parking-status" style="height:3px; background-color: ' + statusColor + '"></div>' +
+				'</div>' +
+				'</a>' +
+				message +
+				'</li>');
+
+			$("#history-" + parking._id).on('click', {
+				id: parking._id
+			}, function(params) {
+				localStorage.setItem("currentRequest", params.data.id);
+				mainView.router.loadPage('views/request/parking.html');
+			});
+
+			$("#chat-" + parking.messages).on('click', {
+				id: parking.messages
+			}, function(params) {
+				localStorage.setItem("messageThread", params.data.id);
+				mainView.router.loadPage('views/messages/messages.html');
+			});
+		}
+	});
+
 };

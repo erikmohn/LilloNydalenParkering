@@ -15,187 +15,188 @@
     <link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico?" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-      <link rel="stylesheet" href="css/styles.css">
-    </head>
-    <body class="theme-amber ">
-      <div class="statusbar-overlay" style="background-color: #f2862a; color:#FFFFFF;"></div>
-      
-      <div class="login-screen">
-        <div class="view">
-          <div class="page">
-            <div class="page-content login-screen-content">
-              <div class="login-screen-title" style="color:#f2862a">Lillo Nydalen Parkering</div>
-              <!-- Login form -->
-              <form>
-                <div class="list-block inset">
-                  <ul>
-                    <li class="item-content">
-                      <div class="item-inner">
-                        <div class="item-title floating-label">Brukernavn</div>
-                        <div class="item-input">
-                          <input id="login-email" type="email" name="username" placeholder="E-post">
-                        </div>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/lib/css/flipclock.css">
+  </head>
+  <body class="theme-amber ">
+    <div class="statusbar-overlay" style="background-color: #f2862a; color:#FFFFFF;"></div>
+    
+    <div class="login-screen">
+      <div class="view">
+        <div class="page">
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title" style="color:#f2862a">Lillo Nydalen Parkering</div>
+            <!-- Login form -->
+            <form>
+              <div class="list-block inset">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title floating-label">Brukernavn</div>
+                      <div class="item-input">
+                        <input id="login-email" type="email" name="username" placeholder="E-post">
                       </div>
-                    </li>
-                    <li class="item-content">
-                      <div class="item-inner">
-                        <div class="item-title floating-label">Passord</div>
-                        <div class="item-input">
-                          <input id="login-password" type="password" name="password" placeholder="Passord">
-                        </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title floating-label">Passord</div>
+                      <div class="item-input">
+                        <input id="login-password" type="password" name="password" placeholder="Passord">
                       </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="list-block inset center-align">
-                  <ul>
-                    <li>
-                      <a id="login" href="#" class="item-link list-button">Logg inn</a>
-                    </li>
-                    <li>
-                      <a id="newUser" href="#" class="item-link list-button">Ny bruker</a>
-                    </li>
-                    <li>
-                      <a id="glemtPassord" href="#" class="item-link list-button">Glemt passord</a>
-                    </li>
-                  </ul>
-                  <div class="list-block-label">Ved å logge inn aksepterer du våre <a href=""> brukervilkår</a> og <a href="#">regler for personvern</a></div>
-                </div>
-              </form>
-            </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="list-block inset center-align">
+                <ul>
+                  <li>
+                    <a id="login" href="#" class="item-link list-button">Logg inn</a>
+                  </li>
+                  <li>
+                    <a id="newUser" href="#" class="item-link list-button">Ny bruker</a>
+                  </li>
+                  <li>
+                    <a id="glemtPassord" href="#" class="item-link list-button">Glemt passord</a>
+                  </li>
+                </ul>
+                <div class="list-block-label">Ved å logge inn aksepterer du våre <a href=""> brukervilkår</a> og <a href="#">regler for personvern</a></div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
-      <div class="panel-overlay"></div>
-    </body> <div class="panel panel-left panel-reveal" style="width:100%;" ">
-    <div class="content-container">
-      <div class="img-container"></div>
-      <div class="blur">
-      </div>
+    </div>
+    <div class="panel-overlay"></div>
+  </body> <div class="panel panel-left panel-reveal" style="width:100%;" ">
+  <div class="content-container">
+    <div class="img-container"></div>
+    <div class="blur">
+    </div>
+    
+    <!-- no-hairlines -->
+    <div class="list-block no-border no-hairlines
+      no-hairlines-between" style="width: 310px" >
       
-      <!-- no-hairlines -->
-      <div class="list-block no-border no-hairlines
-        no-hairlines-between" style="width: 310px" >
+      <!--background-color: #333941;-->
+      <div class="menu-items">
         
-        <!--background-color: #333941;-->
-        <div class="menu-items">
-          
-          <div class="" style="height: 100%; width: 100%; position:absolute;">
-            <div class="topcorner">
-              <a href="views/settings/settings.html" class="color-white close-panel">
-                <i class="material-icons">settings</i>
+        <div class="" style="height: 100%; width: 100%; position:absolute;">
+          <div class="topcorner">
+            <a href="views/settings/settings.html" class="color-white close-panel">
+              <i class="material-icons">settings</i>
+            </a>
+          </div>
+          <div class="valign-center bottomcorner">
+            <a id="logout" href="" class="color-white">
+              <i class="material-icons">exit_to_app</i><span> Logg ut</span>
+            </a>
+          </div>
+        </div>
+        <div class="menu-center">
+          <ul  style=" color:#FFFFFF; ">
+            <li>
+              <a href="views/request/new-parking.html" class="color-white close-panel " >
+                <div class="item-content ">
+                  <div class="item-inner ">
+                    <div class="item-title lightText center-align">
+                      <i class="material-icons center-align md-36">add_circle</i>
+                    </div>
+                  </div>
+                </div>
               </a>
-            </div>
-            <div class="valign-center bottomcorner">
-              <a id="logout" href="" class="color-white">
-                <i class="material-icons">exit_to_app</i><span> Logg ut</span>
-              </a>
+            </li>
+            <br>
+            <!--li id="myRequestLi">
+            <a href="views/request/new-request.html" class="item-link color-white close-panel" >
+              <div class="item-content">
+                <div class="item-media">
+                  <i class="material-icons">note_add</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title lightText">
+                    Be om parkering
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li-->
+          <li id="requestsLi">
+            <a href="views/history/foresporsler.html" class="item color-white close-panel">
+              <div class="item-content">
+                <div class="item-media">
+                  <i class="material-icons">reply_all</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title lightText">
+                    Avventer tilbud
+                  </div>
+                  <div id="offerBadge">
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li id="historyLi">
+            <a href="views/history/historikk.html" class="item color-white close-panel">
+              <div class="item-content">
+                <div class="item-media">
+                  <i class="material-icons">archive</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title lightText">
+                    Min Historikk
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li id="moreLi">
+            <a href="views/settings/more.html" class="item color-white close-panel">
+              <div class="item-content">
+                <div class="item-media">
+                  <i class="material-icons">more_horiz</i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title lightText">
+                    Mer
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="views">
+<!-- First view -->
+<div id="start" class="view view-main tab active">
+  <div class="pages">
+    <div data-page="index-page" class="page bgimg">
+      <div class="page-content">
+        <div class="navbar no-border"  style="background-color: #f2862a;">
+          <div class="navbar-inner" >
+            <div class="left nb-left">
+              <i class="material-icons open-panel">menu</i>
             </div>
           </div>
-          <div class="menu-center">
-            <ul  style=" color:#FFFFFF; ">
-              <li>
-                <a href="views/request/new-parking.html" class="color-white close-panel " >
-                  <div class="item-content ">
-                    <div class="item-inner ">
-                      <div class="item-title lightText center-align">
-                        <i class="material-icons center-align md-36">add_circle</i>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <br>
-              <!--li id="myRequestLi">
-              <a href="views/request/new-request.html" class="item-link color-white close-panel" >
-                <div class="item-content">
-                  <div class="item-media">
-                    <i class="material-icons">note_add</i>
-                  </div>
-                  <div class="item-inner">
-                    <div class="item-title lightText">
-                      Be om parkering
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li-->
-            <li id="requestsLi">
-              <a href="views/history/foresporsler.html" class="item color-white close-panel">
-                <div class="item-content">
-                  <div class="item-media">
-                    <i class="material-icons">reply_all</i>
-                  </div>
-                  <div class="item-inner">
-                    <div class="item-title lightText">
-                      Avventer tilbud
-                    </div>
-                    <div id="offerBadge">
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li id="historyLi">
-              <a href="views/history/historikk.html" class="item color-white close-panel">
-                <div class="item-content">
-                  <div class="item-media">
-                    <i class="material-icons">archive</i>
-                  </div>
-                  <div class="item-inner">
-                    <div class="item-title lightText">
-                      Min Historikk
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-            <li id="moreLi">
-              <a href="views/settings/more.html" class="item color-white close-panel">
-                <div class="item-content">
-                  <div class="item-media">
-                    <i class="material-icons">more_horiz</i>
-                  </div>
-                  <div class="item-inner">
-                    <div class="item-title lightText">
-                      Mer
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </li>
-          </ul>
+        </div>
+        <div class="content-block">
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="views">
-  <!-- First view -->
-  <div id="start" class="view view-main tab active">
-    <div class="pages">
-      <div data-page="index-page" class="page bgimg">
-        <div class="page-content">
-          <div class="navbar no-border"  style="background-color: #f2862a;">
-            <div class="navbar-inner" >
-              <div class="left nb-left">
-                <i class="material-icons open-panel">menu</i>
-              </div>
-            </div>
-          </div>
-          <div class="content-block">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 <script type="text/javascript" src="lib/pusher.min.js"></script>
 <script type="text/javascript" src="lib/moment-with-locales.js"></script>
 <script type="text/javascript" src="lib/jquery-3.2.0.min.js"></script>
 <script type="text/javascript" src="lib/background-blur.js"></script>
+<script type="text/javascript" src="lib/flipclock.min.js"></script>
 <script type="text/javascript" src="lib/sha256.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
@@ -214,6 +215,7 @@
 <script type="text/javascript" src="js/request/request.js"></script>
 <script type="text/javascript" src="js/request/new-parking.js"></script>
 <script type="text/javascript" src="js/request/new-free-parking.js"></script>
+<script type="text/javascript" src="js/request/parking.js"></script>
 <script type="text/javascript" src="js/request/new-request.js"></script>
 <script type="text/javascript" src="js/history/history-requests.js"></script>
 <script type="text/javascript" src="js/history/pending-requests.js"></script>
