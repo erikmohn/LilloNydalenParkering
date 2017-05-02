@@ -10,16 +10,19 @@ myApp.onPageInit('history', function(page) {
 	myApp.closePanel();
 	refreshHistoryRequests();
 });
+myApp.onPageBack('parkering', function(page) {
+	console.log("Reinit history");
+	refreshHistoryRequests();
+});
 
 
 function refreshHistoryRequests() {
-
 	var userId = localStorage.getItem("userId");
 
 	$.post(SERVER_URL + "/parking/requests/past", {
 		userId: userId
 	}).done(function(parkingRequests) {
-		$("#history-cards").empty();
+		$("#requests").empty();
 
 		for (i in parkingRequests) {
 			var parking = parkingRequests[i];
@@ -80,9 +83,11 @@ function refreshHistoryRequests() {
 			});
 
 			$("#chat-" + parking.messages).on('click', {
-				id: parking.messages
+				id: parking.messages,
+				parking: parking._id
 			}, function(params) {
 				localStorage.setItem("messageThread", params.data.id);
+				localStorage.setItem("currentRequest", params.data.parking);
 				mainView.router.loadPage('views/messages/messages.html');
 			});
 		}

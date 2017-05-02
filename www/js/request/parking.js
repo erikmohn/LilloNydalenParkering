@@ -17,8 +17,7 @@ myApp.onPageBeforeInit('parkering', function(page) {
 				parkingId: localStorage.getItem("currentRequest")
 			}).done(function(parking) {
 				window.analytics.trackEvent('Parkeringsforespørsel', 'Avbrutt parkering', 'Hits', 1);
-				localStorage.removeItem("currentRequest");
-				mainView.router.loadPage('index.html');
+				mainView.router.refreshPage();
 			});
 		});
 	};
@@ -32,13 +31,13 @@ myApp.onPageBeforeInit('parkering', function(page) {
 					parkingId: localStorage.getItem("currentRequest")
 				}).done(function(parking) {
 					window.analytics.trackEvent('Parkeringsforespørsel', 'Ferdig parkering', 'Hits', 1);
-					localStorage.removeItem("currentRequest");
-					mainView.router.loadPage('index.html');
+					mainView.router.refreshPage();
 				});
 			});
 	};
 
 	$("#parkering-back").click(function(event) {
+		localStorage.removeItem("currentRequest");
 		mainView.router.back();
 	});
 

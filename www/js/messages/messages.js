@@ -4,6 +4,18 @@ myApp.onPageBeforeInit('messages', function(page) {
 
 	$("#message-back").click(function(event) {
 		mainView.router.back();
+		localStorage.removeItem("currentRequest");
+	})
+
+	$.post(SERVER_URL + "/parking", {
+		parkingId: localStorage.getItem("currentRequest")
+	}).done(function(parking) {
+		var title= "Meldinger";
+		if (parking.offerParkingUser[0]) {
+			var user = parking.offerParkingUser[0];
+			title = user.lastName + ", " + user.firstName;
+		}
+		$("#title").html(title)
 	})
 });
 
@@ -26,7 +38,7 @@ myApp.onPageInit('messages', function(page) {
 				} else {
 					messageType = 'recieved'
 					avatar = 'img/noprofile.png'
-					name = message.sender.firstName + " " + message.sender.lastName; 
+					name = message.sender.firstName + " " + message.sender.lastName;
 				}
 				var timeDiff = moment(message.date).diff(lastMessageTime, 'minutes');
 				myMessages.addMessage({
@@ -35,7 +47,7 @@ myApp.onPageInit('messages', function(page) {
 					avatar: avatar,
 					name: name,
 					day: timeDiff >= 0 && timeDiff < 10 ? false : moment(message.date).isSame(moment(), 'day') ? 'I dag' : moment(message.date).format("dddd, MMMM DD"),
-					time: timeDiff >= 0 && timeDiff < 10 ? false: moment(message.date).format("HH:mm")
+					time: timeDiff >= 0 && timeDiff < 10 ? false : moment(message.date).format("HH:mm")
 				})
 				lastMessageTime = moment(message.date);
 			})
@@ -53,8 +65,7 @@ myApp.onPageInit('messages', function(page) {
 			userId: localStorage.getItem("userId"),
 			message: messageText,
 			sendtDate: moment().toDate()
-		}).done(function(message) {
-		});
+		}).done(function(message) {});
 		var timeDiff = moment().diff(lastMessageTime, 'minutes');
 		var avatar, name, messageType;
 		messageType = 'sent'
@@ -63,8 +74,8 @@ myApp.onPageInit('messages', function(page) {
 			type: 'sent',
 			avatar: avatar,
 			name: name,
-					day: timeDiff >= 0 && timeDiff < 10 ? false : 'I dag' ,
-					time: timeDiff >= 0 && timeDiff < 10 ? false  : moment(message.date).format("HH:mm")
+			day: timeDiff >= 0 && timeDiff < 10 ? false : 'I dag',
+			time: timeDiff >= 0 && timeDiff < 10 ? false : moment(message.date).format("HH:mm")
 		})
 	});
 
@@ -81,8 +92,8 @@ myApp.onPageInit('messages', function(page) {
 						type: 'recieved',
 						avatar: avatar,
 						name: message.sender.firstName + " " + message.sender.lastName,
-					day: timeDiff >= 0 && timeDiff < 10? false : moment(message.date).isSame(moment(), 'day') ? 'I dag' : moment(message.date).format("dddd, MMMM DD"),
-					time: timeDiff >= 0 && timeDiff < 10 ? false: moment(message.date).format("HH:mm")
+						day: timeDiff >= 0 && timeDiff < 10 ? false : moment(message.date).isSame(moment(), 'day') ? 'I dag' : moment(message.date).format("dddd, MMMM DD"),
+						time: timeDiff >= 0 && timeDiff < 10 ? false : moment(message.date).format("HH:mm")
 					})
 				}
 			});
