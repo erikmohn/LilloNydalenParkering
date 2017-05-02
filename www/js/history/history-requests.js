@@ -9,11 +9,18 @@ myApp.onPageBeforeInit('history', function(page) {
 myApp.onPageInit('history', function(page) {
 	myApp.closePanel();
 	refreshHistoryRequests();
+
+	var channel = pusher.subscribe("USER-" + localStorage.getItem("userId"));
+	channel.bind('parking-offer', function(data) {
+		refreshHistoryRequests();
+	});
+
 });
 myApp.onPageBack('parkering', function(page) {
 	console.log("Reinit history");
 	refreshHistoryRequests();
 });
+
 
 
 function refreshHistoryRequests() {
@@ -57,7 +64,9 @@ function refreshHistoryRequests() {
 				message = '<div class="swipeout-actions-right">' +
 					'<a id="chat-' + parking.messages + '" href="#"><i class="material-icons md-24 color-white">chat</i></a>' +
 					'</div>';
-			} else {message =""}
+			} else {
+				message = ""
+			}
 
 
 			$("#requests").append('<li class="swipeout" style="background:#FFFFFF">' +
