@@ -1,9 +1,7 @@
 myApp.onPageBeforeInit('history', function(page) {
 	window.ga.trackView('History');
-
-	$("#history-cards-view").hide();
-	$("#history-view-none").hide();
 	activeMenuItem("#historyLi");
+
 });
 
 myApp.onPageInit('history', function(page) {
@@ -24,13 +22,18 @@ myApp.onPageBack('parkering', function(page) {
 
 
 function refreshHistoryRequests() {
+	$("#noActive").hide();
+	$("#noHistory").hide();
 	var userId = localStorage.getItem("userId");
 
 	$.post(SERVER_URL + "/parking/requests/past", {
 		userId: userId
 	}).done(function(parkingRequests) {
-		$("#requests").empty();
+		$("#activeRequests").empty();
+		$("#historyRequests").empty();
 
+		var active = false;
+		var history = false;
 		for (i in parkingRequests) {
 			var parking = parkingRequests[i];
 
@@ -39,14 +42,19 @@ function refreshHistoryRequests() {
 
 			var timeFormat = "HH:mm (dddd)";
 
-			var status, statusColor, message;
+			var status, statusColor, message, target;
 
+			target = "#activeRequests";
 			if (parking.done || moment().isAfter(moment(parking.endTime))) {
 				status = "Ferdig";
 				statusColor = "#78909c";
+				target = "#historyRequests";
+				history = true;
 			} else if (parking.canceled) {
 				status = "Avbrutt";
 				statusColor = "#d50000";
+				target = "#historyRequests";
+				history = true;
 			} else if (parking.answered) {
 				if (moment().isBefore(moment(parking.startTime))) {
 					status = "Tildelt plass";
@@ -55,9 +63,11 @@ function refreshHistoryRequests() {
 					status = "Pågående";
 					statusColor = "#64dd17";
 				}
+				active = true;
 			} else {
 				status = "Venter på svar";
 				statusColor = "#ffab40";
+				active = true;
 			}
 
 			if (parking.messages) {
@@ -69,7 +79,7 @@ function refreshHistoryRequests() {
 			}
 
 
-			$("#requests").append('<li class="swipeout" style="background:#FFFFFF">' +
+			$(target).append('<li class="swipeout" style="background:#FFFFFF">' +
 				'<a id="history-' + parking._id + '" href="#" class="item-link item-content">' +
 				'<div class="item-inner swipeout-content">' +
 				'<div class="item-title-row">' +
@@ -99,6 +109,14 @@ function refreshHistoryRequests() {
 				localStorage.setItem("currentRequest", params.data.parking);
 				mainView.router.loadPage('views/messages/messages.html');
 			});
+		}
+
+		if (!active) {
+			$("#noActive").show();
+		}
+
+		if (!history) {
+			$("#noHistory").show();
 		}
 	});
 
