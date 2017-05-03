@@ -1,0 +1,220 @@
+<div data-page="tilbud" class="page">
+  <div class="page-content">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left nb-left" >
+          <i id="tilbud-back" class="material-icons md-36">navigate_before</i>
+        </div>
+        <div class="center">Tilbud</div>
+        <div class="right nb-right">
+        </div>
+      </div>
+    </div>
+    <div class="content-block">
+      <div id="messagesTilbud" style="width: 100%; height:100%;">
+        <div style="border-radius: 50%; width: 48px; height: 48px; position: absolute; bottom: 15px; right:3px; background-color: #6c6f72; z-index:1000;">
+          <span style="    text-align: center;
+            display: table;">
+            <i class="material-icons md-24 color-white" style="position: absolute;
+            left: 50%;
+            top: 50%;
+            -ms-transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);">chat</i>
+          </span>
+        </div>
+        <div style="position: absolute; bottom: 15px; right:3px" class="smalltext color-gray">
+          
+        </div>
+      </div>
+      <div id="venterTilbud" class="card request-card no-border">
+        <div class="card-header no-border" style="background-color: #757575; color: #FFFFFF">
+          <div class="request-name no-border" style="font-size: large; color: #FFFFFF;"><center>Tilby parkeringsplass</center></div>
+        </div>
+        <div class="parking-status" >
+        </div>
+        <div class="parkering-content center-align" style="padding-bottom: 5px">
+          <img class="message-avatar" style="margin-top:8px; width:50px; height:50px;" src="img/noprofile.png">
+          <p class="center-align" style="font-size: x-large;">
+            <span id="bruker"> </span>
+          </p>
+          <p class="center-align" style=" position:relative;
+            top:-25px;">
+            <br> <span id="regnr" style="color:gray">BD44040</span> &nbsp;&nbsp; <span id="telefon"> </span>
+            <div style="width:60%" class="center-align">
+              <div class="row no-gutter" >
+                <div class="col-50"><span style="font-size: small;"><b>Fra</b></span></div>
+                <div class="col-50"><span style="font-size: small;"><b>Til</b></span></div>
+              </div>
+              <div class="row no-gutter">
+                <div class="col-50" style="font-size: x-large; font-weight: bold;"><span  id="fomHour"></span></div>
+                <div class="col-50" style="font-size: x-large; font-weight: bold;"><span  id="tomHour"></span></div>
+              </div>
+              <div class="row no-gutter">
+                <div class="col-50"><span id="fomDay"></span></div>
+                <div class="col-50"><span id="tomDay"></span></div>
+              </div>
+            </div>
+            <div id="message" style="margin-left: 15px; margin-right: 15px">
+              <p>
+                <i class="material-icons color-gray">message</i><br>
+                <span id="melding"></span>
+              </p>
+            </div>
+          </p>
+          
+          <div class="list-block inset align-top">
+            <ul>
+              <li >
+                <div class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title label">Hvilken parkeringsplass?</div>
+                    <div class="item-input">
+                      <select id="tilbudPlasser" style=" text-align-last:center;">
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <p>
+            <div class="buttons-row center-align valign-center">
+              <a id="tilby-parking" href="#" class="button button-fill button-big center-align">Tilby parkering</a>
+            </div>
+          </p>
+        </div>
+      </div>
+      <div id="tilbudt" class="card request-card no-border">
+        <div class="card-header no-border" style="background-color: #757575; color: #FFFFFF">
+          <div class="request-name no-border" style="font-size: large; color: #FFFFFF;"><center>Utlånt parkeringsplass</center></div>
+        </div>
+        <div class="parking-status" style="background-color: #448aff" >
+        </div>
+        <div class="parking-status-text" style="color: #448aff">
+        </div >
+        <div class="parkering-content center-align" style="padding-bottom: 5px">
+          <img class="message-avatar" style="margin-top:8px; width:50px; height:50px;" src="img/noprofile.png">
+          <p class="center-align" style="font-size: x-large;">
+            <span id="bruker"> </span>
+          </p>
+          <p class="center-align" style=" position:relative;
+            top:-25px;">
+            <br> <span id="regnr" style="color:gray"></span> &nbsp;&nbsp; <span id="telefon"> </span>
+            <div style="width:60%" class="center-align">
+              <div class="row no-gutter" >
+                <div class="col-50"><span style="font-size: small;"><b>Fra</b></span></div>
+                <div class="col-50"><span style="font-size: small;"><b>Til</b></span></div>
+              </div>
+              <div class="row no-gutter">
+                <div class="col-50" style="font-size: x-large; font-weight: bold;"><span  id="fomHour"></span></div>
+                <div class="col-50" style="font-size: x-large; font-weight: bold;"><span  id="tomHour"></span></div>
+              </div>
+              <div class="row no-gutter">
+                <div class="col-50"><span id="fomDay"></span></div>
+                <div class="col-50"><span id="tomDay"></span></div>
+              </div>
+            </div>
+            <div id="message" style="margin-left: 15px; margin-right: 15px">
+              <p>
+                <i class="material-icons color-gray">message</i><br>
+                <span id="melding"></span>
+              </p>
+            </div>
+          </p>
+          <p>
+            <h3>Parkeringsplass</h3>
+            <span style="font-size: x-large;" id="plassnummer"></span>
+          </p>
+        </div>
+      </div>
+      <div id="ferdigTilbud" class="card request-card no-border">
+        <div class="card-header no-border" style="background-color: #757575; color: #FFFFFF">
+          <div class="request-name no-border" style="font-size: large; color: #FFFFFF;"><center>Utlånt parkeringsplass</center></div>
+        </div>
+        <div class="parking-status" style="background-color: #78909c" >
+        </div>
+        <div class="parking-status-text" style="color: #78909c">
+          <p>Ferdig</p>
+        </div >
+        <div class="parkering-content center-align" style="padding-bottom: 5px">
+          <img class="message-avatar" style="margin-top:8px; width:50px; height:50px;" src="img/noprofile.png">
+          <p class="center-align" style="font-size: x-large;">
+            <span id="bruker"> </span>
+          </p>
+          <p class="center-align" style=" position:relative;
+            top:-25px;">
+            <br> <span id="regnr" style="color:gray"></span> &nbsp;&nbsp; <span id="telefon"> </span>
+            <div style="width:60%" class="center-align">
+              <div class="row no-gutter" >
+                <div class="col-50"><span style="font-size: small;"><b>Fra</b></span></div>
+                <div class="col-50"><span style="font-size: small;"><b>Til</b></span></div>
+              </div>
+              <div class="row no-gutter">
+                <div class="col-50" style="font-size: x-large; font-weight: bold;"><span  id="fomHour"></span></div>
+                <div class="col-50" style="font-size: x-large; font-weight: bold;"><span  id="tomHour"></span></div>
+              </div>
+              <div class="row no-gutter">
+                <div class="col-50"><span id="fomDay"></span></div>
+                <div class="col-50"><span id="tomDay"></span></div>
+              </div>
+            </div>
+            <div id="message" style="margin-left: 15px; margin-right: 15px">
+              <p>
+                <i class="material-icons color-gray">message</i><br>
+                <span id="melding"></span>
+              </p>
+            </div>
+          </p>
+          <p>
+            <h3>Parkeringsplass</h3>
+            <span style="font-size: x-large;" id="plassnummer"></span>
+          </p>
+        </div>
+      </div>
+      <div id="startetTilbud" class="card request-card no-border">
+        <div class="card-header no-border" style="background-color: #757575; color: #FFFFFF">
+          <div class="request-name no-border" style="font-size: large; color: #FFFFFF;"><center>Utlånt parkeringsplass</center></div>
+        </div>
+        <div class="parking-status" style="background-color: #64dd17" >
+        </div>
+        <div class="parking-status-text" style="color: #64dd17">
+        </div >
+        <div class="parkering-content center-align" style="padding-bottom: 5px">
+          <img class="message-avatar" style="margin-top:8px; width:50px; height:50px;" src="img/noprofile.png">
+          <p class="center-align" style="font-size: x-large;">
+            <span id="bruker"> </span>
+          </p>
+          <p class="center-align" style=" position:relative;
+            top:-25px;">
+            <br> <span id="regnr" style="color:gray"></span> &nbsp;&nbsp; <span id="telefon"> </span>
+            <div style="width:60%" class="center-align">
+              <div class="row no-gutter" >
+                <div class="col-50"><span style="font-size: small;"><b>Fra</b></span></div>
+                <div class="col-50"><span style="font-size: small;"><b>Til</b></span></div>
+              </div>
+              <div class="row no-gutter">
+                <div class="col-50" style="font-size: x-large; font-weight: bold;"><span  id="fomHour"></span></div>
+                <div class="col-50" style="font-size: x-large; font-weight: bold;"><span  id="tomHour"></span></div>
+              </div>
+              <div class="row no-gutter">
+                <div class="col-50"><span id="fomDay"></span></div>
+                <div class="col-50"><span id="tomDay"></span></div>
+              </div>
+            </div>
+            <div id="message" style="margin-left: 15px; margin-right: 15px">
+              <p>
+                <i class="material-icons color-gray">message</i><br>
+                <span id="melding"></span>
+              </p>
+            </div>
+          </p>
+          <p>
+            <h3>Parkeringsplass</h3>
+            <span style="font-size: x-large;" id="plassnummer"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

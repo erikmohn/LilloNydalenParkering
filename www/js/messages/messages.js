@@ -1,7 +1,4 @@
 myApp.onPageBeforeInit('messages', function(page) {
-
-	console.log("Open page for messages");
-
 	$("#message-back").click(function(event) {
 		mainView.router.back();
 		localStorage.removeItem("currentRequest");
@@ -10,7 +7,7 @@ myApp.onPageBeforeInit('messages', function(page) {
 	$.post(SERVER_URL + "/parking", {
 		parkingId: localStorage.getItem("currentRequest")
 	}).done(function(parking) {
-		var title= "Meldinger";
+		var title = "Meldinger";
 		if (parking.offerParkingUser[0]) {
 			var user = parking.offerParkingUser[0];
 			title = user.lastName + ", " + user.firstName;
@@ -30,8 +27,9 @@ myApp.onPageInit('messages', function(page) {
 	$.get(SERVER_URL + "/messages/" + localStorage.getItem("messageThread"))
 		.done(function(messages) {
 
-			messages.forEach(function(message) {
+			localStorage.setItem("numberOfReadMessages-" + localStorage.getItem("messageThread"), messages.length);
 
+			messages.forEach(function(message) {
 				var avatar, name, messageType;
 				if (message.sender._id == localStorage.getItem("userId")) {
 					messageType = 'sent'
@@ -56,6 +54,7 @@ myApp.onPageInit('messages', function(page) {
 	var myMessagebar = myApp.messagebar('.messagebar');
 
 	$$('.messagebar .link').on('click', function() {
+		increaseNumberOfReadMessages();
 		var messageText = myMessagebar.value().trim();
 		if (messageText.length === 0) return;
 		myMessagebar.clear()
@@ -66,6 +65,8 @@ myApp.onPageInit('messages', function(page) {
 			message: messageText,
 			sendtDate: moment().toDate()
 		}).done(function(message) {});
+
+
 		var timeDiff = moment().diff(lastMessageTime, 'minutes');
 		var avatar, name, messageType;
 		messageType = 'sent'
@@ -75,12 +76,14 @@ myApp.onPageInit('messages', function(page) {
 			avatar: avatar,
 			name: name,
 			day: timeDiff >= 0 && timeDiff < 10 ? false : 'I dag',
-			time: timeDiff >= 0 && timeDiff < 10 ? false : moment(message.date).format("HH:mm")
-		})
+			time: timeDiff >= 0 && timeDiff < 10 ? false : moment().format("HH:mm")
+		});
+
 	});
 
 	var channel = pusher.subscribe("MESSAGE-" + localStorage.getItem("messageThread"));
 	channel.bind('newMessage', function(data) {
+		increaseNumberOfReadMessages();
 		var avatar, name, messageType;
 		avatar = 'img/noprofile.png';
 		var timeDiff = moment().diff(lastMessageTime, 'minutes');
@@ -99,3 +102,8 @@ myApp.onPageInit('messages', function(page) {
 			});
 	});
 });
+
+function increaseNumberOfReadMessages() {
+	var numberOfRead = localStorage.getItem("numberOfReadMessages-" + localStorage.getItem("messageThread"));
+	localStorage.setItem("numberOfReadMessages-" + localStorage.getItem("messageThread"), numberOfRead+1);
+}

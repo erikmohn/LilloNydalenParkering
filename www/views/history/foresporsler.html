@@ -5,26 +5,37 @@
         <div class="left nb-left">
           <i class="material-icons md-36 open-panel">menu</i>
         </div>
-        <div class="center">Tilby parkering</div>
+        <div class="center">Parkering for andre</div>
         <div class="right nb-right">
-          <i class="material-icons">folder</i>
+          <i class="material-icons">reply_all</i>
         </div>
       </div>
     </div>
-    <div id="requests-view-loading" class="content-block center-align vertical-center">
-      <img src="../img/loading.gif"/>
+    <div class="content-block-title">Trenger parkeringsplass</div>
+    <div class="list-block media-list">
+      <ul id="currentRequests">
+      </ul>
     </div>
-    <div id="requests-view-cards" class="content-block">
-      <div id="request-cards"> </div>
+    <div id="noActiveCurrent" class="content-block">
+      <span class="smalltext">Ingen forespørsler</span>
     </div>
-    <div id="requests-view-done" class="content-block center-align vertical-center">
-      <i class="material-icons md-48">done_all</i>
-      <h2>Ingen ventende forespørsler</h2>
+    
+    <div class="content-block-title" >Aktiv</div>
+    <div class="list-block media-list">
+      <ul id="activeOffers">
+      </ul>
     </div>
-    <div id="requests-view-fail" class="content-block center-align vertical-center">
-      <i class="material-icons md-48">warning</i>
-      <h2>Mangler brukerinformasjon</h2>
+    <div id="noActiveOffers" class="content-block">
+      <span class="smalltext">Ingen parkeringstilbud</span>
+    </div>
+    <div class="content-block-title">Historikk</div>
+    
+    <div class="list-block media-list">
+      <ul id="historyOffers">
+      </ul>
+    </div>
+    <div id="noHistoryOffers" class="content-block">
+      <span class="smalltext">Ingen historikk</span>
     </div>
   </div>
-</div>
 </div>

@@ -15,7 +15,6 @@ myApp.onPageInit('history', function(page) {
 
 });
 myApp.onPageBack('parkering', function(page) {
-	console.log("Reinit history");
 	refreshHistoryRequests();
 });
 
@@ -83,10 +82,10 @@ function refreshHistoryRequests() {
 				'<a id="history-' + parking._id + '" href="#" class="item-link item-content">' +
 				'<div class="item-inner swipeout-content">' +
 				'<div class="item-title-row">' +
-				'<div class="item-title" style="font-size: large">' + parking.regNr + '</div>' +
+				'<div class="item-title" style="font-size: large">' + parking.regNr + '</div> ' +
 				'<div class="item-after">' + moment(parking.registredDate).format("DD/MM HH:mm") + '</div>' + //13/04 17:14
 				'</div>' +
-				'<div class="item-subtitle"> ' + fom.format(timeFormat) + ' - ' + tom.format(timeFormat) + '</div>' + //
+				'<div class="item-subtitle"> ' + fom.format(timeFormat) + ' - ' + tom.format(timeFormat) + ' <span id="badge-' + parking._id + '" class="badge color-red" style="position:absolute; right:0;"></span></div>' + //
 				'<div class="item-text" style="color: ' + statusColor + '">' + status + '</div>' +
 				'<div class="parking-status" style="height:3px; background-color: ' + statusColor + '"></div>' +
 				'</div>' +
@@ -109,6 +108,31 @@ function refreshHistoryRequests() {
 				localStorage.setItem("currentRequest", params.data.parking);
 				mainView.router.loadPage('views/messages/messages.html');
 			});
+
+			$("#badge-" + parking._id).hide();
+			if (parking.messages) {
+
+				var channel = pusher.subscribe("MESSAGE-" + parking.messages);
+				channel.bind('newMessage', function(data) {
+					$(badge).html($(badge).html() +1);
+				});
+
+				var badge = "#badge-" + parking._id;
+				(function(badge, p) {
+					$.get(SERVER_URL + "/messages/num/" + p.messages)
+						.done(function(response) {
+							var numberOfReadMessages = localStorage.getItem("numberOfReadMessages-" + p.messages);
+							if (numberOfReadMessages == null) {
+								numberOfReadMessages = 0;
+							}
+							var result = (response.numberOfMessages - numberOfReadMessages);
+							if (numberOfReadMessages < response.numberOfMessages) {
+								$(badge).html(response.numberOfMessages - numberOfReadMessages);
+								$(badge).show();
+							}
+						});
+				})(badge, parking);
+			}
 		}
 
 		if (!active) {

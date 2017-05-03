@@ -82,7 +82,7 @@ myApp.onPageBeforeInit('parkering', function(page) {
 
 		if (parking.answered) {
 			var owner = parking.offerParkingUser[0];
-			$(panel).find("#plassnummer").html("121"); //TODO
+			$(panel).find("#plassnummer").html(parking.parkingLot); 
 			$(panel).find("#eier").html(owner.firstName + " " + owner.lastName + " (" + owner.phoneNumber + ")");
 		}
 

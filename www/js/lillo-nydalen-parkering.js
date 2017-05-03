@@ -106,7 +106,6 @@ function initializePusher() {
 	var channel = pusher.subscribe("global-request-channel");
 	channel.bind('request-update', function(data) {
 		refreshBadges();
-		refreshParkingRequests();
 	});
 };
 
@@ -115,7 +114,6 @@ function initializePushwoosh() {
 		var pushwoosh = cordova.require("pushwoosh-cordova-plugin.PushNotification");
 		document.addEventListener('push-notification', function(event) {
 			var notification = event.notification;
-			// handle push open here
 		});
 
 		pushwoosh.registerDevice(function(status) {
@@ -132,10 +130,9 @@ function initializePushwoosh() {
 };
 
 function activeMenuItem(menuItem) {
-	$("#myRequestLi").removeClass('currentLi');
 	$("#requestsLi").removeClass('currentLi');
 	$("#historyLi").removeClass('currentLi');
-	$("#settingsLi").removeClass('currentLi');
+	$("#moreLi").removeClass('currentLi');
 	$(menuItem).addClass('currentLi');
 }
 
@@ -146,7 +143,6 @@ function refreshBadges() {
 	}).done(function(parkingRequests) {
 		var count = 0;
 		var userId = localStorage.getItem("userId");
-		console.log(parkingRequests.length);
 		parkingRequests.forEach(function(item) {
 			if (item.requestUser[0]._id !== userId) {
 				count++;
