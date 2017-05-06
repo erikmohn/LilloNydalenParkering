@@ -8,11 +8,11 @@ myApp.onPageBeforeInit('messages', function(page) {
 		parkingId: localStorage.getItem("currentRequest")
 	}).done(function(parking) {
 		var title = "Meldinger";
-		if (parking.offerParkingUser[0]) {
-			var user = parking.offerParkingUser[0];
+		if (parking.requestUser[0]) {
+			var user = parking.requestUser[0];
 			title = user.lastName + ", " + user.firstName;
 		}
-		$("#title").html(title)
+		$("#title").html(title);
 	})
 });
 
@@ -104,6 +104,7 @@ myApp.onPageInit('messages', function(page) {
 });
 
 function increaseNumberOfReadMessages() {
-	var numberOfRead = localStorage.getItem("numberOfReadMessages-" + localStorage.getItem("messageThread"));
-	localStorage.setItem("numberOfReadMessages-" + localStorage.getItem("messageThread"), numberOfRead+1);
+	var numberOfRead = parseInt(localStorage.getItem("numberOfReadMessages-" + localStorage.getItem("messageThread")));
+	var num = numberOfRead == null ? 0 : numberOfRead + 1;
+	localStorage.setItem("numberOfReadMessages-" + localStorage.getItem("messageThread"), num);
 }

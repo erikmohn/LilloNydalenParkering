@@ -15,7 +15,9 @@ myApp.onPageInit('history', function(page) {
 
 });
 myApp.onPageBack('parkering', function(page) {
-	refreshHistoryRequests();
+	
+	mainView.router.refreshPage();
+	mainView.router.refreshPreviousPage();
 });
 
 
@@ -111,12 +113,6 @@ function refreshHistoryRequests() {
 
 			$("#badge-" + parking._id).hide();
 			if (parking.messages) {
-
-				var channel = pusher.subscribe("MESSAGE-" + parking.messages);
-				channel.bind('newMessage', function(data) {
-					$(badge).html($(badge).html() +1);
-				});
-
 				var badge = "#badge-" + parking._id;
 				(function(badge, p) {
 					$.get(SERVER_URL + "/messages/num/" + p.messages)
@@ -132,6 +128,11 @@ function refreshHistoryRequests() {
 							}
 						});
 				})(badge, parking);
+
+				var channel = pusher.subscribe("MESSAGE-" + parking.messages);
+				channel.bind('newMessage', function(data) {
+				
+				});
 			}
 		}
 

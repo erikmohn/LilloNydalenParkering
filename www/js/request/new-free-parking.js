@@ -21,7 +21,7 @@ myApp.onPageBeforeInit('new-free-parkering', function(page) {
 	$("#tilbud-tom").val(moment().add(4, 'hours').format("YYYY-MM-DDTHH:00"));
 
 
-	$("#lagre-parkering").click(function() {
+	$("#lagre-free-parking").click(function() {
 		var startTime = $("#tilbud-fom").val();
 		var endTime = $("#tilbud-tom").val();
 
@@ -33,14 +33,12 @@ myApp.onPageBeforeInit('new-free-parkering', function(page) {
 		}
 
 		if (validated) {
-			$.post(SERVER_URL + "/parking/request", {
+			$.post(SERVER_URL + "/parking/free", {
 				userId: localStorage.getItem("userId"),
-				regNr: $("#cars").val(),
-				phoneNumber: localStorage.getItem("phoneNumber"),
+				parkingSpace: $("#parkeringsplasser").val(),
 				starTime: moment(startTime).toDate(),
 				endTime: moment(endTime).toDate(),
-				registredDate: moment().toDate(),
-				requestMessage: $("#requestMessage").val()
+				registredDate: moment().toDate()
 			}).done(function(data) {
 				window.analytics.trackEvent('Nytt parkeringstilbud', 'Nytt parkeringstilbud', 'Hits', 1);
 				mainView.router.loadPage('index.html');
