@@ -118,7 +118,7 @@ function refreshHistoryOffers() {
 					history = true;
 				} else if (parking.singleParkingRequest.answered) {
 					if (moment().isBefore(moment(parking.startTime))) {
-						status = "Tildelt plass";
+						status = "Benyttet";
 						statusColor = "#448aff";
 					} else {
 						status = "Pågående";
