@@ -7,7 +7,6 @@ myApp.onPageBeforeInit('parkering', function(page) {
 	$("#messages").hide();
 
 	if (page.fromPage.name == "new-parkering") {
-		console.log("From: " + page.fromPage.name)
 		$("#navigation").html('<i class="material-icons open-panel md-36">menu</i>');
 	} else {
 		$("#navigation").html('<i id="parkering-back" class="material-icons md-36">navigate_before</i>');

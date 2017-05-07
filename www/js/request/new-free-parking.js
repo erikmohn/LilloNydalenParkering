@@ -36,12 +36,11 @@ myApp.onPageBeforeInit('new-free-parkering', function(page) {
 			$.post(SERVER_URL + "/parking/free", {
 				userId: localStorage.getItem("userId"),
 				parkingSpace: $("#parkeringsplasser").val(),
-				starTime: moment(startTime).toDate(),
+				startTime: moment(startTime).toDate(),
 				endTime: moment(endTime).toDate(),
 				registredDate: moment().toDate()
 			}).done(function(data) {
 				window.analytics.trackEvent('Nytt parkeringstilbud', 'Nytt parkeringstilbud', 'Hits', 1);
-				console.log(data);
 				localStorage.setItem("currentFreeParking", data.request._id);	
 				mainView.router.loadPage('views/offer/free-parking.html');
 			});

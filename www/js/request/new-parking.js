@@ -37,7 +37,7 @@ myApp.onPageBeforeInit('new-parkering', function(page) {
 				userId: localStorage.getItem("userId"),
 				regNr: $("#cars").val(),
 				phoneNumber: localStorage.getItem("phoneNumber"),
-				starTime: moment(startTime).toDate(),
+				startTime: moment(startTime).toDate(),
 				endTime: moment(endTime).toDate(),
 				registredDate: moment().toDate(),
 				requestMessage: $("#requestMessage").val()

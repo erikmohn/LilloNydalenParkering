@@ -37,7 +37,6 @@ myApp.onPageBeforeInit('tilbud', function(page) {
 	});
 
 	$("#tilby-parking").click(function() {
-		console.log("Offer parking");
 		$.post(SERVER_URL + "/parking/offer", {
 			offerUserId: localStorage.getItem("userId"),
 			parkingId: localStorage.getItem("currentRequest"),
