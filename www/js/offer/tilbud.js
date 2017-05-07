@@ -6,6 +6,31 @@ myApp.onPageBeforeInit('tilbud', function(page) {
 	$("#ferdigTilbud").hide();
 	$("#messagesTilbud").hide();
 
+	if (page.fromPage.name == "new-free-parkering") {
+
+		$("#navigationTilbud").html('<i class="material-icons open-panel md-36">menu</i>');
+	} else {
+		$("#navigationTilbud").html('<i id="tilbud-back" class="material-icons md-36">navigate_before</i>');
+
+		if (page.fromPage.name == "free-parking") {
+			$("#navigationTilbud").click(function(event) {
+				page.view.router.back({
+					url: "views/offer/free-parking.html",
+					force: true,
+					ignoreCache: true
+				});
+			});
+		} else {
+			$("#navigationTilbud").click(function(event) {
+				page.view.router.back({
+					url: "views/history/foresporsler.html",
+					force: true,
+					ignoreCache: true
+				});
+			});
+		}
+	}
+
 	var channel = pusher.subscribe("USER-" + localStorage.getItem("userId"));
 	channel.bind('parking-offer', function(data) {
 		mainView.router.refreshPage();
@@ -60,11 +85,6 @@ myApp.onPageBeforeInit('tilbud', function(page) {
 			});
 	};
 
-	$("#tilbud-back").click(function(event) {
-		localStorage.removeItem("currentRequest");
-		mainView.router.back();
-	});
-
 	$.post(SERVER_URL + "/parking", {
 		parkingId: localStorage.getItem("currentRequest")
 	}).done(function(parking) {
@@ -115,7 +135,7 @@ myApp.onPageBeforeInit('tilbud', function(page) {
 			});
 
 		var user = parking.requestUser[0];
-		$(panel).find("#plassnummer").html(parking.parkingLot); 
+		$(panel).find("#plassnummer").html(parking.parkingLot);
 		$(panel).find("#eier").html(user.firstName + " " + user.lastName + " (" + user.phoneNumber + ")");
 
 		$(panel).find("#bruker").html(user.firstName + " " + user.lastName);

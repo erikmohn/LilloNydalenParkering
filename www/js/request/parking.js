@@ -6,6 +6,21 @@ myApp.onPageBeforeInit('parkering', function(page) {
 	$("#ferdig").hide();
 	$("#messages").hide();
 
+	if (page.fromPage.name == "new-parkering") {
+		console.log("From: " + page.fromPage.name)
+		$("#navigation").html('<i class="material-icons open-panel md-36">menu</i>');
+	} else {
+		$("#navigation").html('<i id="parkering-back" class="material-icons md-36">navigate_before</i>');
+
+		$("#navigation").click(function(event) {
+			page.view.router.back({
+				url: "views/history/historikk.html",
+				force: true,
+				ignoreCache: true
+			});
+		});
+	}
+
 	var channel = pusher.subscribe("USER-" + localStorage.getItem("userId"));
 	channel.bind('parking-offer', function(data) {
 		mainView.router.refreshPage();
@@ -35,11 +50,6 @@ myApp.onPageBeforeInit('parkering', function(page) {
 				});
 			});
 	};
-
-	$("#parkering-back").click(function(event) {
-		localStorage.removeItem("currentRequest");
-		mainView.router.back();
-	});
 
 	$.post(SERVER_URL + "/parking", {
 		parkingId: localStorage.getItem("currentRequest")
@@ -82,7 +92,7 @@ myApp.onPageBeforeInit('parkering', function(page) {
 
 		if (parking.answered) {
 			var owner = parking.offerParkingUser[0];
-			$(panel).find("#plassnummer").html(parking.parkingLot); 
+			$(panel).find("#plassnummer").html(parking.parkingLot);
 			$(panel).find("#eier").html(owner.firstName + " " + owner.lastName + " (" + owner.phoneNumber + ")");
 		}
 

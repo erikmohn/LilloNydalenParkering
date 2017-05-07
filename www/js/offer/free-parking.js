@@ -8,6 +8,13 @@ myApp.onPageBeforeInit('free-parking', function(page) {
 		});
 	});
 
+	$("#free-parkering-back").click(function(event) {
+		page.view.router.back({
+			url: "views/history/foresporsler.html",
+			force: true,
+			ignoreCache: true
+		});
+	});
 });
 
 
@@ -16,7 +23,10 @@ myApp.onPageInit('free-parking', function(page) {
 	$.post(SERVER_URL + "/parking/free/get", {
 		freeId: localStorage.getItem("currentFreeParking")
 	}).done(function(freeParking) {
-		if (moment().isAfter(moment(freeParking.endTime))) {
+		if (!freeParking.parkingRequests) {
+			statusFreeParking = "Tilgjengelig for utlån";
+			statusColorFreeParking = "#ffab40";
+		} else if (moment().isAfter(moment(freeParking.endTime))) {
 			statusFreeParking = "Ferdig";
 			statusColorFreeParking = "#78909c";
 		} else if (freeParking.canceled) {
@@ -40,16 +50,18 @@ myApp.onPageInit('free-parking', function(page) {
 		});
 		myApp.setProgressbar($$('.progressbar'), Math.sqrt((progress * progress)));
 
-		freeParking.parkingRequests.sort(function(a, b) {
-			return new Date(a.startDate) - new Date(a.startDate);
-		});
+		if (freeParking.parkingRequests.length > 0) {
+			freeParking.parkingRequests.sort(function(a, b) {
+				return new Date(a.startDate) - new Date(a.startDate);
+			});
 
-		if (!moment(freeParking.parkingRequests[0].startTime).isSame(freeParking.startTime)) {
-			$(".timeline").append('	  <div class="timeline-item">' +
-				'<div class="timeline-item-date">' + moment(freeParking.startTime).locale("nb").format("dd/MM/YY HH:mm") + '</div>' +
-				'<div class="timeline-item-divider"></div>' +
-				'<div class="timeline-item-content"></div>' +
-				'</div>');
+			if (!moment(freeParking.parkingRequests[0].startTime).isSame(freeParking.startTime)) {
+				$(".timeline").append('	  <div class="timeline-item">' +
+					'<div class="timeline-item-date">' + moment(freeParking.startTime).locale("nb").format("dd/MM/YY") + ' <span class="hourFormat">' + moment(freeParking.startTime).locale("nb").format("HH:mm") + '</div>' +
+					'<div class="timeline-item-divider"></div>' +
+					'<div class="timeline-item-content"></div>' +
+					'</div>');
+			}
 		}
 
 		freeParking.parkingRequests.forEach(function(parking) {
@@ -77,7 +89,7 @@ myApp.onPageInit('free-parking', function(page) {
 
 			$(".timeline").append(
 				'<div class="timeline-item" >' +
-				'<div class="timeline-item-date">' + moment(parking.startTime).locale("nb").format("dd/MM/YY HH:mm") + '</div>' +
+				'<div class="timeline-item-date">' + moment(parking.startTime).locale("nb").format("dd/MM/YY") + ' <span class="hourFormat">' + moment(parking.startTime).locale("nb").format("HH:mm") + '</div>' +
 				'<div class="timeline-item-divider"></div>' +
 				'<div class="timeline-item-content" style="width:100%;">' +
 				'<div class="list-block media-list">' +
@@ -111,21 +123,39 @@ myApp.onPageInit('free-parking', function(page) {
 
 
 			$(".timeline").append('	  <div class="timeline-item">' +
-				'<div class="timeline-item-date">' + moment(parking.endTime).locale("nb").format("dd/MM/YY HH:mm") + '</div>' +
+				'<div class="timeline-item-date">' + moment(parking.endTime).locale("nb").format("dd/MM/YY") + ' <span class="hourFormat">' + moment(parking.endTime).locale("nb").format("HH:mm") + '</div>' +
 				'<div class="timeline-item-divider"></div>' +
 				'<div class="timeline-item-content"></div>' +
 				'</div>');
 		});
 
-		if (!moment(freeParking.parkingRequests[freeParking.parkingRequests.length - 1].endTime).isSame(freeParking.endTime)) {
+		if (freeParking.parkingRequests.length > 0) {
+			if (!moment(freeParking.parkingRequests[freeParking.parkingRequests.length - 1].endTime).isSame(freeParking.endTime)) {
+				$(".timeline").append('	  <div class="timeline-item">' +
+					'<div class="timeline-item-date">' + moment(freeParking.endTime).locale("nb").format("dd/MM/YY") + ' <span class="hourFormat">' + moment(freeParking.endTime).locale("nb").format("HH:mm") + '</div>' +
+					'<div class="timeline-item-divider"></div>' +
+					'<div class="timeline-item-content"></div>' +
+					'</div>');
+			}
+		}
+
+		if (freeParking.parkingRequests.length == 0) {
 			$(".timeline").append('	  <div class="timeline-item">' +
-				'<div class="timeline-item-date">' + moment(freeParking.endTime).locale("nb").format("dd/MM/YY HH:mm") + '</div>' +
+				'<div class="timeline-item-date">' + moment(freeParking.startTime).locale("nb").format("dd/MM/YY") + ' <span class="hourFormat">' + moment(freeParking.startTime).locale("nb").format("HH:mm") + '</span></div>' +
+				'<div class="timeline-item-divider"></div>' +
+				'<div class="timeline-item-content">Ledig</div>' +
+				'</div>');
+			$(".timeline").append('	  <div class="timeline-item">' +
+				'<div class="timeline-item-date">' + moment(freeParking.endTime).locale("nb").format("dd/MM/YY") + ' <span class="hourFormat">' + moment(freeParking.endTime).locale("nb").format("HH:mm") + '</div>' +
 				'<div class="timeline-item-divider"></div>' +
 				'<div class="timeline-item-content"></div>' +
 				'</div>');
+
 		}
 
-		if(!freeParking.canceled) {
+
+
+		if (!freeParking.canceled) {
 			$("#cancel-free-parking").show();
 		}
 
