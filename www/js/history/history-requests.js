@@ -41,7 +41,7 @@ function refreshHistoryRequests() {
 			var fom = moment(parking.startTime).locale("nb");
 			var tom = moment(parking.endTime).locale("nb");
 
-			var timeFormat = "HH:mm (dddd)";
+			var timeFormat = "<b>HH:mm</b> (dddd)";
 
 			var status, statusColor, message, target;
 
@@ -79,15 +79,15 @@ function refreshHistoryRequests() {
 				message = ""
 			}
 
-
 			$(target).append('<li class="swipeout" style="background:#FFFFFF">' +
 				'<a id="history-' + parking._id + '" href="#" class="item-link item-content">' +
 				'<div class="item-inner swipeout-content">' +
 				'<div class="item-title-row">' +
 				'<div class="item-title" style="font-size: large">' + parking.regNr + '</div> ' +
-				'<div class="item-after">' + moment(parking.registredDate).format("DD/MM HH:mm") + '</div>' + //13/04 17:14
+				'<div class="item-after" style="color:#919292">' + moment(parking.registredDate).format("DD/MM HH:mm") + '</div>' + 
 				'</div>' +
-				'<div class="item-subtitle"> ' + fom.format(timeFormat) + ' - ' + tom.format(timeFormat) + ' <span id="badge-' + parking._id + '" class="badge color-red" style="position:absolute; right:0;"></span></div>' + //
+				'<div class="item-subtitle"> ' + 
+				fom.format(timeFormat) + ' - ' + tom.format(timeFormat) + ' <span id="badge-' + parking._id + '" class="badge color-red" style="position:absolute; right:0;"></span></div>' + //
 				'<div class="item-text" style="color: ' + statusColor + '">' + status + '</div>' +
 				'<div class="parking-status" style="height:3px; background-color: ' + statusColor + '"></div>' +
 				'</div>' +
