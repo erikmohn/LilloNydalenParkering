@@ -40,8 +40,8 @@ myApp.onPageBeforeInit('new-free-parkering', function(page) {
 				endTime: moment(endTime).toDate(),
 				registredDate: moment().toDate()
 			}).done(function(data) {
-				window.analytics.trackEvent('Nytt parkeringstilbud', 'Nytt parkeringstilbud', 'Hits', 1);
-				mainView.router.loadPage('index.html');
+				window.analytics.trackEvent('Nytt parkeringstilbud', 'Nytt parkeringstilbud', 'Hits', 1);	
+				mainView.router.loadPage('views/offer/free-parking.html');
 			});
 		}
 	});

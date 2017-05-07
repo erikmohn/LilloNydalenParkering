@@ -121,7 +121,7 @@ function refreshHistoryOffers() {
 						status = "Benyttet";
 						statusColor = "#448aff";
 					} else {
-						status = "Pågående";
+						status = "Aktiv";
 						statusColor = "#64dd17";
 					}
 					active = true;

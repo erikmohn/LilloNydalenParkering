@@ -65,7 +65,7 @@ myApp.onPageInit('free-parking', function(page) {
 					status = "Tildelt plass";
 					statusColor = "#448aff";
 				} else {
-					status = "Pågående";
+					status = "Aktiv";
 					statusColor = "#64dd17";
 				}
 			}
