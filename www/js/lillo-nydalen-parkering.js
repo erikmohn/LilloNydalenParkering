@@ -130,10 +130,10 @@ function initializePushwoosh() {
 };
 
 function activeMenuItem(menuItem) {
-	$("#requestsLi").removeClass('currentLi');
-	$("#historyLi").removeClass('currentLi');
-	$("#moreLi").removeClass('currentLi');
-	$(menuItem).addClass('currentLi');
+	//$("#requestsLi").removeClass('currentLi');
+	//$("#historyLi").removeClass('currentLi');
+	//$("#moreLi").removeClass('currentLi');
+	//$(menuItem).addClass('currentLi');
 }
 
 function refreshBadges() {
