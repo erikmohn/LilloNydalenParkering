@@ -95,7 +95,26 @@ myApp.onPageInit('new-user', function(page) {
 	});
 
 	$("#FBConnect").click(function(event) {
-		FB.login(function(response) {
+		console.log("Will try to login to facebook");
+		facebookConnectPlugin.login(['public_profile'],
+			function(response) {
+				console.log("Login to facebook done");
+				facebookConnectPlugin.api(
+					'/me/picture', ['public_profile'],
+					function(data) {
+						$("#profilePicture").attr({
+						'src': data.data.url
+					})
+					},
+					function(data) {
+						console.log("Failed to fetch picture");
+					})
+
+			},
+			function(response) {
+				console.log("Login to FB failed");
+			});
+		/*FB.login(function(response) {
 			myApp.alert("Pålogging Facebook!");
 			if (response.authResponse) {
 				console.log("Login to facebook done");
@@ -112,7 +131,7 @@ myApp.onPageInit('new-user', function(page) {
 			}
 		}, {
 			scope: 'public_profile'
-		});
+		});*/
 	})
 
 	$("#new-user-done").click(function(event) {
