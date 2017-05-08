@@ -98,21 +98,27 @@ myApp.onPageInit('new-user', function(page) {
 		console.log("Will try to login to facebook");
 		facebookConnectPlugin.login(['public_profile'],
 			function(response) {
+				myApp.alert("Login to FB done");
 				console.log("Login to facebook done");
 				facebookConnectPlugin.api(
 					'/me/picture', ['public_profile'],
 					function(data) {
+						myApp.alert("Fetched profile picture");
+						myApp.alert(data);
 						$("#profilePicture").attr({
-						'src': data.data.url
-					})
+							'src': data.data.url
+						})
 					},
 					function(data) {
-						console.log("Failed to fetch picture");
+						myApp.alert("Failed to fetch profile");
+						myApp.alert(data);
 					})
 
 			},
 			function(response) {
-				console.log("Login to FB failed");
+				myApp.alert("Login to FB failed");
+
+				console.log();
 			});
 		/*FB.login(function(response) {
 			myApp.alert("Pålogging Facebook!");
@@ -127,7 +133,7 @@ myApp.onPageInit('new-user', function(page) {
 				myApp.alert("Pålogging feilet!");
 				myApp.alert(response.authResponse);
 				myApp.alert(response);
-				alert('Login Failed!');
+
 			}
 		}, {
 			scope: 'public_profile'
