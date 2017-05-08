@@ -100,11 +100,12 @@ myApp.onPageInit('new-user', function(page) {
 			console.log("Logged inn to facebook");
 
 			facebookConnectPlugin.api(
-				'/me/picture', ['public_profile'],
+				'/me/?fields=picture', ['public_profile'],
 				function(data) {
+					console.log(data);
 					myApp.alert("D: " + JSON.stringify(data));
 					$("#profilePicture").attr({
-						'src': data.data.url
+						'src': data.picture.data.url
 					})
 				},
 				function(data) {
