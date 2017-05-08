@@ -51,7 +51,7 @@ function refreshPendingRequests() {
 				$(target).append('<li class="swipeout" style="background:#FFFFFF">' +
 					'<a id="pending-' + parking._id + '" href="#" class="item-link item-content">' +
 					'<div class="item-media">' +
-					'<img class="message-avatar" style="margin-top:15px; width:50px; height:50px;" src="img/noprofile.png">' +
+					'<img class="message-avatar" style="margin-top:15px; width:50px; height:50px;" src="' + parking.requestUser[0].fbProfilePictureUrl + '">' +
 					'</div>' +
 					'<div class="item-inner swipeout-content">' +
 					'<div class="item-title-row">' +
@@ -98,6 +98,8 @@ function refreshHistoryOffers() {
 
 			var fom = moment(parking.startTime).locale("nb");
 			var tom = moment(parking.endTime).locale("nb");
+
+			console.log(parking.startTime);
 
 			var timeFormat = "HH:mm (dddd)";
 

@@ -97,7 +97,7 @@ myApp.onPageInit('free-parking', function(page) {
 				'<li class="swipeout" style="background:#FFFFFF">' +
 				'<a id="timelineOffer-' + parking._id + '" href="#" class="item-link item-content">' +
 				'<div class="item-media">' +
-				'<img class="message-avatar" style="margin-top:15px; width:50px; height:50px;" src="img/noprofile.png">' +
+				'<img class="message-avatar" style="margin-top:15px; width:50px; height:50px;" src="' + parking.requestUser[0].fbProfilePictureUrl + '">' +
 				'</div>' +
 				'<div class="item-inner swipeout-content">' +
 				'<div class="item-title-row">' +

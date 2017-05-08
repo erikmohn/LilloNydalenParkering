@@ -93,6 +93,9 @@ myApp.onPageBeforeInit('parkering', function(page) {
 			var owner = parking.offerParkingUser[0];
 			$(panel).find("#plassnummer").html(parking.parkingLot);
 			$(panel).find("#eier").html(owner.firstName + " " + owner.lastName + " (" + owner.phoneNumber + ")");
+			$(panel).find(".message-avatar").attr({
+			'src': owner.fbProfilePictureUrl
+		});
 		}
 
 		$("#startTime").html(moment(parking.startTime).format("DD/MM/YYYY HH:mm"));

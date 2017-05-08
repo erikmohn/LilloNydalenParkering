@@ -136,6 +136,9 @@ myApp.onPageBeforeInit('tilbud', function(page) {
 		var user = parking.requestUser[0];
 		$(panel).find("#plassnummer").html(parking.parkingLot);
 		$(panel).find("#eier").html(user.firstName + " " + user.lastName + " (" + user.phoneNumber + ")");
+		$(panel).find(".message-avatar").attr({
+			'src': user.fbProfilePictureUrl
+		});
 
 		$(panel).find("#bruker").html(user.firstName + " " + user.lastName);
 		var phone = ("" + user.phoneNumber).replace(/(\d{3})(\d{2})(\d{3})/, '$1 $2 $3');
@@ -143,8 +146,8 @@ myApp.onPageBeforeInit('tilbud', function(page) {
 
 		var fom = moment(parking.startTime).locale("nb");
 		var tom = moment(parking.endTime).locale("nb");
-		$(panel).find("#fomHour").html(fom.format(" HH:mm"));
-		$(panel).find("#tomHour").html(tom.format(" HH:mm"));
+		$(panel).find("#fomHour").html(fom.format("HH:mm"));
+		$(panel).find("#tomHour").html(tom.format("HH:mm"));
 		$(panel).find("#fomDay").html(fom.format("dddd"));
 		$(panel).find("#tomDay").html(tom.format("dddd"));
 		$(panel).find("#regNr").html(parking.regNr);
