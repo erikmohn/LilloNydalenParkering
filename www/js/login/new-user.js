@@ -96,7 +96,8 @@ myApp.onPageInit('new-user', function(page) {
 
 	$("#FBConnect").click(function(event) {
 		console.log("Will try to login to facebook");
-		facebookConnectPlugin.login(['public_profile'],
+
+		/*facebookConnectPlugin.login(['public_profile'],
 			function(response) {
 				myApp.alert("Login to FB done");
 				console.log("Login to facebook done");
@@ -119,7 +120,7 @@ myApp.onPageInit('new-user', function(page) {
 				myApp.alert("Login to FB failed");
 
 				console.log();
-			});
+			});*/
 		/*FB.login(function(response) {
 			myApp.alert("Pålogging Facebook!");
 			if (response.authResponse) {
