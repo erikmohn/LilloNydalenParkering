@@ -95,10 +95,8 @@ myApp.onPageInit('new-user', function(page) {
 	});
 
 	$("#FBConnect").click(function(event) {
-		FB.logout(function(response) {
-			console.log("Logged out of facebook");
-		});
 		FB.login(function(response) {
+			myApp.alert("Pålogging Facebook!");
 			if (response.authResponse) {
 				console.log("Login to facebook done");
 				FB.api('/me/picture', function(response) {
@@ -107,6 +105,9 @@ myApp.onPageInit('new-user', function(page) {
 					});
 				});
 			} else {
+				myApp.alert("Pålogging feilet!");
+				myApp.alert(response.authResponse);
+				myApp.alert(response);
 				alert('Login Failed!');
 			}
 		}, {
