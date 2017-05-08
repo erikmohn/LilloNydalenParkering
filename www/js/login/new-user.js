@@ -96,7 +96,28 @@ myApp.onPageInit('new-user', function(page) {
 
 	$("#FBConnect").click(function(event) {
 		console.log("Will try to login to facebook");
+		var fbLoginSuccess = function(userData) {
+			console.log("Logged inn to facebook");
 
+			facebookConnectPlugin.api(
+				'/me/picture', ['public_profile'],
+				function(data) {
+					myApp.alert("D: " + JSON.stringify(data));
+					$("#profilePicture").attr({
+						'src': data.data.url
+					})
+				},
+				function(data) {
+					myApp.alert("D: " + JSON.stringify(data));
+				})
+		}
+
+		facebookConnectPlugin.login(["public_profile"],
+			fbLoginSuccess,
+			function(error) {
+				myApp.alert("" + error)
+			}
+		);
 		/*facebookConnectPlugin.login(['public_profile'],
 			function(response) {
 				myApp.alert("Login to FB done");

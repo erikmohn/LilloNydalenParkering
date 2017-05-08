@@ -41,19 +41,6 @@ $$('.panel-left').on('panel:open', function() {
 
 
 $$(document).on('deviceready', function() {
-
-	var fbLoginSuccess = function(userData) {
-		console.log("Logged inn to facebook");
-		myApp.alert("UserInfo: " + JSON.stringify(userData));
-	}
-
-	facebookConnectPlugin.login(["public_profile"],
-		fbLoginSuccess,
-		function(error) {
-			myApp.alert("" + error)
-		}
-	);
-
 	window.ga.startTrackerWithId('UA-98130150-1', 30);
 	window.analytics.trackEvent('Home', 'DeviceReady', 'Hits', 1);
 	//localStorage.setItem("userId","58f6fa9aae6c971300a2bed3");
