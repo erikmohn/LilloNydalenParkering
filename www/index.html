@@ -20,6 +20,23 @@
     <link rel="stylesheet" href="/lib/css/flipclock.css">
   </head>
   <body class="theme-amber ">
+    <script>
+    window.fbAsyncInit = function() {
+    FB.init({
+    appId      : '260065597794546',
+    xfbml      : true,
+    version    : 'v2.9'
+    });
+    FB.AppEvents.logPageView();
+    };
+    (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div class="statusbar-overlay" style="background-color: #f2862a; color:#FFFFFF;"></div>
     
     <div class="login-screen">
@@ -176,6 +193,7 @@
     </div>
   </div>
 </div>
+<script type="text/javascript" src="https://static.filestackapi.com/v3/filestack.js"></script>
 <script type="text/javascript" src="lib/pusher.min.js"></script>
 <script type="text/javascript" src="lib/moment-with-locales.js"></script>
 <script type="text/javascript" src="lib/jquery-3.2.0.min.js"></script>

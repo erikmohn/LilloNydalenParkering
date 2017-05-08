@@ -4,6 +4,7 @@ myApp.onPageBeforeInit('new-user', function(page) {
 	$("#newUserPassword").hide();
 	$("#newUserParkering").hide();
 	$("#newUserNotifications").hide();
+	$("#newUserFacebook").hide();
 });
 
 myApp.onPageInit('new-user', function(page) {
@@ -88,6 +89,31 @@ myApp.onPageInit('new-user', function(page) {
 		}
 	});
 
+	$("#next4").click(function(event) {
+		$("#newUserNotifications").slideUp();
+		$("#newUserFacebook").show();
+	});
+
+	$("#FBConnect").click(function(event) {
+		FB.logout(function(response) {
+			console.log("Logged out of facebook");
+		});
+		FB.login(function(response) {
+			if (response.authResponse) {
+				console.log("Login to facebook done");
+				FB.api('/me/picture', function(response) {
+					$("#profilePicture").attr({
+						'src': response.data.url
+					});
+				});
+			} else {
+				alert('Login Failed!');
+			}
+		}, {
+			scope: 'public_profile'
+		});
+	})
+
 	$("#new-user-done").click(function(event) {
 		mainView.router.loadPage('index.html');
 
@@ -102,7 +128,8 @@ myApp.onPageInit('new-user', function(page) {
 				needsParkingspace: $("#needs-parking").val(),
 				wantsPush: $("#wants-push").val(),
 				pushToken: localStorage.getItem("pushToken"),
-				password: hex_sha256($("#passord").val())
+				password: hex_sha256($("#passord").val()),
+				fbProfilePictureUrl: $('#profilePicture').attr('src')
 			})
 			.done(function(user) {
 				localStorage.setItem("userId", user.user._id);
@@ -111,6 +138,7 @@ myApp.onPageInit('new-user', function(page) {
 				window.analytics.trackEvent('Ny bruker', 'bruker registrert', 'Hits', 1);
 				mainView.router.loadPage('index.html');
 			});
+
 	});
 	$("#avbryt").click(function(event) {
 		mainView.router.loadPage('index.html');

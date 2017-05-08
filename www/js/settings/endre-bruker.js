@@ -7,80 +7,27 @@ myApp.onPageBeforeInit('endre-bruker', function(page) {
 			$("#telefon").val(user.phoneNumber).focus();
 			$("#email").val(user.epost).focus();
 			$("#lagre-bruker").focus();
+			$("#endre-bruker-profile").attr({
+				'src': user.fbProfilePictureUrl 
+			});
 		});
 });
 
- function photo(url){
-    // Read in file
-    var file = event.target.files[0];
+function showPicker() {
+	var client = filestack.init('AXWgf9iSCTeOa1ujkRa1oz');
 
-    // Ensure it's an image
-    if(file.type.match(/image.*/)) {
-        console.log('An image has been loaded');
-
-        // Load the image
-        var reader = new FileReader();
-        reader.onload = function (readerEvent) {
-            var image = new Image();
-            image.onload = function (imageEvent) {
-
-                // Resize the image
-                var canvas = document.createElement('canvas'),
-                    max_size = 544,
-                    width = image.width,
-                    height = image.height;
-                if (width > height) {
-                    if (width > max_size) {
-                        height *= max_size / width;
-                        width = max_size;
-                    }
-                } else {
-                    if (height > max_size) {
-                        width *= max_size / height;
-                        height = max_size;
-                    }
-                }
-                canvas.width = width;
-                canvas.height = height;
-                canvas.getContext('2d').drawImage(image, 0, 0, width, height);
-                var dataUrl = canvas.toDataURL('image/jpeg');
-                var resizedImage = dataURLToBlob(dataUrl);
-                $.event.trigger({
-                    type: "imageResized",
-                    blob: resizedImage,
-                    url: dataUrl
-                });
-            }
-            image.src = readerEvent.target.result;
-        }
-        reader.readAsDataURL(file);
-    }
+	client.pick({}).then(function(result) {
+		console.log(JSON.stringify(result.filesUploaded))
+	});
 };
-
-function renderImage(file) {
-
-  // generate a new FileReader object
-  var reader = new FileReader();
-
-  // inject an image with the src url
-  reader.onload = function(event) {
-    the_url = event.target.result
-    $('#profileImage').html("<img src='" + the_url + "' />")
-  }
- // when the file is read it triggers the onload event above.
-  reader.readAsDataURL(file);
-}
 
 myApp.onPageInit('endre-bruker', function(page) {
 
-	$("#profileImage").click(function(event) {
-		$("#the-file-input").click();
-	}); 
-	$("#the-file-input").change(function(event) {
 
-		console.log(this.files[0]);
-		renderImage(this.files[0])
+	$("#profileImage").click(function(event) {
+		showPicker();
 	});
+
 
 	$("#lagre-bruker").click(function(event) {
 		$("#fornavn-title").removeClass('input-error');

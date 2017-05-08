@@ -47,6 +47,7 @@ $$(document).on('deviceready', function() {
 	//localStorage.clear()
 	if (!localStorage.getItem("userId")) {
 		myApp.loginScreen();
+
 	} else {
 		initializePushwoosh();
 		initializePusher();
