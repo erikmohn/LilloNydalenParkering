@@ -79,13 +79,15 @@ $$(document).on('deviceready', function() {
 
 	$("#logout").click(function() {
 
-		facebookConnectPlugin.logout(function() {
-			$("#login-email").val("");
-			$("#login-password").val("");
-			localStorage.clear();
-			myApp.closePanel();
-			myApp.loginScreen();
-			window.analytics.trackEvent('Settings', 'Logget ut', 'Hits', 1);
+		$("#login-email").val("");
+		$("#login-password").val("");
+		localStorage.clear();
+		myApp.closePanel();
+		myApp.loginScreen();
+		window.analytics.trackEvent('Settings', 'Logget ut', 'Hits', 1);
+
+/*		facebookConnectPlugin.logout(function() {
+
 
 		}, function() {
 			myApp.alert("Kunne ikke logge ut fra facebook, prøv igjen senere!")
@@ -94,7 +96,7 @@ $$(document).on('deviceready', function() {
 			localStorage.clear();
 			myApp.closePanel();
 			myApp.loginScreen();
-		});
+		});*/
 	});
 
 	$("#newUser").click(function() {
@@ -139,13 +141,13 @@ function initializePushwoosh() {
 };
 
 function initializeFacebook() {
-	facebookConnectPlugin.login(["public_profile"],
+	/*facebookConnectPlugin.login(["public_profile"],
 		function(response) {
 
 		},
 		function(response) {
 
-		});
+		});*/
 }
 
 function refreshBadges() {
