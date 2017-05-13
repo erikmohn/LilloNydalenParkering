@@ -43,14 +43,15 @@ $$('.panel-left').on('panel:open', function() {
 $$(document).on('deviceready', function() {
 	window.ga.startTrackerWithId('UA-98130150-1', 30);
 	window.analytics.trackEvent('Home', 'DeviceReady', 'Hits', 1);
-	//localStorage.setItem("userId","58f6fa9aae6c971300a2bed3");
-	//localStorage.clear()
+
 	if (!localStorage.getItem("userId")) {
 		myApp.loginScreen();
 
 	} else {
+
 		initializePushwoosh();
 		initializePusher();
+		initializeFacebook();
 	}
 
 	$("#login").click(function() {
@@ -76,17 +77,24 @@ $$(document).on('deviceready', function() {
 		});
 	});
 
-	$("#oPanel").click(function() {
-
-	})
-
 	$("#logout").click(function() {
-		$("#login-email").val("");
-		$("#login-password").val("");
-		localStorage.clear();
-		myApp.closePanel();
-		myApp.loginScreen();
-		window.analytics.trackEvent('Settings', 'Logget ut', 'Hits', 1);
+
+		facebookConnectPlugin.logout(function() {
+			$("#login-email").val("");
+			$("#login-password").val("");
+			localStorage.clear();
+			myApp.closePanel();
+			myApp.loginScreen();
+			window.analytics.trackEvent('Settings', 'Logget ut', 'Hits', 1);
+
+		}, function() {
+			myApp.alert("Kunne ikke logge ut fra facebook, prøv igjen senere!")
+			$("#login-email").val("");
+			$("#login-password").val("");
+			localStorage.clear();
+			myApp.closePanel();
+			myApp.loginScreen();
+		});
 	});
 
 	$("#newUser").click(function() {
@@ -96,33 +104,9 @@ $$(document).on('deviceready', function() {
 	});
 
 	$("#glemtPassord").click(function() {
-		/*mainView.router.loadPage('views/login/glemt-passord.html');
+		mainView.router.loadPage('views/login/glemt-passord.html');
 		myApp.closePanel();
-		myApp.closeModal();*/
-		facebookConnectPlugin.login(['public_profile'],
-			function(response) {
-				myApp.alert("Login to FB done");
-				console.log("Login to facebook done");
-				facebookConnectPlugin.api(
-					'/me/picture', ['public_profile'],
-					function(data) {
-						myApp.alert("Fetched profile picture");
-						myApp.alert(data);
-						$("#profilePicture").attr({
-							'src': data.data.url
-						})
-					},
-					function(data) {
-						myApp.alert("Failed to fetch profile");
-						myApp.alert(data);
-					})
-
-			},
-			function(response) {
-				myApp.alert("Login to FB failed");
-
-				console.log();
-			});
+		myApp.closeModal();
 	});
 });
 
@@ -154,11 +138,14 @@ function initializePushwoosh() {
 	}
 };
 
-function activeMenuItem(menuItem) {
-	//$("#requestsLi").removeClass('currentLi');
-	//$("#historyLi").removeClass('currentLi');
-	//$("#moreLi").removeClass('currentLi');
-	//$(menuItem).addClass('currentLi');
+function initializeFacebook() {
+	facebookConnectPlugin.login(["public_profile"],
+		function(response) {
+
+		},
+		function(response) {
+
+		});
 }
 
 function refreshBadges() {

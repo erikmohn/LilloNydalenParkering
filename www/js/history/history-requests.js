@@ -1,7 +1,5 @@
 myApp.onPageBeforeInit('history', function(page) {
 	window.ga.trackView('History');
-	activeMenuItem("#historyLi");
-
 });
 
 myApp.onPageInit('history', function(page) {

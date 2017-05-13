@@ -85,83 +85,34 @@ myApp.onPageInit('new-user', function(page) {
 	$("#next3").click(function(event) {
 		if (true) {
 			$("#newUserParkering").slideUp();
-			$("#newUserNotifications").show();
+			$("#new-user-done").hide();
+			$("#newUserFacebook").show();
 		}
 	});
 
-	$("#next4").click(function(event) {
-		$("#newUserNotifications").slideUp();
-		$("#newUserFacebook").show();
-	});
-
 	$("#FBConnect").click(function(event) {
-		console.log("Will try to login to facebook");
 		var fbLoginSuccess = function(userData) {
-			console.log("Logged inn to facebook");
 
 			facebookConnectPlugin.api(
-				'/me/?fields=picture', ['public_profile'],
+				'/me/?fields=picture,groups', ['public_profile', 'user_groups'],
 				function(data) {
-					console.log(data);
-					myApp.alert("D: " + JSON.stringify(data));
 					$("#profilePicture").attr({
 						'src': data.picture.data.url
 					})
 				},
 				function(data) {
-					myApp.alert("D: " + JSON.stringify(data));
+					console.log("Facebook API failed!");
 				})
+			$("#new-user-done").show();
 		}
 
-		facebookConnectPlugin.login(["public_profile"],
+		facebookConnectPlugin.login(["public_profile,user_groups"],
 			fbLoginSuccess,
 			function(error) {
 				myApp.alert("" + error)
 			}
 		);
-		/*facebookConnectPlugin.login(['public_profile'],
-			function(response) {
-				myApp.alert("Login to FB done");
-				console.log("Login to facebook done");
-				facebookConnectPlugin.api(
-					'/me/picture', ['public_profile'],
-					function(data) {
-						myApp.alert("Fetched profile picture");
-						myApp.alert(data);
-						$("#profilePicture").attr({
-							'src': data.data.url
-						})
-					},
-					function(data) {
-						myApp.alert("Failed to fetch profile");
-						myApp.alert(data);
-					})
-
-			},
-			function(response) {
-				myApp.alert("Login to FB failed");
-
-				console.log();
-			});*/
-		/*FB.login(function(response) {
-			myApp.alert("Pålogging Facebook!");
-			if (response.authResponse) {
-				console.log("Login to facebook done");
-				FB.api('/me/picture', function(response) {
-					$("#profilePicture").attr({
-						'src': response.data.url
-					});
-				});
-			} else {
-				myApp.alert("Pålogging feilet!");
-				myApp.alert(response.authResponse);
-				myApp.alert(response);
-
-			}
-		}, {
-			scope: 'public_profile'
-		});*/
-	})
+	});
 
 	$("#new-user-done").click(function(event) {
 		mainView.router.loadPage('index.html');

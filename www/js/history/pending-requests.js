@@ -1,6 +1,5 @@
 myApp.onPageBeforeInit('foresporsler', function(page) {
 	window.ga.trackView('Forespørsler');
-	activeMenuItem("#requestsLi");
 });
 
 myApp.onPageInit('foresporsler', function(page) {
@@ -99,8 +98,6 @@ function refreshHistoryOffers() {
 			var fom = moment(parking.startTime).locale("nb");
 			var tom = moment(parking.endTime).locale("nb");
 
-			console.log(parking.startTime);
-
 			var timeFormat = "HH:mm (dddd)";
 
 			var status, statusColor, message, target;
@@ -147,7 +144,7 @@ function refreshHistoryOffers() {
 				$(target).append('<li class="swipeout" style="background:#FFFFFF">' +
 					'<a id="historyOffer-' + parking.singleParkingRequest._id + '" href="#" class="item-link item-content">' +
 					'<div class="item-media">' +
-					'<img class="message-avatar" style="margin-top:15px; width:50px; height:50px;" src="img/noprofile.png">' +
+					'<img class="message-avatar" style="margin-top:15px; width:50px; height:50px;" src="' + parking.singleParkingRequest.requestUser[0].fbProfilePictureUrl + '">' +
 					'</div>' +
 					'<div class="item-inner swipeout-content">' +
 					'<div class="item-title-row">' +
