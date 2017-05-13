@@ -94,7 +94,7 @@ myApp.onPageInit('new-user', function(page) {
 		var fbLoginSuccess = function(userData) {
 
 			facebookConnectPlugin.api(
-				'/me/?fields=picture,groups', ['public_profile', 'user_groups'],
+				'/me/?fields=picture', ['public_profile'],
 				function(data) {
 					$("#profilePicture").attr({
 						'src': data.picture.data.url
@@ -106,7 +106,7 @@ myApp.onPageInit('new-user', function(page) {
 			$("#new-user-done").show();
 		}
 
-		facebookConnectPlugin.login(["public_profile,user_groups"],
+		facebookConnectPlugin.login(["public_profile"],
 			fbLoginSuccess,
 			function(error) {
 				myApp.alert("" + error)
