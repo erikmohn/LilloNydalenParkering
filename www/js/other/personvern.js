@@ -1,6 +1,11 @@
 myApp.onPageBeforeInit('personvern', function(page) {
 	window.ga.trackView('Personvern');
 	$("#back-personvern").click(function(event) {
-		mainView.router.back();
+		if (!localStorage.getItem("userId")) {
+			myApp.loginScreen();
+
+		} else {
+			mainView.router.back();
+		}
 	});
 });

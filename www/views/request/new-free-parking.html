@@ -19,18 +19,18 @@
     <div class="list-block inset align-top">
       <ul class="align-top">
         <li class="align-top">
-          <div class="item-content">
-            <div class="item-media">
-              <i class="material-icons">local_parking</i>
-            </div>
-            <div class="item-inner">
-              <div class="item-title label">Parkeringsplass</div>
-              <div class="item-input">
-                <select id="parkeringsplasser">
-                </select>
+          <a href="#" class="item-link smart-select">
+            <select id="parkeringsplasser" multiple>
+            </select>
+            <div class="item-content">
+              <div class="item-media">
+                <i class="material-icons">local_parking</i>
+              </div>
+              <div class="item-inner">
+                <div class="item-title label">Parkeringsplass</div>
               </div>
             </div>
-          </div>
+          </a>
         </li>
         <li class="align-top">
           <div class="item-content">
@@ -61,7 +61,7 @@
       </ul>
     </div>
     <div class="list-block center-align">
-      <p id="new-parkering-error" class="input-error"> </p>
+      <span id="new-free-parkering-error" class="input-error"> </span>
       <ul>
         <li>
           <a id="lagre-free-parking" href="#" class="item-link list-button">Send</a>

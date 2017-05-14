@@ -228,7 +228,7 @@ function refreshHistoryOffers() {
 					'<a id="freeParking-' + parking._id + '" href="#" class="item-link item-content">' +
 					'<div class="item-inner swipeout-content">' +
 					'<div class="item-title-row">' +
-					'<div class="item-title" style="font-size: large">Ledig parkeringsplass</div> ' +
+					'<div class="item-title" style="font-size: large">Ledig parkeringsplass (' + parking.parkingSpace + ')</div> ' +
 					'<div class="item-after">' + moment(parking.registredDate).format("DD/MM HH:mm") + '</div>' +
 					'</div>' +
 					'<div class="item-subtitle"> ' + fom.format(timeFormat) + ' - ' + tom.format(timeFormat) + '</div>' + //
